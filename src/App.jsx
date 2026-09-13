@@ -12,6 +12,7 @@ import PageTransition from "@/components/PageTransition";
 import Home from "@/pages/Home";
 import About from "@/pages/About";
 import Projects from "@/pages/Projects";
+import EventDetails from "@/pages/EventDetails";
 import Volunteer from "@/pages/Volunteer";
 import Donate from "@/pages/Donate";
 import Contact from "@/pages/Contact";
@@ -35,6 +36,8 @@ const AnimatedRoutes = () => {
         <Route path="/" element={<PageTransition><Home /></PageTransition>} />
         <Route path="/about" element={<PageTransition><About /></PageTransition>} />
         <Route path="/projects" element={<PageTransition><Projects /></PageTransition>} />
+        <Route path="/projects/:id" element={<PageTransition><EventDetails /></PageTransition>} />
+        <Route path="/activities/:id" element={<PageTransition><EventDetails /></PageTransition>} />
         <Route path="/volunteer" element={<PageTransition><Volunteer /></PageTransition>} />
         <Route path="/donate" element={<PageTransition><Donate /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />

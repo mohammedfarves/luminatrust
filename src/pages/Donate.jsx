@@ -1,7 +1,8 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Heart, BookOpen, Users, Check, Sparkles, Upload, QrCode, Building2 } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
-import { FloatingParticles, GlowCard } from "@/components/AnimationEffects";
+import HeroBackground from "@/components/HeroBackground";
+import { GlowCard } from "@/components/AnimationEffects";
 import { useState } from "react";
 import { toast } from "sonner";
 import emailjs from '@emailjs/browser';
@@ -77,10 +78,8 @@ const Donate = () => {
 
   return (
     <div className="overflow-hidden">
-      <section className="relative py-44 md:py-52 overflow-hidden" style={{ background: "linear-gradient(135deg, hsl(36 90% 22%) 0%, hsl(28 80% 18%) 50%, hsl(215 45% 10%) 100%)" }}>
-        <FloatingParticles />
-        <div className="absolute inset-0 bg-dot-grid opacity-20" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-amber-500/15 rounded-full blur-3xl" />
+      <section className="relative py-44 md:py-52 overflow-hidden bg-slate-950">
+        <HeroBackground />
         <div className="w-full px-6 md:px-10 text-center relative z-10">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
             <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.2, type: "spring" }} className="inline-flex items-center gap-2 glass rounded-full px-5 py-2 mb-6">
@@ -201,15 +200,15 @@ const Donate = () => {
                           Bank Details
                         </div>
                         <div className="space-y-2 text-sm">
-                          <p className="flex justify-between border-b border-border/50 pb-1"><span className="text-muted-foreground">Account Holder:</span> <span className="font-semibold">JM CONSULTANCY SERVICE</span></p>
-                          <p className="flex justify-between border-b border-border/50 pb-1"><span className="text-muted-foreground">Account Number:</span> <span className="font-semibold">510909010337909</span></p>
-                          <p className="flex justify-between border-b border-border/50 pb-1"><span className="text-muted-foreground">IFSC Code:</span> <span className="font-semibold">CIUB0000006</span></p>
+                          <p className="flex justify-between border-b border-border/50 pb-1"><span className="text-muted-foreground">Account Holder:</span> <span className="font-semibold">LUMINA TRUST</span></p>
+                          <p className="flex justify-between border-b border-border/50 pb-1"><span className="text-muted-foreground">Account Number:</span> <span className="font-semibold">813210210000050</span></p>
+                          <p className="flex justify-between border-b border-border/50 pb-1"><span className="text-muted-foreground">IFSC Code:</span> <span className="font-semibold">BKID0008132</span></p>
                         </div>
                       </div>
                       <div className="p-5 bg-card rounded-xl border border-border shadow-sm space-y-3">
                         <div className="h-4" /> {/* Spacer */}
                         <div className="space-y-2 text-sm">
-                          <p className="flex justify-between border-b border-border/50 pb-1"><span className="text-muted-foreground">Bank:</span> <span className="font-semibold">CITY UNION BANK</span></p>
+                          <p className="flex justify-between border-b border-border/50 pb-1"><span className="text-muted-foreground">Bank:</span> <span className="font-semibold">BANK OF INDIA</span></p>
                           <p className="flex justify-between border-b border-border/50 pb-1"><span className="text-muted-foreground">Branch:</span> <span className="font-semibold">NAGAPATTINAM</span></p>
                           <p className="flex justify-between border-b border-border/50 pb-1"><span className="text-muted-foreground">Account Type:</span> <span className="font-semibold">CURRENT ACCOUNT</span></p>
                         </div>

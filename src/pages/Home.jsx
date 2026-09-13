@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Users, HandHeart, Target, ArrowRight, Send, ChevronDown, Sparkles, TrendingUp, BookOpen } from "lucide-react";
+import { Users, HandHeart, Target, ArrowRight, Send, ChevronDown, Sparkles, TrendingUp, BookOpen, Mail } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
-import causeEducation from "@/assets/cause-education.jpg";
-import causeWater from "@/assets/cause-water.jpg";
-import causeHealth from "@/assets/cause-health.jpg";
-import causeEnvironment from "@/assets/cause-environment.jpg";
+import bookDistributionImg from "@/assets/activits/Book given to students/b2.png";
+import beachCleanImg from "@/assets/activits/nagore beach clean/WhatsApp Image 2026-09-01 at 1.55.01 PM.jpeg";
+import doctorsDayImg from "@/assets/activits/DOCTERS ADY/WhatsApp Image 2026-09-01 at 2.01.14 PM.jpeg";
+import treePlantationImg from "@/assets/activits/tree plantaion/t1.png";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import SectionHeading from "@/components/SectionHeading";
 import ProjectCard from "@/components/ProjectCard";
@@ -57,10 +57,10 @@ const Home = () => {
       <section ref={heroRef} className="relative min-h-screen flex items-center justify-center">
         <motion.div className="absolute inset-0 overflow-hidden" style={{ scale: heroScale }}>
           <div className="absolute inset-0 grid grid-cols-4 md:grid-cols-6 gap-1 opacity-50">
-            {[heroBg, causeEducation, causeWater, causeHealth, causeEnvironment, heroBg,
-              causeHealth, causeWater, causeEducation, causeEnvironment, heroBg, causeHealth,
-              causeEnvironment, heroBg, causeWater, causeEducation, causeHealth, causeWater,
-              heroBg, causeEducation, causeEnvironment, causeHealth, causeWater, heroBg
+            {[heroBg, bookDistributionImg, beachCleanImg, doctorsDayImg, treePlantationImg, heroBg,
+              doctorsDayImg, beachCleanImg, bookDistributionImg, treePlantationImg, heroBg, doctorsDayImg,
+              treePlantationImg, heroBg, beachCleanImg, bookDistributionImg, doctorsDayImg, beachCleanImg,
+              heroBg, bookDistributionImg, treePlantationImg, doctorsDayImg, beachCleanImg, heroBg
             ].map((img, i) => (
               <div key={i} className="aspect-square overflow-hidden">
                 <img src={img} alt="" className="w-full h-full object-cover" loading="lazy" />
@@ -194,23 +194,106 @@ const Home = () => {
       </section>
 
       {/* ── ACTIVITIES ── */}
-      <section className="py-28 bg-warm">
+      <section className="py-28 bg-gradient-to-b from-slate-50 via-warm to-background dark:from-slate-950 dark:via-background dark:to-slate-950">
         <div className="w-full px-6 md:px-10 max-w-7xl mx-auto">
-          <SectionHeading subtitle="What We Do" title="Our Activities" description="Committed to serving humanity through charitable activities designed to make a positive impact." />
-          <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <SectionHeading
+            subtitle="What We Do"
+            title="Our Activities"
+            description="Committed to serving humanity through charitable activities designed to make a positive impact."
+          />
+
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12"
+          >
             {[
-              { icon: <BookOpen className="h-7 w-7" />, title: "Education & Training", desc: "Skill development and capacity building programs to empower the next generation.", gradient: "from-amber-400 to-orange-500" },
-              { icon: <Target className="h-7 w-7" />, title: "Livelihood Support", desc: "Employment and entrepreneurship initiatives to ensure sustainable incomes.", gradient: "from-cyan-400 to-blue-600" },
-              { icon: <HandHeart className="h-7 w-7" />, title: "Health & Awareness", desc: "Community health and wellness programs to ensure a healthier tomorrow.", gradient: "from-emerald-400 to-teal-600" },
-              { icon: <Users className="h-7 w-7" />, title: "Community Development", desc: "Strengthening grassroots institutions and networks to foster lasting change.", gradient: "from-rose-400 to-pink-500" },
+              {
+                icon: <BookOpen className="h-6 w-6 text-amber-500" />,
+                tag: "Education Pillar",
+                title: "Education & Student Training",
+                desc: "Providing free books, competitive exam training, and skill-building workshops for government school students across Tamil Nadu.",
+                image: bookDistributionImg,
+                accentColor: "border-amber-500/25 hover:border-amber-500/50",
+                badgeBg: "bg-amber-500/10 text-amber-700 dark:text-amber-300 border border-amber-500/20",
+                link: "/projects"
+              },
+              {
+                icon: <Target className="h-6 w-6 text-cyan-500" />,
+                tag: "Livelihood & Skill",
+                title: "Livelihood & Career Support",
+                desc: "Empowering youth and women with career guidance, vocational skills, and entrepreneurship opportunities for sustainable income.",
+                image: beachCleanImg,
+                accentColor: "border-cyan-500/25 hover:border-cyan-500/50",
+                badgeBg: "bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 border border-cyan-500/20",
+                link: "/projects"
+              },
+              {
+                icon: <HandHeart className="h-6 w-6 text-emerald-500" />,
+                tag: "Health Care",
+                title: "Health Camps & Hero Recognition",
+                desc: "Organizing free community medical camps, health awareness drives, and honoring dedicated doctors and healthcare professionals.",
+                image: doctorsDayImg,
+                accentColor: "border-emerald-500/25 hover:border-emerald-500/50",
+                badgeBg: "bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border border-emerald-500/20",
+                link: "/projects"
+              },
+              {
+                icon: <Users className="h-6 w-6 text-rose-500" />,
+                tag: "Environment & Community",
+                title: "Environmental & Community Drives",
+                desc: "Leading plastic-free campaigns, beach cleanups, sparrow conservation, and tree plantation drives to protect local ecosystems.",
+                image: treePlantationImg,
+                accentColor: "border-rose-500/25 hover:border-rose-500/50",
+                badgeBg: "bg-rose-500/10 text-rose-700 dark:text-rose-300 border border-rose-500/20",
+                link: "/projects"
+              },
             ].map((item, i) => (
               <motion.div key={i} variants={staggerItem}>
-                <motion.div whileHover={{ y: -8 }} transition={{ type: "spring", stiffness: 300 }} className="bg-card rounded-2xl p-7 shadow-ngo h-full flex flex-col hover:shadow-card-hover transition-shadow duration-500">
-                  <div className={`inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br ${item.gradient} text-white mb-5 shadow-lg`}>
-                    {item.icon}
+                <motion.div
+                  whileHover={{ y: -6 }}
+                  transition={{ type: "spring", stiffness: 250 }}
+                  className={`group relative bg-card/90 backdrop-blur-md rounded-3xl overflow-hidden border ${item.accentColor} shadow-ngo hover:shadow-2xl transition-all duration-500 flex flex-col sm:flex-row h-full`}
+                >
+                  {/* Image Side */}
+                  <div className="sm:w-2/5 relative h-52 sm:h-auto overflow-hidden shrink-0">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r from-black/60 via-black/20 to-transparent" />
+                    <span className={`absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider backdrop-blur-md ${item.badgeBg}`}>
+                      {item.tag}
+                    </span>
                   </div>
-                  <h3 className="font-heading text-xl text-foreground mb-2 leading-tight">{item.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed text-sm">{item.desc}</p>
+
+                  {/* Content Side */}
+                  <div className="sm:w-3/5 p-6 sm:p-7 flex flex-col justify-between flex-1">
+                    <div>
+                      <div className="w-11 h-11 rounded-2xl bg-muted/80 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-sm">
+                        {item.icon}
+                      </div>
+                      <h3 className="font-heading text-xl font-bold text-foreground mb-2 leading-tight group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+                        {item.title}
+                      </h3>
+                      <p className="text-muted-foreground leading-relaxed text-sm">
+                        {item.desc}
+                      </p>
+                    </div>
+
+                    <div className="mt-6 pt-4 border-t border-border/50 flex items-center justify-between">
+                      <Link
+                        to={item.link}
+                        className="inline-flex items-center gap-2 text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 transition-colors uppercase tracking-wider group/link"
+                      >
+                        <span>Explore Initiative</span>
+                        <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover/link:translate-x-1" />
+                      </Link>
+                    </div>
+                  </div>
                 </motion.div>
               </motion.div>
             ))}
@@ -238,10 +321,10 @@ const Home = () => {
         <div className="w-full px-6 md:px-10 max-w-7xl mx-auto">
           <SectionHeading subtitle="Our Approach" title="Community Development" description="We work closely with communities, government bodies, and partners to design and implement impactful programs that address real needs and create sustainable solutions." />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <ProjectCard image={causeEducation} title="Education for All" category="Education" description="Providing quality education to underprivileged children across rural India." progress={75} raised="3,75,000" goal="₹5,00,000" />
-            <ProjectCard image={causeWater} title="Clean Water" category="Water" description="Building wells and purification systems in drought-affected villages." progress={60} raised="6,00,000" goal="₹10,00,000" />
-            <ProjectCard image={causeHealth} title="Healthcare Access" category="Health" description="Mobile health camps bringing medical care to remote communities." progress={85} raised="4,25,000" goal="₹5,00,000" />
-            <ProjectCard image={causeEnvironment} title="Green Tomorrow" category="Environment" description="Planting trees and promoting sustainable farming practices." progress={45} raised="2,25,000" goal="₹5,00,000" />
+            <ProjectCard id="book-distribution" image={bookDistributionImg} title="Book Distribution for Students" category="Education" description="Providing free books, notebooks, and essential study materials to school students in need." progress={75} raised="3,75,000" goal="₹5,00,000" date="23 Jul 2025" location="Govt. Higher Secondary School" />
+            <ProjectCard id="beach-cleanup" image={beachCleanImg} title="Clean Water for Better Tomorrow" category="Water" description="Installing and maintaining clean water facilities to ensure safe drinking water for rural areas." progress={60} raised="6,00,000" goal="₹10,00,000" date="10 Apr 2025" location="Thiruvallur" />
+            <ProjectCard id="doctors-day" image={doctorsDayImg} title="Free Health Check-up Camp" category="Health" description="Providing basic health check-ups and medical support to underprivileged communities." progress={85} raised="4,25,000" goal="₹5,00,000" date="15 May 2025" location="Puducherry" />
+            <ProjectCard id="world-environment-day" image={treePlantationImg} title="Tree Plantation Drive" category="Environment" description="Greener today, healthier tomorrow. Join us in planting trees for a cleaner and safer planet." progress={90} raised="4,50,000" goal="₹5,00,000" date="05 Mar 2025" location="Villupuram" />
           </div>
           <div className="text-center mt-12">
             <Link to="/projects" className="inline-flex items-center gap-2 border-2 border-amber-400 text-amber-600 px-8 py-3.5 rounded-full font-bold text-sm hover:bg-amber-400 hover:text-amber-950 transition-all">
@@ -269,37 +352,55 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ── NEWSLETTER ── */}
-      <section className="py-28 md:py-36 bg-gradient-dark relative overflow-hidden">
+      {/* ── NEWSLETTER / GET INVOLVED ── */}
+      <section className="py-24 md:py-32 bg-gradient-dark relative overflow-hidden">
         <FloatingParticles />
         <div className="absolute inset-0 bg-dot-grid opacity-25" />
-        <div className="w-full px-6 md:px-10 max-w-3xl mx-auto text-center relative z-10">
-          <SectionHeading subtitle="Get Involved" title="Be a part of the change" description="Partner with us, volunteer, or support our initiatives to build stronger communities together." light />
-          <motion.form
-            onSubmit={handleNewsletter}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="flex flex-col sm:flex-row gap-3 mt-10"
-          >
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email address"
-              className="flex-1 px-6 py-4 rounded-full bg-white/8 border border-white/15 text-white placeholder:text-white/35 focus:outline-none focus:border-amber-400 transition-all text-sm backdrop-blur-sm"
-              required
+
+        {/* Ambient Glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="w-full px-6 md:px-10 max-w-4xl mx-auto text-center relative z-10">
+          <div className="bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl">
+            <SectionHeading
+              subtitle="Get Involved"
+              title="Be a part of the change"
+              description="Partner with us, volunteer, or support our initiatives to build stronger communities together."
+              light
             />
-            <motion.button
-              type="submit"
-              disabled={isSubmitting}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className={`bg-gradient-to-r from-amber-400 to-amber-500 text-amber-950 px-8 py-4 rounded-full font-bold text-sm transition-all flex items-center justify-center gap-2 whitespace-nowrap ${isSubmitting ? "opacity-70 cursor-not-allowed" : "hover:shadow-gold"}`}
+
+            <motion.form
+              onSubmit={handleNewsletter}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="flex flex-col sm:flex-row gap-3 mt-8 max-w-2xl mx-auto"
             >
-              {isSubmitting ? "Subscribing..." : <>Subscribe <Send className="h-4 w-4" /></>}
-            </motion.button>
-          </motion.form>
+              <div className="relative flex-1">
+                <Mail className="absolute left-5 top-1/2 -translate-y-1/2 h-5 w-5 text-amber-400/80 pointer-events-none" />
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email address"
+                  className="w-full pl-13 pr-6 py-4 rounded-full bg-slate-950/90 border border-white/20 text-white placeholder:text-white/40 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20 transition-all text-sm shadow-inner"
+                  required
+                />
+              </div>
+
+              <motion.button
+                type="submit"
+                disabled={isSubmitting}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                className={`bg-gradient-to-r from-amber-400 to-amber-500 text-amber-950 px-9 py-4 rounded-full font-bold text-sm transition-all flex items-center justify-center gap-2 whitespace-nowrap shadow-gold ${
+                  isSubmitting ? "opacity-70 cursor-not-allowed" : "hover:shadow-xl hover:brightness-110"
+                }`}
+              >
+                {isSubmitting ? "Subscribing..." : <>Subscribe <Send className="h-4 w-4" /></>}
+              </motion.button>
+            </motion.form>
+          </div>
         </div>
       </section>
     </div>

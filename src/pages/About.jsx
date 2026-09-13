@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { FloatingParticles, staggerContainer, staggerItem, GlowCard } from "@/components/AnimationEffects";
+import { staggerContainer, staggerItem, GlowCard } from "@/components/AnimationEffects";
 import SectionHeading from "@/components/SectionHeading";
+import HeroBackground from "@/components/HeroBackground";
 import { Users, Target, Shield, Sparkles } from "lucide-react";
 
 const team = [
@@ -13,10 +14,8 @@ const team = [
 const About = () => (
   <div className="overflow-hidden">
     {/* ── HERO ── */}
-    <section className="relative py-44 md:py-52 overflow-hidden" style={{ background: "linear-gradient(135deg, hsl(185 60% 18%) 0%, hsl(215 50% 14%) 50%, hsl(215 45% 8%) 100%)" }}>
-      <FloatingParticles />
-      <div className="absolute inset-0 bg-dot-grid opacity-20" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-teal-600/15 rounded-full blur-3xl" />
+    <section className="relative py-44 md:py-52 overflow-hidden bg-slate-950">
+      <HeroBackground />
       <div className="w-full px-6 md:px-10 text-center relative z-10">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
           <span className="inline-flex items-center gap-2 glass rounded-full px-5 py-2 text-xs font-bold uppercase tracking-[0.2em] text-teal-300 mb-6">

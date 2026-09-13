@@ -2,27 +2,32 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import SectionHeading from "@/components/SectionHeading";
 import ProjectCard from "@/components/ProjectCard";
-import { FloatingParticles, staggerContainer, staggerItem } from "@/components/AnimationEffects";
-import causeEducation from "@/assets/cause-education.jpg";
-import causeWater from "@/assets/cause-water.jpg";
-import causeHealth from "@/assets/cause-health.jpg";
-import causeEnvironment from "@/assets/cause-environment.jpg";
+import HeroBackground from "@/components/HeroBackground";
+import { staggerContainer, staggerItem } from "@/components/AnimationEffects";
+import bookDistributionImg from "@/assets/activits/Book given to students/b2.png";
+import scienceCompImg from "@/assets/activits/Science Competition – Nagapattinam/s1.png";
+import doctorsDayImg from "@/assets/activits/DOCTERS ADY/d1.png";
+import beachCleanImg from "@/assets/activits/nagore beach clean/n1.jpeg";
+import treePlantationImg from "@/assets/activits/tree plantaion/t1.png";
+import plasticFreeImg from "@/assets/activits/Plastic bag free day/p1.jpeg";
+import savitribaiImg from "@/assets/activits/savithri bhai pule/sb1.jpeg";
+import cycleRallyImg from "@/assets/activits/CYCLEING/c1.jpeg";
 import sparrow1 from "@/assets/events/sparrow-event-1.jpeg";
-import cycleRally from "@/assets/events/cycle-rally.png";
 import PhotoGallery from "@/components/PhotoGallery";
 
 const allProjects = [
-  { image: cycleRally, title: "Pedal for Planet", category: "Upcoming", description: "Join our community cycling event to raise awareness for climate change and promote sustainable urban mobility.", progress: 0, raised: "Upcoming", goal: "Join Us" },
-  { image: causeEducation, title: "Education for All", category: "Education", description: "Providing quality education to underprivileged children through schools, scholarships, and digital learning.", progress: 75, raised: "3,75,000", goal: "₹5,00,000" },
-  { image: causeWater, title: "Clean Water Initiative", category: "Water", description: "Building wells and water purification systems in drought-affected villages across Rajasthan and Maharashtra.", progress: 60, raised: "6,00,000", goal: "₹10,00,000" },
-  { image: causeHealth, title: "Healthcare Access", category: "Health", description: "Mobile health camps bringing essential medical care and health awareness to remote communities.", progress: 85, raised: "4,25,000", goal: "₹5,00,000" },
-  { image: causeEnvironment, title: "Green Tomorrow", category: "Environment", description: "Planting trees, promoting sustainable farming, and restoring natural habitats in degraded ecosystems.", progress: 45, raised: "2,25,000", goal: "₹5,00,000" },
-  { image: causeEducation, title: "Women Empowerment", category: "Education", description: "Skill development, vocational training, and micro-finance support for women in underserved communities.", progress: 55, raised: "2,75,000", goal: "₹5,00,000" },
-  { image: causeHealth, title: "Nutrition Program", category: "Health", description: "Combating malnutrition in children under 5 through supplementary feeding and nutrition education.", progress: 70, raised: "3,50,000", goal: "₹5,00,000" },
-  { image: sparrow1, title: "Sparrow Day Celebration", category: "Completed", description: "A highly successful community event where we raised awareness and distributed bird feeders to protect our local sparrow population.", progress: 100, raised: "Completed", goal: "Successful" },
+  { id: "pedal-for-planet", image: cycleRallyImg, title: "Pedal for Planet", category: "Upcoming", description: "Join our community cycling rally to raise awareness for climate change and promote green living.", progress: 0, raised: "Upcoming", goal: "Join Us", date: "12 Aug 2025", location: "Govt. Middle School" },
+  { id: "book-distribution", image: bookDistributionImg, title: "Book Distribution for Students", category: "Education", description: "Providing free books, notebooks, and essential study materials to school students in need.", progress: 75, raised: "3,75,000", goal: "₹5,00,000", date: "23 Jul 2025", location: "Govt. Higher Secondary School" },
+  { id: "science-competition", image: scienceCompImg, title: "Nagapattinam Science Competition", category: "Education", description: "Fostering scientific temperament and innovation among young school students through annual science competitions.", progress: 80, raised: "4,00,000", goal: "₹5,00,000", date: "20 Jun 2025", location: "Nagapattinam" },
+  { id: "doctors-day", image: doctorsDayImg, title: "Free Health Check-up Camp", category: "Health", description: "Providing basic health check-ups and medical support to underprivileged communities.", progress: 85, raised: "4,25,000", goal: "₹5,00,000", date: "15 May 2025", location: "Puducherry" },
+  { id: "beach-cleanup", image: beachCleanImg, title: "Clean Water for Better Tomorrow", category: "Water", description: "Installing and maintaining clean water facilities to ensure safe drinking water for rural areas.", progress: 60, raised: "6,00,000", goal: "₹10,00,000", date: "10 Apr 2025", location: "Thiruvallur" },
+  { id: "world-environment-day", image: treePlantationImg, title: "Tree Plantation Drive", category: "Environment", description: "Greener today, healthier tomorrow. Join us in planting trees for a cleaner and safer planet.", progress: 90, raised: "4,50,000", goal: "₹5,00,000", date: "05 Mar 2025", location: "Villupuram" },
+  { id: "plastic-free-day", image: plasticFreeImg, title: "Plastic Free Awareness", category: "Environment", description: "Distributing eco-friendly cloth bags and conducting door-to-door awareness campaigns to reduce single-use plastic.", progress: 55, raised: "2,75,000", goal: "₹5,00,000", date: "18 Feb 2025", location: "Nagapattinam" },
+  { id: "savitribai-phule", image: savitribaiImg, title: "Women Empowerment Drive", category: "Completed", description: "Celebrating Savitribai Phule Jayanti and providing leadership, educational, and vocational guidance for women.", progress: 100, raised: "Completed", goal: "Successful", date: "03 Jan 2025", location: "Nagapattinam" },
+  { id: "sparrow-initiative", image: sparrow1, title: "Sparrow Protection Initiative", category: "Completed", description: "A highly successful community drive distributing bird feeders and nest boxes to conserve local house sparrows.", progress: 100, raised: "Completed", goal: "Successful", date: "20 Dec 2024", location: "Nagapattinam" },
 ];
 
-const tabs = ["All", "Upcoming", "Education", "Water", "Health", "Environment", "Completed"];
+const tabs = ["All", "Education", "Environment", "Health", "Water", "Upcoming", "Completed"];
 
 const Projects = () => {
   const [activeTab, setActiveTab] = useState("All");
@@ -31,10 +36,8 @@ const Projects = () => {
   return (
     <div className="overflow-hidden">
       {/* ── HERO ── */}
-      <section className="relative py-44 md:py-52 bg-gradient-dark overflow-hidden">
-        <FloatingParticles />
-        <div className="absolute inset-0 bg-dot-grid opacity-20" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-amber-600/10 rounded-full blur-3xl" />
+      <section className="relative py-44 md:py-52 bg-slate-950 overflow-hidden">
+        <HeroBackground />
         <div className="w-full px-6 md:px-10 text-center relative z-10">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
             <span className="inline-flex items-center gap-2 glass rounded-full px-5 py-2 text-amber-400 font-bold text-xs uppercase tracking-[0.2em] mb-6">Our Work</span>
@@ -56,18 +59,17 @@ const Projects = () => {
           {/* Filter tabs */}
           <div className="flex flex-wrap justify-center gap-3 mb-12">
             {tabs.map((tab) => (
-              <motion.button
+              <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 ${activeTab === tab
-                    ? "bg-gradient-to-r from-amber-400 to-amber-500 text-amber-950 shadow-gold"
-                    : "bg-secondary text-muted-foreground hover:text-foreground hover:bg-amber-50 border border-transparent hover:border-amber-200"
-                  }`}
+                className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
+                  activeTab === tab
+                    ? "bg-[#064e3b] text-white shadow-md border border-[#064e3b]"
+                    : "bg-card border border-border text-foreground/80 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 hover:border-emerald-200"
+                }`}
               >
                 {tab}
-              </motion.button>
+              </button>
             ))}
           </div>
 
