@@ -47,7 +47,7 @@ export const eventsData = [
     location: "Govt. Middle School, Thiruvallur",
     participants: "200+ Participants",
     progress: 100,
-    raised: "Upcoming",
+    raised: "Environment",
     goal: "Join Us",
     image: cycleRallyImg,
     galleryImages: [cycleRallyImg, cycleRallyImg2, cycleRallyImg3],

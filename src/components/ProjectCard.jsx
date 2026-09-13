@@ -33,94 +33,101 @@ const ProjectCard = ({
   location = "Nagapattinam",
 }) => {
   const badgeClass = categoryColors[category] || "bg-emerald-400 text-emerald-950";
-  const progressGradient = progressColors[category] || "from-emerald-500 to-teal-400";
   const targetLink = id ? `/projects/${id}` : "/projects";
+  const safeProgress = Math.min(Math.max(Number(progress) || 0, 0), 100);
+  const progressBarStyle = {
+    width: `${safeProgress}%`,
+    background:
+      category === "Education"
+        ? "linear-gradient(90deg, #7dd3fc 0%, #fbbf24 100%)"
+        : category === "Health"
+          ? "linear-gradient(90deg, #34d399 0%, #14b8a6 100%)"
+          : category === "Water"
+            ? "linear-gradient(90deg, #a78bfa 0%, #3b82f6 100%)"
+            : category === "Environment"
+              ? "linear-gradient(90deg, #34d399 0%, #22c55e 100%)"
+              : category === "Completed"
+                ? "linear-gradient(90deg, #34d399 0%, #2dd4bf 100%)"
+                : "linear-gradient(90deg, #fbbf24 0%, #f59e0b 100%)",
+  };
 
   return (
-    <motion.div
+    <motion.article
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.4 }}
-      className="bg-card rounded-2xl overflow-hidden border border-border/60 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col h-full group"
+      transition={{ duration: 0.45 }}
+      className="group flex h-full flex-col overflow-hidden rounded-[28px] border border-[#dfe3d5] bg-[#f4f2ef] shadow-[0_22px_40px_-30px_rgba(15,23,42,0.35)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_26px_45px_-28px_rgba(6,78,59,0.35)]"
     >
-      {/* Image Container */}
-      <div className="relative h-48 md:h-52 overflow-hidden bg-muted">
+      <div className="relative h-52 overflow-hidden bg-muted md:h-60">
         <img
           src={image}
           alt={title}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
           loading="lazy"
         />
-        {/* Category Badge */}
         {category && (
           <span
-            className={`absolute top-3 left-3 text-[10px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-full shadow-sm ${badgeClass}`}
+            className={`absolute left-4 top-4 inline-flex items-center rounded-full border border-white/30 bg-[#f4f2ef]/75 px-3 py-1.5 text-[10px] font-extrabold uppercase tracking-[0.22em] text-[#143b30] shadow-sm backdrop-blur-sm ${badgeClass}`}
           >
             {category}
           </span>
         )}
       </div>
 
-      {/* Card Content */}
-      <div className="p-5 flex flex-col flex-1">
-        {/* Title */}
-        <h3 className="font-heading font-bold text-lg md:text-xl text-foreground mb-2 leading-snug group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">
+      <div className="flex flex-1 flex-col p-5 md:p-6">
+        <h3 className="mb-3 font-heading text-2xl md:text-[2rem] leading-none text-[#1f3d30] group-hover:text-[#0f5132] transition-colors">
           {title}
         </h3>
 
-        {/* Description */}
-        <p className="text-xs md:text-sm text-muted-foreground mb-4 line-clamp-2 leading-relaxed">
+        <p className="mb-5 text-sm md:text-[1.05rem] leading-relaxed text-slate-600/90">
           {description}
         </p>
 
-        <div className="mt-auto space-y-3">
-          {/* Date & Location Row */}
-          <div className="flex flex-wrap items-center justify-between text-[11px] text-muted-foreground gap-2 font-medium">
+        <div className="mt-auto space-y-4">
+          <div className="flex flex-wrap items-center justify-between gap-3 text-[11px] font-medium text-slate-600 md:text-xs">
             {date && (
-              <div className="flex items-center gap-1.5">
-                <Calendar className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
+              <div className="flex items-center gap-2">
+                <Calendar className="h-4 w-4 text-emerald-700" />
                 <span>{date}</span>
               </div>
             )}
             {location && (
-              <div className="flex items-center gap-1.5">
-                <MapPin className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                <span className="truncate max-w-[130px]">{location}</span>
+              <div className="flex items-center gap-2">
+                <MapPin className="h-4 w-4 text-emerald-700" />
+                <span className="max-w-[160px] truncate">{location}</span>
               </div>
             )}
           </div>
 
-          {/* Progress Bar & Funding Status */}
-          <div className="space-y-1">
-            <div className="w-full h-1.5 bg-muted rounded-full overflow-hidden">
+          <div className="space-y-2">
+            <div className="h-2.5 w-full overflow-hidden rounded-full bg-slate-300/80">
               <motion.div
-                className={`h-full rounded-full bg-gradient-to-r ${progressGradient}`}
+                className="h-full rounded-full"
                 initial={{ width: 0 }}
-                whileInView={{ width: `${Math.min(progress, 100)}%` }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.2, ease: "easeOut" }}
+                animate={{ width: `${safeProgress}%` }}
+                transition={{ duration: 1.1, ease: "easeOut" }}
+                style={progressBarStyle}
               />
             </div>
-            {progress > 0 && (
-              <div className="flex justify-end text-[10px] font-bold text-muted-foreground">
-                <span>{progress}% funded</span>
+            {safeProgress > 0 && (
+              <div className="flex justify-end text-[11px] font-bold text-slate-700 md:text-xs">
+                <span>{safeProgress}% funded</span>
               </div>
             )}
           </div>
 
-          {/* Action Row */}
-          <div className="pt-1 flex items-center justify-between">
+          <div className="pt-1">
             <Link
               to={targetLink}
-              className="inline-flex items-center gap-1.5 bg-[#064e3b] hover:bg-emerald-900 text-white px-4 py-2 rounded-full text-xs font-bold transition-all duration-300 shadow-sm"
+              className="inline-flex items-center gap-2 rounded-full bg-[#0f5132] px-5 py-3 text-sm font-bold text-white shadow-sm transition-all hover:bg-[#0a3e2b]"
             >
-              View Details <ArrowRight className="w-3.5 h-3.5" />
+              View Details <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </div>
       </div>
-    </motion.div>
+    </motion.article>
   );
 };
 

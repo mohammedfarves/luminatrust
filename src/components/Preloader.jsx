@@ -7,23 +7,36 @@ const Preloader = ({ onComplete }) => {
   const [phase, setPhase] = useState("loading");
 
   useEffect(() => {
+    if (phase === "reveal") return undefined;
+
     const interval = setInterval(() => {
       setProgress((prev) => {
-        if (prev >= 100) {
+        const next = Math.min(prev + Math.random() * 8 + 2, 100);
+        if (next >= 100) {
           clearInterval(interval);
           setPhase("reveal");
-          setTimeout(onComplete, 1200);
           return 100;
         }
-        return prev + Math.random() * 8 + 2;
+        return next;
       });
     }, 80);
+
     return () => clearInterval(interval);
-  }, [onComplete]);
+  }, [phase]);
+
+  useEffect(() => {
+    if (phase !== "reveal") return undefined;
+
+    const timer = setTimeout(() => {
+      onComplete?.();
+    }, 1200);
+
+    return () => clearTimeout(timer);
+  }, [phase, onComplete]);
 
   return (
     <AnimatePresence>
-      {phase !== "reveal" || progress <= 100 ? (
+      {phase !== "reveal" ? (
         <motion.div
           className="fixed inset-0 z-[100] flex items-center justify-center"
           style={{ background: "linear-gradient(135deg, #0a1628 0%, #0d2847 40%, #1a3a5c 70%, #0a1628 100%)" }}

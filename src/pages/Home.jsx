@@ -6,6 +6,7 @@ import bookDistributionImg from "@/assets/activits/Book given to students/b2.png
 import beachCleanImg from "@/assets/activits/nagore beach clean/WhatsApp Image 2026-09-01 at 1.55.01 PM.jpeg";
 import doctorsDayImg from "@/assets/activits/DOCTERS ADY/WhatsApp Image 2026-09-01 at 2.01.14 PM.jpeg";
 import treePlantationImg from "@/assets/activits/tree plantaion/t1.png";
+import cycleRallyImg from "@/assets/activits/CYCLEING/c1.jpeg";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import SectionHeading from "@/components/SectionHeading";
 import ProjectCard from "@/components/ProjectCard";
@@ -320,11 +321,9 @@ const Home = () => {
       <section className="py-28">
         <div className="w-full px-6 md:px-10 max-w-7xl mx-auto">
           <SectionHeading subtitle="Our Approach" title="Community Development" description="We work closely with communities, government bodies, and partners to design and implement impactful programs that address real needs and create sustainable solutions." />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             <ProjectCard id="book-distribution" image={bookDistributionImg} title="Book Distribution for Students" category="Education" description="Providing free books, notebooks, and essential study materials to school students in need." progress={75} raised="3,75,000" goal="₹5,00,000" date="23 Jul 2025" location="Govt. Higher Secondary School" />
-            <ProjectCard id="beach-cleanup" image={beachCleanImg} title="Clean Water for Better Tomorrow" category="Water" description="Installing and maintaining clean water facilities to ensure safe drinking water for rural areas." progress={60} raised="6,00,000" goal="₹10,00,000" date="10 Apr 2025" location="Thiruvallur" />
-            <ProjectCard id="doctors-day" image={doctorsDayImg} title="Free Health Check-up Camp" category="Health" description="Providing basic health check-ups and medical support to underprivileged communities." progress={85} raised="4,25,000" goal="₹5,00,000" date="15 May 2025" location="Puducherry" />
-            <ProjectCard id="world-environment-day" image={treePlantationImg} title="Tree Plantation Drive" category="Environment" description="Greener today, healthier tomorrow. Join us in planting trees for a cleaner and safer planet." progress={90} raised="4,50,000" goal="₹5,00,000" date="05 Mar 2025" location="Villupuram" />
+            <ProjectCard id="pedal-for-planet" image={cycleRallyImg} title="Pedal for Planet" category="Environment" description="Join our community cycling rally to raise awareness for climate change and promote green living." progress={75} raised="Environment" goal="Join Us" date="12 Aug 2025" location="Govt. Middle School" />
           </div>
           <div className="text-center mt-12">
             <Link to="/projects" className="inline-flex items-center gap-2 border-2 border-amber-400 text-amber-600 px-8 py-3.5 rounded-full font-bold text-sm hover:bg-amber-400 hover:text-amber-950 transition-all">
