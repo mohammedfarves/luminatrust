@@ -13,6 +13,8 @@ import kidsYellow from "@/assets/activits/Book given to students/WhatsApp Image 
 import indoorKids from "@/assets/activits/Book given to students/WhatsApp Image 2026-09-01 at 1.59.24 PM.jpeg";
 import cyclingImg from "@/assets/activits/CYCLEING/WhatsApp Image 2026-09-01 at 2.08.51 PM.jpeg";
 import scienceCompImg from "@/assets/activits/Science Competition – Nagapattinam/WhatsApp Image 2026-09-01 at 1.55.51 PM.jpeg";
+import mlaMeetingPhoto from "@/assets/events/mla-meeting.jpg";
+import examPrepPhoto from "@/assets/events/exam-prep-training.png";
 
 const categories = ["All", "Education", "Environment", "Community", "Awareness", "Events"];
 
@@ -54,10 +56,10 @@ const allItems = [
   },
   {
     id: "community-gift",
-    title: "Community Outreach & Support",
+    title: "Building Stronger Community Partnerships",
     category: "Community",
-    src: giftDistImg,
-    alt: "Distribution drive",
+    src: mlaMeetingPhoto,
+    alt: "Meeting with Nagapattinam MLA",
     pos: "top-right-3"
   },
   {
@@ -70,10 +72,10 @@ const allItems = [
   },
   {
     id: "indoor-kids",
-    title: "Primary Education Support",
+    title: "Government Exam Preparation Training",
     category: "Education",
-    src: indoorKids,
-    alt: "Indoor education distribution",
+    src: examPrepPhoto,
+    alt: "Government Exam Preparation Training",
     pos: "bottom-left"
   },
   {
@@ -305,15 +307,7 @@ const PhotoGallery = () => {
           </motion.div>
         )}
 
-        {/* View All Activities Button */}
-        <div className="text-center mt-12">
-          <button
-            onClick={() => setActiveTab("All")}
-            className="inline-flex items-center gap-2 border-2 border-emerald-700/30 text-emerald-800 dark:text-emerald-300 hover:bg-emerald-700 hover:text-white px-8 py-3 rounded-full text-sm font-semibold transition-all duration-300 shadow-sm"
-          >
-            View All Activities <ArrowRight className="w-4 h-4" />
-          </button>
-        </div>
+
       </div>
 
       {/* Lightbox Modal */}

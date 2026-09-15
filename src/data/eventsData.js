@@ -28,6 +28,9 @@ import scienceCompImg4 from "@/assets/activits/Science Competition – Nagapatti
 import treePlantationImg from "@/assets/activits/tree plantaion/t1.png";
 import treePlantationImg2 from "@/assets/activits/tree plantaion/g2.jpeg";
 import mlaMeetingImg from "@/assets/activits/world environment day/WhatsApp Image 2026-09-01 at 2.05.06 PM.jpeg";
+import mlaMeetingPhoto from "@/assets/events/mla-meeting.jpg";
+import examPrepPhoto from "@/assets/events/exam-prep-training.png";
+
 import indoorKids from "@/assets/activits/Book given to students/WhatsApp Image 2026-09-01 at 1.59.24 PM.jpeg";
 import sparrow1 from "@/assets/events/sparrow-event-1.jpeg";
 import sparrow2 from "@/assets/events/sparrow-event-2.jpeg";
@@ -42,13 +45,13 @@ export const eventsData = [
     title: "Pedal for Planet – Bicycle Rally Awareness Campaign",
     shortTitle: "Bicycle Rally Awareness Campaign",
     category: "Completed",
-    date: "12 August 2026",
+    date: "1 June 2026",
     time: "8:00 AM – 12:00 PM",
-    location: "Govt. Middle School, Thiruvallur",
+    location: "Nagapattinam Collector Office",
     participants: "200+ Participants",
     progress: 100,
-    raised: "Upcoming",
-    goal: "Join Us",
+    raised: "Completed",
+    goal: "Successful",
     image: cycleRallyImg,
     galleryImages: [cycleRallyImg, cycleRallyImg2, cycleRallyImg3],
     shortDescription: "Lumina Trust organized a Bicycle Rally Awareness Campaign to promote healthy living, sustainable transportation and environmental responsibility with enthusiastic participation from students and volunteers.",
@@ -66,7 +69,7 @@ export const eventsData = [
       "Inspire the younger generation to become ambassadors for a greener future"
     ],
     highlights: [
-      "Cycling rally through the main streets of Thiruvallur",
+      "Cycling rally starting from Nagapattinam Collector Office",
       "Awareness session on climate change and green living",
       "Tree sapling distribution and planting drive",
       "Certificates of appreciation and refreshments for all participants"
@@ -80,7 +83,7 @@ export const eventsData = [
     category: "Education",
     date: "12 August 2026",
     time: "10:00 AM – 1:00 PM",
-    location: "Govt. Higher Secondary School, Nagapattinam",
+    location: "Nagapattinam",
     participants: "150+ Students",
     progress: 75,
     raised: "3,75,000",
@@ -115,7 +118,7 @@ export const eventsData = [
     category: "Health",
     date: "1 July 2026",
     time: "9:00 AM – 12:30 PM",
-    location: "Puducherry Medical Centre",
+    location: "Nagapattinam",
     participants: "Healthcare Fraternity & Community",
     progress: 85,
     raised: "4,25,000",
@@ -183,7 +186,7 @@ export const eventsData = [
     category: "Environment",
     date: "3 July 2026",
     time: "10:00 AM – 2:00 PM",
-    location: "Nagapattinam Town Centre",
+    location: "Nagapattinam",
     participants: "Community Members & Shops",
     progress: 55,
     raised: "2,75,000",
@@ -247,7 +250,7 @@ export const eventsData = [
   {
     id: "science-competition",
     title: "Science Competition for Government School Students",
-    shortTitle: "Nagapattinam Science Competition",
+    shortTitle: "Nagapattinam",
     category: "Education",
     date: "20 June 2026",
     time: "9:30 AM – 4:00 PM",
@@ -314,19 +317,18 @@ export const eventsData = [
   },
   {
     id: "mla-meeting",
-    title: "Meeting with Nagapattinam MLA – Building Stronger Community Partnerships",
-    shortTitle: "Nagapattinam MLA Community Meeting",
-    category: "Community",
-    date: "15 May 2026",
+    title: "Building Stronger Community Partnerships – Meeting with Nagapattinam MLA",
+    shortTitle: "Building Stronger Community Partnerships",
+    category: "Completed",
     time: "11:00 AM – 1:00 PM",
-    location: "MLA Office, Nagapattinam, Tamil Nadu",
-    participants: "Lumina Trust & Community Leaders",
-    progress: 70,
-    raised: "Active",
-    goal: "Ongoing",
-    image: mlaMeetingImg,
-    galleryImages: [mlaMeetingImg, doctorsDayImg, scienceCompImg],
-    shortDescription: "Lumina Trust participated in a meeting with the Honourable MLA of Nagapattinam to discuss community development, social welfare, education, and collaborative initiatives.",
+    location: "Nagapattinam, Tamil Nadu",
+    participants: "Lumina Trust & Community Representatives",
+    progress: 100,
+    raised: "Completed",
+    goal: "Successful",
+    image: mlaMeetingPhoto,
+    galleryImages: [mlaMeetingPhoto],
+    shortDescription: "Lumina Trust participated in a meeting with the Honourable Member of the Legislative Assembly (MLA), Nagapattinam, along with community representatives and other stakeholders.",
     fullDescription: [
       "Lumina Trust participated in a meeting with the Honourable Member of the Legislative Assembly (MLA), Nagapattinam, along with community representatives and other stakeholders.",
       "The meeting provided an opportunity to discuss community development, social welfare, education and initiatives aimed at supporting the people of Nagapattinam.",
@@ -339,10 +341,10 @@ export const eventsData = [
       "Build collaborative initiatives for Nagapattinam region"
     ],
     highlights: [
-      "Discussion on grassroots social welfare projects",
+      "Discussion on grassroots social welfare projects with Nagapattinam MLA",
       "Presentation of Lumina Trust educational and health initiatives",
-      "Collaborative planning for community development",
-      "Engagement with local government representatives"
+      "Collaborative planning for community development and social welfare",
+      "Engagement with local government representatives and community leaders"
     ],
     quote: "Collaboration between leaders and community brings lasting social transformation."
   },
@@ -353,23 +355,23 @@ export const eventsData = [
     category: "Education",
     date: "28 April 2026",
     time: "9:00 AM – 4:00 PM",
-    location: "Lumina Trust Training Centre, Nagapattinam",
+    location: "Nagapattinam, Tamil Nadu",
     participants: "80+ Exam Aspirants",
-    progress: 85,
-    raised: "3,40,000",
-    goal: "₹4,00,000",
-    image: indoorKids,
-    galleryImages: [indoorKids, bookDistributionImg, scienceCompImg],
-    shortDescription: "A focused training session was conducted by Lumina Trust to guide and prepare students for government and competitive examinations through structured learning and expert guidance.",
+    progress: 100,
+    raised: "Completed",
+    goal: "Successful",
+    image: examPrepPhoto,
+    galleryImages: [examPrepPhoto],
+    shortDescription: "Lumina Trust conducted a training session to support students preparing for government and competitive examinations. The session focused on exam preparation, guidance, and building confidence among aspiring candidates.",
     fullDescription: [
+      "Empowering Aspirants Through Education – A focused training session was conducted to guide and prepare students for government and competitive examinations.",
       "Lumina Trust conducted a training session to support students preparing for government and competitive examinations. The session focused on exam preparation, guidance, and building confidence among aspiring candidates.",
-      "Through structured learning and expert guidance, Lumina Trust continues to support students in achieving their career goals and empowering young aspirants for a bright future.",
-      "The programme covered exam strategies, syllabus breakdown, time management, and mock practice sessions to help students perform with confidence."
+      "Through structured learning and expert guidance, Lumina Trust continues to support students in achieving their career goals and opening doors to unlimited possibilities."
     ],
     objectives: [
       "Provide expert guidance for competitive and government exams",
       "Distribute structured study materials and reference guides",
-      "Build confidence and clarity among rural student aspirants",
+      "Build confidence and clarity among student aspirants",
       "Empower youth through career mentorship and quality training"
     ],
     highlights: [

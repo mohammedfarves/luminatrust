@@ -75,18 +75,12 @@ const ProjectCard = ({
         </p>
 
         <div className="mt-auto space-y-3">
-          {/* Date & Location Row */}
+          {/* Location Row */}
           <div className="flex flex-wrap items-center justify-between text-[11px] text-muted-foreground gap-2 font-medium">
-            {date && (
-              <div className="flex items-center gap-1.5">
-                <Calendar className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                <span>{date}</span>
-              </div>
-            )}
             {location && (
               <div className="flex items-center gap-1.5">
                 <MapPin className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                <span className="truncate max-w-[130px]">{location}</span>
+                <span className="truncate max-w-[200px]">{location}</span>
               </div>
             )}
           </div>

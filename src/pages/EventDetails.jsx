@@ -76,10 +76,6 @@ const EventDetails = () => {
           {/* Meta Info Row */}
           <div className="flex flex-wrap items-center gap-6 text-sm text-white/80 font-medium mb-6">
             <div className="flex items-center gap-2">
-              <Calendar className="w-4 h-4 text-emerald-400" />
-              <span>{event.date}</span>
-            </div>
-            <div className="flex items-center gap-2">
               <MapPin className="w-4 h-4 text-emerald-400" />
               <span>{event.location}</span>
             </div>
@@ -219,13 +215,7 @@ const EventDetails = () => {
               </h3>
 
               <div className="space-y-4 text-xs md:text-sm font-medium text-foreground/90">
-                <div className="flex items-start gap-3">
-                  <Calendar className="w-4 h-4 text-emerald-600 dark:text-emerald-400 mt-0.5 shrink-0" />
-                  <div>
-                    <span className="text-muted-foreground block text-[11px]">Date</span>
-                    <span>{event.date}</span>
-                  </div>
-                </div>
+
 
                 <div className="flex items-start gap-3">
                   <Clock className="w-4 h-4 text-emerald-600 dark:text-emerald-400 mt-0.5 shrink-0" />
