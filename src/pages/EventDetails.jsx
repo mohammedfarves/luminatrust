@@ -255,8 +255,22 @@ const EventDetails = () => {
               <div className="space-y-1">
                 <div className="w-full h-2 bg-secondary rounded-full overflow-hidden">
                   <div
-                    className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-sky-500"
-                    style={{ width: `${Math.min(event.progress || 10, 100)}%` }}
+                    className="h-full rounded-full"
+                    style={{
+                      width: `${Math.min(event.progress || 10, 100)}%`,
+                      background:
+                        event.category === "Education"
+                          ? "linear-gradient(90deg, #7dd3fc 0%, #fbbf24 100%)"
+                          : event.category === "Health"
+                            ? "linear-gradient(90deg, #34d399 0%, #14b8a6 100%)"
+                            : event.category === "Water"
+                              ? "linear-gradient(90deg, #a78bfa 0%, #3b82f6 100%)"
+                              : event.category === "Environment"
+                                ? "linear-gradient(90deg, #34d399 0%, #22c55e 100%)"
+                                : event.category === "Completed"
+                                  ? "linear-gradient(90deg, #34d399 0%, #2dd4bf 100%)"
+                                  : "linear-gradient(90deg, #34d399 0%, #38bdf8 100%)",
+                    }}
                   />
                 </div>
                 <div className="flex justify-end text-[10px] font-bold text-muted-foreground">
