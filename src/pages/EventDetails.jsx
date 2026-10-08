@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Calendar,
   Clock,
@@ -33,12 +33,40 @@ const EventDetails = () => {
   const { id } = useParams();
   const [selectedPhoto, setSelectedPhoto] = useState(null);
 
-  // Find event by ID or fallback to first event
-  const event = eventsData.find((e) => e.id === id) || eventsData[0];
+  // Find static event by ID or fallback to first event
+  const staticFallback = eventsData.find((e) => e.id === id) || eventsData[0];
+  const [event, setEvent] = useState(staticFallback);
+
+  useEffect(() => {
+    if (!id) return;
+    const match = eventsData.find((e) => e.id === id);
+    if (match) {
+      setEvent(match);
+    }
+    fetch(`http://localhost:8000/api/activities/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && data.title) {
+          setEvent({
+            ...data,
+            image: data.image && !data.image.includes("unsplash.com") ? data.image : match?.image || data.image || staticFallback.image,
+            galleryImages: match?.galleryImages && match.galleryImages.length > 0 ? match.galleryImages : data.galleryImages || [data.image],
+            fullDescription: Array.isArray(data.fullDescription) && data.fullDescription.length > 0
+              ? data.fullDescription
+              : match?.fullDescription || [data.description || staticFallback.shortDescription],
+            objectives: data.objectives && data.objectives.length > 0 ? data.objectives : match?.objectives || [],
+            highlights: data.highlights && data.highlights.length > 0 ? data.highlights : match?.highlights || [],
+            quote: data.quote || match?.quote || "",
+          });
+        }
+      })
+      .catch((err) => console.log("Using static event fallback:", err));
+  }, [id]);
+
   const badgeClass = categoryColors[event.category] || "bg-emerald-400 text-emerald-950";
 
   const navigatePhoto = (dir) => {
-    if (selectedPhoto === null) return;
+    if (selectedPhoto === null || !event.galleryImages || event.galleryImages.length === 0) return;
     setSelectedPhoto((selectedPhoto + dir + event.galleryImages.length) % event.galleryImages.length);
   };
 

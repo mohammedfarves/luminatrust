@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SectionHeading from "@/components/SectionHeading";
 import ProjectCard from "@/components/ProjectCard";
 import HeroBackground from "@/components/HeroBackground";
@@ -31,11 +31,41 @@ const allProjects = [
   { id: "sparrow-initiative", image: sparrow1, title: "Sparrow Protection Initiative", category: "Completed", description: "A highly successful community drive distributing bird feeders and nest boxes to conserve local house sparrows.", progress: 100, raised: "Completed", goal: "Successful", date: "20 Dec 2024", location: "Nagapattinam" },
 ];
 
-const tabs = ["All", "Education", "Environment", "Health", "Water", "Upcoming", "Completed"];
+const defaultTabs = ["All", "Education", "Environment", "Health", "Water", "Upcoming", "Completed"];
 
 const Projects = () => {
+  const [projectsList, setProjectsList] = useState(allProjects);
   const [activeTab, setActiveTab] = useState("All");
-  const filtered = activeTab === "All" ? allProjects : allProjects.filter((p) => p.category === activeTab);
+
+  useEffect(() => {
+    fetch("http://localhost:8000/api/activities")
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          const enriched = data.map((item) => {
+            const match = allProjects.find((p) => p.id === item.id || p.id === item.shortTitle);
+            return {
+              ...item,
+              image: item.image && !item.image.includes("unsplash.com") ? item.image : match?.image || item.image,
+            };
+          });
+          setProjectsList(enriched);
+        }
+      })
+      .catch((err) => console.log("Using static projects fallback:", err));
+  }, []);
+
+  const dynamicCategories = Array.from(new Set(projectsList.map((p) => p.category).filter(Boolean)));
+  const tabs = Array.from(new Set([...defaultTabs, ...dynamicCategories]));
+
+  const filtered = activeTab === "All"
+    ? projectsList
+    : projectsList.filter((p) => {
+        if (activeTab === "Upcoming" || activeTab === "Completed") {
+          return p.status === activeTab.toLowerCase() || p.category === activeTab;
+        }
+        return p.category === activeTab;
+      });
 
   return (
     <div className="overflow-hidden">
@@ -85,7 +115,7 @@ const Projects = () => {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
             {filtered.map((p, i) => (
-              <motion.div key={`${activeTab}-${i}`} variants={staggerItem}>
+              <motion.div key={`${p.id || i}`} variants={staggerItem}>
                 <ProjectCard {...p} />
               </motion.div>
             ))}
