@@ -3,8 +3,19 @@ import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Youtube, ArrowRight } from "lucide-react";
 import luminaLogo from "@/assets/lumina-logo.png";
 import { staggerContainer, staggerItem } from "./AnimationEffects";
+import { useSiteSettings } from "@/context/SiteSettingsContext";
 
-const Footer = () => (
+const Footer = () => {
+  const settings = useSiteSettings();
+
+  const socialLinks = [
+    { icon: Facebook, href: settings.facebook_url, label: "Facebook" },
+    { icon: Twitter, href: settings.twitter_url, label: "Twitter/X" },
+    { icon: Instagram, href: settings.instagram_url, label: "Instagram" },
+    { icon: Youtube, href: settings.youtube_url, label: "YouTube" },
+  ].filter(s => s.href);
+
+  return (
   <footer className="bg-gradient-dark text-white overflow-hidden">
     {/* CTA Band */}
     <div className="relative bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-400 py-14 px-6 overflow-hidden">
@@ -71,15 +82,18 @@ const Footer = () => (
         >
           {/* Brand */}
           <motion.div variants={staggerItem}>
-            <motion.img src={luminaLogo} alt="Lumina Trust" className="h-14 w-auto mb-5" whileHover={{ scale: 1.05 }} />
+            <motion.img src={luminaLogo} alt={settings.site_title || "Lumina Trust"} className="h-14 w-auto mb-5" whileHover={{ scale: 1.05 }} />
             <p className="text-white/55 text-sm leading-relaxed mb-6">
-              Empowering communities for a brighter tomorrow.
+              {settings.footer_about || "Empowering communities for a brighter tomorrow."}
             </p>
             <div className="flex gap-3">
-              {[Facebook, Twitter, Instagram, Youtube].map((Icon, i) => (
+              {socialLinks.map(({ icon: Icon, href, label }, i) => (
                 <motion.a
                   key={i}
-                  href="#"
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={label}
                   whileHover={{ scale: 1.2, y: -3 }}
                   whileTap={{ scale: 0.9 }}
                   className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:bg-amber-400 hover:text-amber-950 hover:border-amber-400 transition-all duration-300"
@@ -123,13 +137,19 @@ const Footer = () => (
             <h4 className="font-heading text-lg mb-5 text-white">Contact Info</h4>
             <div className="flex flex-col gap-4">
               {[
-                { icon: <MapPin className="h-4 w-4 mt-0.5 text-amber-400 shrink-0" />, text: "Lumina Trust, Nagapattinam" },
-                { icon: <Phone className="h-4 w-4 text-amber-400 shrink-0" />, text: "+91 98947 77349" },
-                { icon: <Mail className="h-4 w-4 text-amber-400 shrink-0" />, text: "support@luminatrust.org" },
+                { icon: <MapPin className="h-4 w-4 mt-0.5 text-amber-400 shrink-0" />, text: settings.address, href: null },
+                { icon: <Phone className="h-4 w-4 text-amber-400 shrink-0" />, text: settings.phone, href: `tel:${settings.phone}` },
+                { icon: <Mail className="h-4 w-4 text-amber-400 shrink-0" />, text: settings.email, href: `mailto:${settings.email}` },
               ].map((c, i) => (
                 <motion.div key={i} whileHover={{ x: 3 }} className="flex items-start gap-3">
                   {c.icon}
-                  <span className="text-sm text-white/55 leading-relaxed">{c.text}</span>
+                  {c.href ? (
+                    <a href={c.href} className="text-sm text-white/55 hover:text-amber-400 transition-colors leading-relaxed">
+                      {c.text}
+                    </a>
+                  ) : (
+                    <span className="text-sm text-white/55 leading-relaxed">{c.text}</span>
+                  )}
                 </motion.div>
               ))}
             </div>
@@ -139,12 +159,13 @@ const Footer = () => (
         {/* Bottom bar */}
         <div className="section-divider mt-16 mb-8" />
         <div className="flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-white/30">
-          <p>© {new Date().getFullYear()} Lumina Trust. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} {settings.site_title || "Lumina Trust"}. All rights reserved.</p>
           <a href="https://infygrid.in" target="_blank" rel="noopener noreferrer">Developed by <span className="text-amber-400 font-semibold">Infygrid Solutions</span></a>
         </div>
       </div>
     </div>
   </footer>
-);
+  );
+};
 
 export default Footer;

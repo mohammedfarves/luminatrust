@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
-const AnimatedCounter = ({ end, suffix = "", label, icon }) => {
+const AnimatedCounter = ({ end, suffix = "", label, icon, light = false }) => {
   const [count, setCount] = useState(0);
   const ref = useRef(null);
   const inView = useInView(ref, { once: true });
@@ -32,11 +32,13 @@ const AnimatedCounter = ({ end, suffix = "", label, icon }) => {
       transition={{ duration: 0.5 }}
       className="text-center"
     >
-      <div className="text-lime mb-4 flex justify-center">{icon}</div>
-      <div className="font-heading text-5xl md:text-6xl lg:text-7xl text-primary-foreground">
+      <div className="mb-4 flex justify-center">{icon}</div>
+      <div className={`font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold ${light ? "text-slate-900 dark:text-white" : "text-amber-400 drop-shadow-sm"}`}>
         {count.toLocaleString()}{suffix}
       </div>
-      <p className="text-primary-foreground/60 mt-3 text-sm font-medium uppercase tracking-wider">{label}</p>
+      <p className={`mt-3 text-xs sm:text-sm font-bold uppercase tracking-wider ${light ? "text-slate-600 dark:text-slate-300" : "text-white/85"}`}>
+        {label}
+      </p>
     </motion.div>
   );
 };

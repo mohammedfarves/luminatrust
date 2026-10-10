@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Heart, Users, Globe, BookOpen, Target } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
 import HeroBackground from "@/components/HeroBackground";
+import MarqueeRibbon from "@/components/MarqueeRibbon";
 import { staggerContainer, staggerItem, GlowCard } from "@/components/AnimationEffects";
 
 const benefits = [
@@ -29,6 +30,9 @@ const Volunteer = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* ── LIVE MARQUEE IMPACT BANNER ── */}
+      <MarqueeRibbon />
 
       {/* Benefits */}
       <section className="py-28 bg-warm">

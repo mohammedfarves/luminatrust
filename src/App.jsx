@@ -47,26 +47,30 @@ const AnimatedRoutes = () => {
   );
 };
 
+import { SiteSettingsProvider } from "@/context/SiteSettingsContext";
+
 const App = () => {
   const [loading, setLoading] = useState(true);
   const handleComplete = useCallback(() => setLoading(false), []);
 
   return (
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Sonner />
-        {loading && <Preloader onComplete={handleComplete} />}
-        <BrowserRouter>
-          <ScrollToTop />
-          <ScrollProgress />
-          <Navbar />
-          <main>
-            <AnimatedRoutes />
-          </main>
-          <Footer />
-          <BackToTop />
-        </BrowserRouter>
-      </TooltipProvider>
+      <SiteSettingsProvider>
+        <TooltipProvider>
+          <Sonner />
+          {loading && <Preloader onComplete={handleComplete} />}
+          <BrowserRouter>
+            <ScrollToTop />
+            <ScrollProgress />
+            <Navbar />
+            <main>
+              <AnimatedRoutes />
+            </main>
+            <Footer />
+            <BackToTop />
+          </BrowserRouter>
+        </TooltipProvider>
+      </SiteSettingsProvider>
     </QueryClientProvider>
   );
 };

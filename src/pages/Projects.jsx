@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import SectionHeading from "@/components/SectionHeading";
 import ProjectCard from "@/components/ProjectCard";
 import HeroBackground from "@/components/HeroBackground";
+import MarqueeRibbon from "@/components/MarqueeRibbon";
 import { staggerContainer, staggerItem } from "@/components/AnimationEffects";
 import bookDistributionImg from "@/assets/activits/Book given to students/b2.png";
 import scienceCompImg from "@/assets/activits/Science Competition – Nagapattinam/s1.png";
@@ -85,6 +86,9 @@ const Projects = () => {
         </div>
       </section>
 
+      {/* ── LIVE MARQUEE IMPACT BANNER ── */}
+      <MarqueeRibbon />
+
       {/* ── PROJECTS GRID ── */}
       <section className="py-28">
         <div className="w-full px-6 md:px-10 max-w-7xl mx-auto">
@@ -116,7 +120,7 @@ const Projects = () => {
           >
             {filtered.map((p, i) => (
               <motion.div key={`${p.id || i}`} variants={staggerItem}>
-                <ProjectCard {...p} />
+                <ProjectCard {...p} index={i} />
               </motion.div>
             ))}
           </motion.div>

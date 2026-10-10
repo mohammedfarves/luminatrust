@@ -27,22 +27,34 @@ const Preloader = ({ onComplete }) => {
   useEffect(() => {
     if (phase !== "reveal") return undefined;
 
+    // Call onComplete to unmount loading screen smoothly
     const timer = setTimeout(() => {
       onComplete?.();
-    }, 1200);
+    }, 500);
 
     return () => clearTimeout(timer);
   }, [phase, onComplete]);
 
+  // Safety fallback: guaranteed unmount after 2.5 seconds max
+  useEffect(() => {
+    const fallbackTimer = setTimeout(() => {
+      onComplete?.();
+    }, 2500);
+
+    return () => clearTimeout(fallbackTimer);
+  }, [onComplete]);
+
   return (
     <AnimatePresence>
-      {phase !== "reveal" ? (
-        <motion.div
-          className="fixed inset-0 z-[100] flex items-center justify-center"
-          style={{ background: "linear-gradient(135deg, #0a1628 0%, #0d2847 40%, #1a3a5c 70%, #0a1628 100%)" }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.8, ease: "easeInOut" }}
-        >
+      <motion.div
+        key="preloader-overlay"
+        className="fixed inset-0 z-[100] flex items-center justify-center pointer-events-none select-none"
+        style={{ background: "linear-gradient(135deg, #0a1628 0%, #0d2847 40%, #1a3a5c 70%, #0a1628 100%)" }}
+        initial={{ opacity: 1 }}
+        animate={{ opacity: phase === "reveal" ? 0 : 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
+      >
           {[...Array(5)].map((_, i) => (
             <motion.div
               key={i}
@@ -162,7 +174,6 @@ const Preloader = ({ onComplete }) => {
             </motion.span>
           </div>
         </motion.div>
-      ) : null}
     </AnimatePresence>
   );
 };

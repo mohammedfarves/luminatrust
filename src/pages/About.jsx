@@ -26,6 +26,7 @@ import bookDistributionImg from "@/assets/activits/Book given to students/b2.png
 import AnimatedCounter from "@/components/AnimatedCounter";
 import SectionHeading from "@/components/SectionHeading";
 import HeroBackground from "@/components/HeroBackground";
+import MarqueeRibbon from "@/components/MarqueeRibbon";
 import { FloatingParticles, staggerContainer, staggerItem, GlowCard } from "@/components/AnimationEffects";
 
 const team = [
@@ -227,6 +228,9 @@ const About = () => {
           </div>
         </div>
       </section>
+
+      {/* ── LIVE MARQUEE IMPACT BANNER ── */}
+      <MarqueeRibbon />
 
       {/* ── 2. WHO WE ARE (SPLIT LAYOUT) ── */}
       <section className="py-28 md:py-36 relative">

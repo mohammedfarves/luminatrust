@@ -18,6 +18,7 @@ import {
   ChevronRight
 } from "lucide-react";
 import HeroBackground from "@/components/HeroBackground";
+import MarqueeRibbon from "@/components/MarqueeRibbon";
 import { eventsData } from "@/data/eventsData";
 
 const categoryColors = {
@@ -115,6 +116,9 @@ const EventDetails = () => {
           </p>
         </div>
       </section>
+
+      {/* ── LIVE MARQUEE IMPACT BANNER ── */}
+      <MarqueeRibbon />
 
       {/* ── MAIN CONTENT GRID ── */}
       <section className="py-16 md:py-24">

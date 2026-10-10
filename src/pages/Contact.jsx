@@ -2,15 +2,19 @@ import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
 import HeroBackground from "@/components/HeroBackground";
+import MarqueeRibbon from "@/components/MarqueeRibbon";
 import { staggerContainer, staggerItem, GlowCard } from "@/components/AnimationEffects";
 import { useState } from "react";
 import { toast } from "sonner";
+
+import { useSiteSettings } from "@/context/SiteSettingsContext";
 
 const inputCls = "w-full px-4 py-3.5 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-amber-400/50 focus:border-amber-400 transition-all";
 
 const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const settings = useSiteSettings();
 
   const handleSubmit = async (e) => { 
     e.preventDefault(); 
@@ -41,6 +45,12 @@ const Contact = () => {
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
+  const contactItems = [
+    { icon: <MapPin className="h-5 w-5 text-amber-500" />, label: "Office Address", value: settings.address, href: null, bg: "bg-amber-50 dark:bg-amber-950/20" },
+    { icon: <Phone className="h-5 w-5 text-cyan-500" />, label: "Phone Number", value: settings.phone, href: `tel:${settings.phone}`, sub: settings.secondary_phone, bg: "bg-cyan-50 dark:bg-cyan-950/20" },
+    { icon: <Mail className="h-5 w-5 text-emerald-500" />, label: "Email Address", value: settings.email, href: `mailto:${settings.email}`, bg: "bg-emerald-50 dark:bg-emerald-950/20" },
+  ];
+
   return (
     <div className="overflow-hidden">
       {/* Hero */}
@@ -59,6 +69,9 @@ const Contact = () => {
         </div>
       </section>
 
+      {/* ── LIVE MARQUEE IMPACT BANNER ── */}
+      <MarqueeRibbon />
+
       <section className="py-28">
         <div className="w-full px-6 md:px-10 max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
@@ -66,18 +79,25 @@ const Contact = () => {
             <motion.div initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
               <SectionHeading subtitle="Reach Out" title="We're Here to Help" align="left" />
               <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true }} className="space-y-4 mt-8">
-                {[
-                  { icon: <MapPin className="h-5 w-5 text-amber-500" />, label: "Office Address", value: "Lumina Trust, Nagapattinam", bg: "bg-amber-50 dark:bg-amber-950/20" },
-                  { icon: <Phone className="h-5 w-5 text-cyan-500" />, label: "Phone Number", value: "+91 98947 77349", bg: "bg-cyan-50 dark:bg-cyan-950/20" },
-                  { icon: <Mail className="h-5 w-5 text-emerald-500" />, label: "Email Address", value: "support@luminatrust.org", bg: "bg-emerald-50 dark:bg-emerald-950/20" },
-                ].map((c, i) => (
+                {contactItems.map((c, i) => (
                   <motion.div key={i} variants={staggerItem}>
                     <GlowCard>
                       <motion.div whileHover={{ x: 5 }} className="flex gap-4 items-center bg-card p-5 rounded-2xl shadow-ngo hover:shadow-card-hover transition-shadow duration-500">
                         <div className={`w-12 h-12 rounded-xl ${c.bg} flex items-center justify-center shrink-0`}>{c.icon}</div>
                         <div>
                           <p className="font-bold text-foreground text-sm">{c.label}</p>
-                          <p className="text-muted-foreground text-sm mt-0.5">{c.value}</p>
+                          {c.href ? (
+                            <a href={c.href} className="text-muted-foreground hover:text-amber-500 transition-colors text-sm mt-0.5 block">
+                              {c.value}
+                            </a>
+                          ) : (
+                            <p className="text-muted-foreground text-sm mt-0.5">{c.value}</p>
+                          )}
+                          {c.sub && (
+                            <a href={`tel:${c.sub}`} className="text-xs text-muted-foreground/75 hover:text-amber-500 block mt-0.5">
+                              Alt: {c.sub}
+                            </a>
+                          )}
                         </div>
                       </motion.div>
                     </GlowCard>
@@ -86,7 +106,7 @@ const Contact = () => {
               </motion.div>
               <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }} className="mt-8 rounded-2xl overflow-hidden shadow-ngo">
                <iframe
-  src="https://www.google.com/maps?q=Nagapattinam,Tamil%20Nadu&output=embed"
+  src={settings.map_link || "https://www.google.com/maps?q=Nagapattinam,Tamil%20Nadu&output=embed"}
   width="100%"
   height="220"
   style={{ border: 0 }}

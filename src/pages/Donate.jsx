@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Heart, BookOpen, Users, Check, Sparkles, Upload, QrCode, Building2 } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
 import HeroBackground from "@/components/HeroBackground";
+import MarqueeRibbon from "@/components/MarqueeRibbon";
 import { GlowCard } from "@/components/AnimationEffects";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -95,6 +96,9 @@ const Donate = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* ── LIVE MARQUEE IMPACT BANNER ── */}
+      <MarqueeRibbon />
 
       <section className="py-28 bg-warm">
         <div className="w-full px-6 md:px-10 max-w-5xl mx-auto">
