@@ -14,7 +14,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $totalProjectsCount = Project::count();
+        $totalProjectsCount = \App\Models\Activity::count() ?: Project::count();
         $totalVolunteersCount = Volunteer::count();
         $totalDonationsSum = Donation::where('payment_status', 'completed')->sum('amount');
         $unreadMessagesCount = ContactMessage::where('is_read', false)->count();

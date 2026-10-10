@@ -17,6 +17,20 @@
         </div>
     </div>
 
+    @if(isset($errors) && $errors->any())
+        <div class="bg-rose-50 border border-rose-200 text-rose-800 px-5 py-4 rounded-2xl shadow-sm space-y-1.5">
+            <div class="flex items-center space-x-2 font-bold text-xs text-rose-700">
+                <span class="text-lg">⚠️</span>
+                <span>Please fix the following validation errors:</span>
+            </div>
+            <ul class="list-disc list-inside text-xs pl-4 space-y-0.5">
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <!-- Form Container -->
     <form method="POST" action="{{ route('admin.activities.store') }}" enctype="multipart/form-data" class="space-y-6">
         @csrf
@@ -287,32 +301,112 @@
                 <span>Media & Images</span>
             </h3>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Main Image File Input -->
+            <!-- 1. Main Cover Image -->
+            <div class="space-y-4">
+                <label class="block text-xs font-extrabold text-slate-700 uppercase tracking-wider">
+                    Main Activity Cover Image <span class="text-rose-500">*</span>
+                </label>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+                    <!-- Real-time Live Preview Card -->
+                    <div class="flex items-center space-x-4 bg-slate-50 p-4 rounded-2xl border border-slate-200/80">
+                        <img id="image_preview" 
+                             src="https://images.unsplash.com/photo-1579208575657-c595a05383b7?w=300&auto=format&fit=crop&q=80" 
+                             alt="Activity Preview" 
+                             class="w-20 h-20 rounded-2xl object-cover border-2 border-indigo-200 shadow-sm transition-all shrink-0">
+                        <div class="flex-1 min-w-0">
+                            <span class="text-xs font-bold text-slate-900 block" id="preview_status">Cover Image Preview</span>
+                            <span class="text-[11px] text-slate-500 block mt-0.5">Upload a cover image or enter a direct image URL below.</span>
+                        </div>
+                    </div>
+
+                    <!-- Cover Upload & URL Inputs -->
+                    <div class="space-y-3">
+                        <div>
+                            <label for="main_image" class="block text-[11px] font-bold text-slate-600 mb-1.5">
+                                Upload from Computer (JPG, PNG, WEBP up to 16MB)
+                            </label>
+                            <input type="file" 
+                                   name="main_image" 
+                                   id="main_image" 
+                                   accept="image/*" 
+                                   class="w-full px-4 py-2 bg-slate-50 border border-slate-200/80 rounded-2xl text-xs text-slate-600 file:mr-4 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-indigo-600 file:text-white hover:file:bg-indigo-700 cursor-pointer">
+                            @error('main_image') <p class="text-rose-500 text-[11px] mt-1">{{ $message }}</p> @enderror
+                        </div>
+
+                        <div>
+                            <label for="main_image_url" class="block text-[11px] font-bold text-slate-600 mb-1.5">
+                                Or Custom Image URL / Path (Optional)
+                            </label>
+                            <input type="text" 
+                                   name="main_image_url" 
+                                   id="main_image_url" 
+                                   placeholder="e.g. https://... or images/activities/..." 
+                                   value="{{ old('main_image_url') }}"
+                                   class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200/80 rounded-2xl text-xs font-medium text-slate-900 focus:outline-none focus:border-indigo-500 focus:bg-white transition-all">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Dedicated Activity Photo Gallery Section -->
+            <div class="pt-6 border-t border-slate-100 space-y-4">
                 <div>
-                    <label for="main_image" class="block text-xs font-extrabold text-slate-700 uppercase tracking-wider mb-2">
-                        Main Activity Cover Image
-                    </label>
-                    <input type="file" 
-                           name="main_image" 
-                           id="main_image" 
-                           accept="image/*" 
-                           class="w-full px-4 py-2 bg-slate-50 border border-slate-200/80 rounded-2xl text-xs text-slate-600 file:mr-4 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-indigo-600 file:text-white hover:file:bg-indigo-700 cursor-pointer">
-                    <p class="text-[11px] text-slate-400 mt-1">Recommended size: 800x600px. Supports JPG, PNG, WEBP up to 4MB.</p>
-                    @error('main_image') <p class="text-rose-500 text-[11px] mt-1">{{ $message }}</p> @enderror
+                    <h4 class="text-xs font-black text-slate-800 uppercase tracking-wider flex items-center space-x-2">
+                        <span>📸</span>
+                        <span>Project Photo Gallery</span>
+                    </h4>
+                    <p class="text-[11px] text-slate-500 mt-0.5">Upload multiple photos from your computer for this project. They will appear in the event gallery carousel.</p>
                 </div>
 
-                <!-- Gallery Images List / URLs -->
-                <div>
-                    <label for="gallery_images" class="block text-xs font-extrabold text-slate-700 uppercase tracking-wider mb-2">
-                        Gallery Image Links (Comma or newline separated)
-                    </label>
-                    <textarea name="gallery_images" 
-                              id="gallery_images" 
-                              rows="3" 
-                              placeholder="https://images.unsplash.com/photo-1..., https://..." 
-                              class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200/80 rounded-2xl text-xs font-medium text-slate-900 placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:bg-white transition-all">{{ old('gallery_images') }}</textarea>
-                    @error('gallery_images') <p class="text-rose-500 text-[11px] mt-1">{{ $message }}</p> @enderror
+                <!-- Multiple File Upload From Computer Box -->
+                <div class="bg-gradient-to-br from-indigo-50/60 via-white to-purple-50/40 p-5 rounded-2xl border-2 border-dashed border-indigo-200 hover:border-indigo-400 transition-all space-y-3">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center text-lg shadow-sm shrink-0">
+                            📁
+                        </div>
+                        <div>
+                            <label for="gallery_files" class="block text-xs font-extrabold text-slate-900">
+                                Upload Gallery Images from Computer
+                            </label>
+                            <span class="text-[11px] text-slate-500 font-medium">Select multiple photos at once (JPG, PNG, WEBP up to 16MB each).</span>
+                        </div>
+                    </div>
+
+                    <input type="file" 
+                           name="gallery_files[]" 
+                           id="gallery_files" 
+                           multiple 
+                           accept="image/*" 
+                           class="w-full px-4 py-3 bg-white border border-indigo-200 rounded-2xl text-xs text-slate-700 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-extrabold file:bg-indigo-600 file:text-white hover:file:bg-indigo-700 cursor-pointer transition-all">
+
+                    <!-- Selected Photos Live Preview Grid -->
+                    <div id="new_gallery_preview_container" class="hidden space-y-2 pt-2 border-t border-indigo-100">
+                        <span class="text-[11px] font-extrabold text-indigo-700 block" id="new_gallery_count_label">Photos Selected:</span>
+                        <div id="new_gallery_previews" class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-3"></div>
+                    </div>
+                    @error('gallery_files.*') <p class="text-rose-500 text-[11px] mt-1">{{ $message }}</p> @enderror
+                </div>
+
+                <!-- Optional Direct Image URLs / Paths Accordion -->
+                <div x-data="{ openUrls: false }" class="border border-slate-200/80 rounded-2xl bg-white overflow-hidden">
+                    <button type="button" 
+                            @click="openUrls = !openUrls" 
+                            class="w-full px-4 py-2.5 flex items-center justify-between text-xs font-bold text-slate-600 hover:bg-slate-50 transition-colors">
+                        <span class="flex items-center space-x-2">
+                            <span>🔗</span>
+                            <span>Or Add Custom Image URLs / Paths (Optional)</span>
+                        </span>
+                        <span x-text="openUrls ? '▲ Close' : '▼ Expand'" class="text-[10px] text-slate-400 font-semibold"></span>
+                    </button>
+                    <div x-show="openUrls" class="p-4 border-t border-slate-100 bg-slate-50/50 space-y-2">
+                        <textarea name="gallery_images" 
+                                  id="gallery_images" 
+                                  rows="3" 
+                                  placeholder="https://... or images/activities/..." 
+                                  class="w-full px-4 py-2.5 bg-white border border-slate-200/80 rounded-2xl text-xs font-medium text-slate-900 placeholder-slate-400 focus:outline-none focus:border-indigo-500 transition-all">{{ old('gallery_images') }}</textarea>
+                        <p class="text-[11px] text-slate-400">Separate multiple external image URLs or file paths by new lines.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -332,4 +426,80 @@
     </form>
 
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const fileInput = document.getElementById('main_image');
+    const urlInput = document.getElementById('main_image_url');
+    const previewImg = document.getElementById('image_preview');
+    const previewStatus = document.getElementById('preview_status');
+
+    if (fileInput) {
+        fileInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    if (previewImg) previewImg.src = event.target.result;
+                    if (previewStatus) {
+                        previewStatus.innerText = 'File Selected: ' + file.name;
+                        previewStatus.classList.remove('text-slate-900');
+                        previewStatus.classList.add('text-emerald-600');
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+
+    if (urlInput) {
+        urlInput.addEventListener('input', function(e) {
+            const val = e.target.value.trim();
+            if (val && (val.startsWith('http') || val.startsWith('/') || val.startsWith('images/'))) {
+                if (previewImg) previewImg.src = val;
+                if (previewStatus) {
+                    previewStatus.innerText = 'URL Preview';
+                    previewStatus.classList.remove('text-slate-900');
+                    previewStatus.classList.add('text-indigo-600');
+                }
+            }
+        });
+    }
+
+    // Multiple Gallery Files Live Preview
+    const galleryFilesInput = document.getElementById('gallery_files');
+    const previewContainer = document.getElementById('new_gallery_preview_container');
+    const previewsGrid = document.getElementById('new_gallery_previews');
+    const countLabel = document.getElementById('new_gallery_count_label');
+
+    if (galleryFilesInput) {
+        galleryFilesInput.addEventListener('change', function() {
+            previewsGrid.innerHTML = '';
+            if (this.files && this.files.length > 0) {
+                previewContainer.classList.remove('hidden');
+                countLabel.textContent = `Selected ${this.files.length} Photo(s) Ready to Upload:`;
+                
+                Array.from(this.files).forEach((file, idx) => {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const card = document.createElement('div');
+                        card.className = 'relative bg-white rounded-xl border border-indigo-200 p-2 shadow-sm';
+                        card.innerHTML = `
+                            <div class="h-20 w-full rounded-lg overflow-hidden bg-slate-100">
+                                <img src="${e.target.result}" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-[10px] text-slate-700 font-bold truncate block mt-1.5" title="${file.name}">${file.name}</span>
+                            <span class="text-[9px] text-indigo-600 font-extrabold block">${(file.size / 1024).toFixed(0)} KB</span>
+                        `;
+                        previewsGrid.appendChild(card);
+                    };
+                    reader.readAsDataURL(file);
+                });
+            } else {
+                previewContainer.classList.add('hidden');
+            }
+        });
+    }
+});
+</script>
 @endsection

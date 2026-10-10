@@ -15,6 +15,10 @@ class ActivityController extends Controller
      */
     public function index(Request $request)
     {
+        if (Activity::count() === 0) {
+            Activity::seedDefaults();
+        }
+
         $category = $request->query('category', 'All');
         $search = $request->query('search');
 
@@ -66,7 +70,9 @@ class ActivityController extends Controller
             'progress_percent' => 'nullable|integer|min:0|max:100',
             'raised_amount' => 'nullable|numeric|min:0',
             'goal_amount' => 'nullable|numeric|min:0',
-            'main_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:4096',
+            'main_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:16384',
+            'main_image_url' => 'nullable|string|max:500',
+            'gallery_files.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:16384',
             'gallery_images' => 'nullable|string',
             'objectives' => 'nullable|string',
             'highlights' => 'nullable|string',
@@ -76,9 +82,44 @@ class ActivityController extends Controller
 
         // File upload handling for main_image
         if ($request->hasFile('main_image')) {
-            $path = $request->file('main_image')->store('activities', 'public');
-            $validated['main_image'] = $path;
+            $file = $request->file('main_image');
+            $uploadDir = public_path('images/activities/uploads');
+            if (!file_exists($uploadDir)) {
+                mkdir($uploadDir, 0755, true);
+            }
+            $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->move($uploadDir, $filename);
+            $validated['main_image'] = 'images/activities/uploads/' . $filename;
+        } elseif ($request->filled('main_image_url')) {
+            $validated['main_image'] = trim($request->input('main_image_url'));
         }
+        unset($validated['main_image_url']);
+
+        // Gallery images upload handling
+        $gallery = [];
+        if ($request->hasFile('gallery_files')) {
+            $uploadDir = public_path('images/activities/uploads');
+            if (!file_exists($uploadDir)) {
+                mkdir($uploadDir, 0755, true);
+            }
+            foreach ($request->file('gallery_files') as $gFile) {
+                if ($gFile && $gFile->isValid()) {
+                    $filename = 'gallery_' . time() . '_' . uniqid() . '.' . $gFile->getClientOriginalExtension();
+                    $gFile->move($uploadDir, $filename);
+                    $gallery[] = 'images/activities/uploads/' . $filename;
+                }
+            }
+        }
+        if ($request->filled('gallery_images')) {
+            $manualUrls = array_filter(array_map('trim', preg_split('/[\r\n,]+/', $request->input('gallery_images'))));
+            foreach ($manualUrls as $mUrl) {
+                if (!empty($mUrl) && !in_array($mUrl, $gallery)) {
+                    $gallery[] = $mUrl;
+                }
+            }
+        }
+        $validated['gallery_images'] = !empty($gallery) ? implode("\n", array_unique($gallery)) : null;
+        unset($validated['gallery_files']);
 
         $activity = Activity::create($validated);
 
@@ -119,8 +160,12 @@ class ActivityController extends Controller
             'progress_percent' => 'nullable|integer|min:0|max:100',
             'raised_amount' => 'nullable|numeric|min:0',
             'goal_amount' => 'nullable|numeric|min:0',
-            'main_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:4096',
+            'main_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:16384',
+            'main_image_url' => 'nullable|string|max:500',
+            'gallery_files.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:16384',
             'gallery_images' => 'nullable|string',
+            'existing_gallery' => 'nullable|array',
+            'remove_gallery' => 'nullable|array',
             'objectives' => 'nullable|string',
             'highlights' => 'nullable|string',
             'quote' => 'nullable|string',
@@ -128,17 +173,89 @@ class ActivityController extends Controller
         ]);
 
         if ($request->hasFile('main_image')) {
-            // Delete old image if stored locally
-            if ($activity->main_image && !str_starts_with($activity->main_image, 'http')) {
+            $file = $request->file('main_image');
+            $uploadDir = public_path('images/activities/uploads');
+            if (!file_exists($uploadDir)) {
+                mkdir($uploadDir, 0755, true);
+            }
+            $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->move($uploadDir, $filename);
+
+            // Clean up old upload if it was a custom upload
+            if ($activity->main_image && str_starts_with($activity->main_image, 'images/activities/uploads/')) {
+                $oldPath = public_path($activity->main_image);
+                if (file_exists($oldPath)) {
+                    @unlink($oldPath);
+                }
+            } elseif ($activity->main_image && !str_starts_with($activity->main_image, 'http') && !str_starts_with($activity->main_image, 'images/activities/')) {
                 Storage::disk('public')->delete($activity->main_image);
             }
-            $path = $request->file('main_image')->store('activities', 'public');
-            $validated['main_image'] = $path;
+
+            $validated['main_image'] = 'images/activities/uploads/' . $filename;
+        } elseif ($request->filled('main_image_url')) {
+            $validated['main_image'] = trim($request->input('main_image_url'));
         }
+        unset($validated['main_image_url']);
+
+        // Handle Gallery Images (Preserve, Remove, and Append New Uploads)
+        $gallery = [];
+        $existing = $request->input('existing_gallery', []);
+        $toRemove = $request->input('remove_gallery', []);
+
+        // 1. Keep existing images not marked for removal
+        foreach ($existing as $img) {
+            $img = trim($img);
+            if (empty($img)) continue;
+
+            if (in_array($img, $toRemove)) {
+                // If it was an uploaded file, delete from disk
+                if (str_starts_with($img, 'images/activities/uploads/')) {
+                    $oldGPath = public_path($img);
+                    if (file_exists($oldGPath)) {
+                        @unlink($oldGPath);
+                    }
+                }
+            } else {
+                $gallery[] = $img;
+            }
+        }
+
+        // 2. Upload new gallery files from computer
+        if ($request->hasFile('gallery_files')) {
+            $uploadDir = public_path('images/activities/uploads');
+            if (!file_exists($uploadDir)) {
+                mkdir($uploadDir, 0755, true);
+            }
+            foreach ($request->file('gallery_files') as $gFile) {
+                if ($gFile && $gFile->isValid()) {
+                    $filename = 'gallery_' . time() . '_' . uniqid() . '.' . $gFile->getClientOriginalExtension();
+                    $gFile->move($uploadDir, $filename);
+                    $gallery[] = 'images/activities/uploads/' . $filename;
+                }
+            }
+        }
+
+        // 3. Any additional direct URLs entered
+        if ($request->filled('gallery_images')) {
+            $manualUrls = array_filter(array_map('trim', preg_split('/[\r\n,]+/', $request->input('gallery_images'))));
+            foreach ($manualUrls as $mUrl) {
+                if (!empty($mUrl) && !in_array($mUrl, $gallery)) {
+                    $gallery[] = $mUrl;
+                }
+            }
+        }
+
+        // If the form didn't pass existing_gallery (legacy textarea only), fallback to textarea
+        if (!$request->has('existing_gallery') && $request->filled('gallery_images')) {
+            $gallery = array_filter(array_map('trim', preg_split('/[\r\n,]+/', $request->input('gallery_images'))));
+        }
+
+        $validated['gallery_images'] = !empty($gallery) ? implode("\n", array_unique($gallery)) : null;
+        unset($validated['gallery_files'], $validated['existing_gallery'], $validated['remove_gallery']);
 
         $activity->update($validated);
 
-        return redirect()->route('admin.activities.index')
+        return redirect()->route('admin.activities.edit', $activity)
             ->with('success', "Activity '{$activity->title}' updated successfully!");
     }
 
@@ -148,7 +265,12 @@ class ActivityController extends Controller
     public function destroy(Activity $activity)
     {
         $title = $activity->title;
-        if ($activity->main_image && !str_starts_with($activity->main_image, 'http')) {
+        if ($activity->main_image && str_starts_with($activity->main_image, 'images/activities/uploads/')) {
+            $oldPath = public_path($activity->main_image);
+            if (file_exists($oldPath)) {
+                @unlink($oldPath);
+            }
+        } elseif ($activity->main_image && !str_starts_with($activity->main_image, 'http') && !str_starts_with($activity->main_image, 'images/activities/')) {
             Storage::disk('public')->delete($activity->main_image);
         }
 

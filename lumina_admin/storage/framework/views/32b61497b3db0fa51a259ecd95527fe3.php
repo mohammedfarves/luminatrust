@@ -3,16 +3,27 @@
 <?php $__env->startSection('content'); ?>
 <div class="space-y-8">
 
-    <!-- Header Greeting Banner (Matching Uploaded Mockup) -->
+    <?php
+        $hour = (int) date('H');
+        if ($hour < 12) {
+            $greeting = 'Good Morning';
+        } elseif ($hour < 17) {
+            $greeting = 'Good Afternoon';
+        } else {
+            $greeting = 'Good Evening';
+        }
+    ?>
+
+    <!-- Header Greeting Banner (Dynamic & Personalized for Lumina Trust) -->
     <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
             <span class="text-xs font-semibold text-slate-400 block mb-0.5">Welcome back,</span>
             <h2 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight flex items-center space-x-2">
-                <span>Good Morning, Alex!</span>
+                <span><?php echo e($greeting); ?>, <?php echo e(Auth::user()->name ?? 'Administrator'); ?>!</span>
                 <span class="inline-block animate-bounce">👋</span>
             </h2>
             <p class="text-slate-500 text-xs mt-1 font-medium">
-                Here's what's happening with your platform today.
+                Here's what's happening with Lumina Trust today.
             </p>
         </div>
 

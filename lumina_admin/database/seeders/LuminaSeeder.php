@@ -13,6 +13,9 @@ class LuminaSeeder extends Seeder
 {
     public function run(): void
     {
+        // 0. Seed Activities (11 Core NGO initiatives)
+        \App\Models\Activity::seedDefaults();
+
         // 1. Create 11 Projects (Matching user spec: Total Projects 11)
         $p1 = Project::create(['title' => 'Clean Water for Rural Schools', 'category' => 'Water & Sanitation', 'status' => 'active', 'target_amount' => 150000.00, 'raised_amount' => 95000.00, 'description' => 'Purification systems for 15 schools']);
         $p2 = Project::create(['title' => 'Empower Girls Education', 'category' => 'Education', 'status' => 'active', 'target_amount' => 200000.00, 'raised_amount' => 140000.00, 'description' => 'Scholarships for 200 girl students']);
