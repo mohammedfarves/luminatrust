@@ -1,21 +1,21 @@
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform, AnimatePresence, useReducedMotion } from "framer-motion";
-import { 
-  Users, 
-  HandHeart, 
-  Target, 
-  ArrowRight, 
-  Send, 
-  Sparkles, 
-  TrendingUp, 
-  BookOpen, 
-  Mail, 
-  Heart, 
-  Eye, 
-  Leaf, 
-  ShieldCheck, 
-  Award, 
-  CheckCircle2, 
+import {
+  Users,
+  HandHeart,
+  Target,
+  ArrowRight,
+  Send,
+  Sparkles,
+  TrendingUp,
+  BookOpen,
+  Mail,
+  Heart,
+  Eye,
+  Leaf,
+  ShieldCheck,
+  Award,
+  CheckCircle2,
   Globe2,
   ChevronRight
 } from "lucide-react";
@@ -129,7 +129,7 @@ const Home = () => {
   useEffect(() => {
     const fetchHomeData = async () => {
       try {
-        const res = await fetch("http://localhost:8000/api/home");
+        const res = await fetch("https://luminatrust.org/api/home");
         if (res.ok) {
           const data = await res.json();
           setHomeData((prev) => ({ ...prev, ...data }));
@@ -141,7 +141,7 @@ const Home = () => {
 
     const fetchProjects = async () => {
       try {
-        const res = await fetch("http://localhost:8000/api/activities");
+        const res = await fetch("https://luminatrust.org/api/activities");
         if (res.ok) {
           const data = await res.json();
           if (Array.isArray(data) && data.length > 0) {
@@ -166,12 +166,12 @@ const Home = () => {
     fetchHomeData();
     fetchProjects();
   }, []);
-  
+
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"]
   });
-  
+
   const heroY = useTransform(scrollYProgress, [0, 1], [0, 150]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
@@ -205,23 +205,23 @@ const Home = () => {
 
   return (
     <div className="overflow-hidden bg-[#FBF9F5] dark:bg-slate-950 text-foreground transition-colors duration-500">
-      
+
       {/* ── 1. NEXT-GEN ANIMATED KINETIC HERO SECTION ── */}
       <section ref={heroRef} className="relative min-h-[92vh] flex items-center justify-center pt-32 pb-24 md:pt-40 md:pb-32 overflow-hidden bg-[#0A0E17]">
-        
+
         {/* Dynamic Gapless Photo Collage Wall with Motion Animation & Soft Blur */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden select-none">
           {/* Gapless Animated Photo Wall Grid */}
-          <motion.div 
-            animate={{ 
+          <motion.div
+            animate={{
               scale: [1.05, 1.12, 1.05],
               y: [0, -25, 0],
               x: [0, 15, 0]
             }}
-            transition={{ 
-              duration: 22, 
-              repeat: Infinity, 
-              ease: "easeInOut" 
+            transition={{
+              duration: 22,
+              repeat: Infinity,
+              ease: "easeInOut"
             }}
             className="absolute -inset-10 grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-0 opacity-60 filter blur-[2px] brightness-110 contrast-110"
           >
@@ -242,21 +242,21 @@ const Home = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-[#0A0E17] via-[#0A0E17]/30 to-[#0A0E17]/60" />
 
           {/* Animated Ambient Light Orbs */}
-          <motion.div 
-            animate={{ 
+          <motion.div
+            animate={{
               scale: [1, 1.2, 1],
               opacity: [0.3, 0.5, 0.3]
             }}
             transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -top-24 right-1/4 w-[550px] h-[550px] bg-amber-500/20 rounded-full blur-[140px]" 
+            className="absolute -top-24 right-1/4 w-[550px] h-[550px] bg-amber-500/20 rounded-full blur-[140px]"
           />
-          <motion.div 
-            animate={{ 
+          <motion.div
+            animate={{
               scale: [1.2, 1, 1.2],
               opacity: [0.2, 0.4, 0.2]
             }}
             transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute bottom-10 left-10 w-[450px] h-[450px] bg-emerald-500/15 rounded-full blur-[120px]" 
+            className="absolute bottom-10 left-10 w-[450px] h-[450px] bg-emerald-500/15 rounded-full blur-[120px]"
           />
         </div>
 
@@ -264,9 +264,9 @@ const Home = () => {
 
         <div className="w-full px-6 md:px-12 max-w-7xl mx-auto relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-            
+
             {/* Left Hero Column */}
-            <motion.div 
+            <motion.div
               style={{ opacity: heroOpacity, y: heroY }}
               className="lg:col-span-7 flex flex-col items-start text-left"
             >
@@ -357,7 +357,7 @@ const Home = () => {
               className="lg:col-span-5 relative flex justify-center items-center"
             >
               <div className="relative w-full max-w-md lg:max-w-none">
-                
+
                 {/* Glowing Backing Frame */}
                 <div className="absolute -inset-4 bg-gradient-to-tr from-amber-400/25 via-emerald-500/20 to-amber-600/30 rounded-[3rem] blur-2xl animate-pulse" />
 
@@ -373,7 +373,7 @@ const Home = () => {
                     className="w-full h-full object-cover transform group-hover:scale-108 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
-                  
+
                   {/* Photo Strip Tag */}
                   <div className="absolute bottom-5 left-5 right-5 p-4 rounded-2xl bg-slate-950/80 backdrop-blur-md border border-white/15 text-left">
                     <p className="text-white text-sm font-bold">{homeData.hero_card_title}</p>
@@ -436,10 +436,10 @@ const Home = () => {
       <section className="py-24 md:py-32 relative overflow-hidden bg-[#FAF8F5] dark:bg-slate-950">
         {/* Real Grassroots Community Photographic Backdrop */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
-          <img 
-            src={aboutTeamImg} 
-            alt="Lumina Trust Team & Community" 
-            className="w-full h-full object-cover opacity-20 filter blur-[1px] brightness-105 scale-105" 
+          <img
+            src={aboutTeamImg}
+            alt="Lumina Trust Team & Community"
+            className="w-full h-full object-cover opacity-20 filter blur-[1px] brightness-105 scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#FAF8F5]/95 via-[#FAF8F5]/85 to-[#FAF8F5]/90 dark:from-slate-950/95 dark:via-slate-950/85 dark:to-slate-950/90" />
           <div className="absolute inset-0 bg-gradient-to-b from-[#FAF8F5] via-transparent to-[#FAF8F5] dark:from-slate-950 dark:via-transparent dark:to-slate-950" />
@@ -448,12 +448,12 @@ const Home = () => {
 
         <div className="w-full px-6 md:px-12 max-w-7xl mx-auto relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
-            
+
             {/* Left Column: Heading & Text */}
-            <motion.div 
-              initial={{ opacity: 0, x: -30 }} 
-              whileInView={{ opacity: 1, x: 0 }} 
-              viewport={{ once: true }} 
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.7 }}
               className="lg:col-span-6 flex flex-col items-start text-left"
             >
@@ -490,8 +490,8 @@ const Home = () => {
               </div>
 
               <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
-                <Link 
-                  to="/about" 
+                <Link
+                  to="/about"
                   className="inline-flex items-center gap-2.5 bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-sm px-8 py-3.5 rounded-full shadow-lg transition-all"
                 >
                   <span>Learn More About Us</span>
@@ -501,15 +501,15 @@ const Home = () => {
             </motion.div>
 
             {/* Right Column: Mission, Vision, Values Feature Cards */}
-            <motion.div 
-              initial={{ opacity: 0, x: 30 }} 
-              whileInView={{ opacity: 1, x: 0 }} 
-              viewport={{ once: true }} 
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.2 }}
               className="lg:col-span-6 flex flex-col gap-5 text-left"
             >
               {/* Card 1: Mission */}
-              <motion.div 
+              <motion.div
                 whileHover={{ y: -6, x: 4, scale: 1.01 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 className="flex items-start gap-4 p-5 rounded-3xl bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border border-slate-200/80 dark:border-slate-800 border-l-4 border-l-emerald-500 shadow-md hover:shadow-xl transition-all group"
@@ -528,7 +528,7 @@ const Home = () => {
               </motion.div>
 
               {/* Card 2: Vision */}
-              <motion.div 
+              <motion.div
                 whileHover={{ y: -6, x: 4, scale: 1.01 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 className="flex items-start gap-4 p-5 rounded-3xl bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border border-slate-200/80 dark:border-slate-800 border-l-4 border-l-sky-500 shadow-md hover:shadow-xl transition-all group"
@@ -547,7 +547,7 @@ const Home = () => {
               </motion.div>
 
               {/* Card 3: Core Values */}
-              <motion.div 
+              <motion.div
                 whileHover={{ y: -6, x: 4, scale: 1.01 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 className="flex items-start gap-4 p-5 rounded-3xl bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border border-slate-200/80 dark:border-slate-800 border-l-4 border-l-amber-500 shadow-md hover:shadow-xl transition-all group"
@@ -575,10 +575,10 @@ const Home = () => {
       <section className="py-24 md:py-32 bg-[#0A0E17] text-white relative overflow-hidden">
         {/* Full-Bleed Grassroots Cycling Rally Photographic Backdrop */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
-          <img 
-            src={cycleRallyImg} 
-            alt="Lumina Trust Cycling Drive" 
-            className="w-full h-full object-cover opacity-35 filter brightness-50 contrast-125 scale-105" 
+          <img
+            src={cycleRallyImg}
+            alt="Lumina Trust Cycling Drive"
+            className="w-full h-full object-cover opacity-35 filter brightness-50 contrast-125 scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0A0E17]/95 via-[#0A0E17]/80 to-[#0A0E17]/95" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0A0E17] via-transparent to-[#0A0E17]" />
@@ -588,7 +588,7 @@ const Home = () => {
         <FloatingParticles />
 
         <div className="w-full px-6 md:px-10 max-w-6xl mx-auto relative z-10 text-center">
-          
+
           {/* Subtitle Accent */}
           <div className="inline-flex items-center gap-2 mb-3">
             <span className="w-6 h-0.5 bg-amber-400 rounded-full" />
@@ -612,16 +612,16 @@ const Home = () => {
               className="bg-slate-900/85 backdrop-blur-xl p-6 sm:p-8 rounded-[1.75rem] border border-white/15 hover:border-amber-400/60 shadow-[0_15px_35px_rgba(0,0,0,0.5)] transition-all duration-300 relative group overflow-hidden"
             >
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-amber-400/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <AnimatedCounter 
-                end={Number(homeData.counter_people_helped) || 1000} 
-                suffix={homeData.counter_people_helped_suffix || "+"} 
-                label={homeData.counter_people_helped_label || "PEOPLE HELPED"} 
-                light={false} 
+              <AnimatedCounter
+                end={Number(homeData.counter_people_helped) || 1000}
+                suffix={homeData.counter_people_helped_suffix || "+"}
+                label={homeData.counter_people_helped_label || "PEOPLE HELPED"}
+                light={false}
                 icon={
                   <div className="w-14 h-14 rounded-2xl bg-amber-400/20 border border-amber-400/30 flex items-center justify-center text-amber-400 shadow-inner group-hover:scale-110 transition-transform">
                     <Users className="h-7 w-7 stroke-[2]" />
                   </div>
-                } 
+                }
               />
             </motion.div>
 
@@ -631,16 +631,16 @@ const Home = () => {
               className="bg-slate-900/85 backdrop-blur-xl p-6 sm:p-8 rounded-[1.75rem] border border-white/15 hover:border-amber-400/60 shadow-[0_15px_35px_rgba(0,0,0,0.5)] transition-all duration-300 relative group overflow-hidden"
             >
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-amber-400/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <AnimatedCounter 
-                end={Number(homeData.counter_volunteers) || 50} 
-                suffix={homeData.counter_volunteers_suffix || "+"} 
-                label={homeData.counter_volunteers_label || "ACTIVE VOLUNTEERS"} 
-                light={false} 
+              <AnimatedCounter
+                end={Number(homeData.counter_volunteers) || 50}
+                suffix={homeData.counter_volunteers_suffix || "+"}
+                label={homeData.counter_volunteers_label || "ACTIVE VOLUNTEERS"}
+                light={false}
                 icon={
                   <div className="w-14 h-14 rounded-2xl bg-amber-400/20 border border-amber-400/30 flex items-center justify-center text-amber-400 shadow-inner group-hover:scale-110 transition-transform">
                     <HandHeart className="h-7 w-7 stroke-[2]" />
                   </div>
-                } 
+                }
               />
             </motion.div>
 
@@ -650,16 +650,16 @@ const Home = () => {
               className="bg-slate-900/85 backdrop-blur-xl p-6 sm:p-8 rounded-[1.75rem] border border-white/15 hover:border-amber-400/60 shadow-[0_15px_35px_rgba(0,0,0,0.5)] transition-all duration-300 relative group overflow-hidden"
             >
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-amber-400/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <AnimatedCounter 
-                end={Number(homeData.counter_projects_done) || 10} 
-                suffix={homeData.counter_projects_done_suffix || "+"} 
-                label={homeData.counter_projects_done_label || "PROJECTS DONE"} 
-                light={false} 
+              <AnimatedCounter
+                end={Number(homeData.counter_projects_done) || 10}
+                suffix={homeData.counter_projects_done_suffix || "+"}
+                label={homeData.counter_projects_done_label || "PROJECTS DONE"}
+                light={false}
                 icon={
                   <div className="w-14 h-14 rounded-2xl bg-amber-400/20 border border-amber-400/30 flex items-center justify-center text-amber-400 shadow-inner group-hover:scale-110 transition-transform">
                     <Target className="h-7 w-7 stroke-[2]" />
                   </div>
-                } 
+                }
               />
             </motion.div>
 
@@ -669,16 +669,16 @@ const Home = () => {
               className="bg-slate-900/85 backdrop-blur-xl p-6 sm:p-8 rounded-[1.75rem] border border-white/15 hover:border-amber-400/60 shadow-[0_15px_35px_rgba(0,0,0,0.5)] transition-all duration-300 relative group overflow-hidden"
             >
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-amber-400/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <AnimatedCounter 
-                end={Number(homeData.counter_communities) || 10} 
-                suffix={homeData.counter_communities_suffix || "+"} 
-                label={homeData.counter_communities_label || "COMMUNITIES"} 
-                light={false} 
+              <AnimatedCounter
+                end={Number(homeData.counter_communities) || 10}
+                suffix={homeData.counter_communities_suffix || "+"}
+                label={homeData.counter_communities_label || "COMMUNITIES"}
+                light={false}
                 icon={
                   <div className="w-14 h-14 rounded-2xl bg-amber-400/20 border border-amber-400/30 flex items-center justify-center text-amber-400 shadow-inner group-hover:scale-110 transition-transform">
                     <Users className="h-7 w-7 stroke-[2]" />
                   </div>
-                } 
+                }
               />
             </motion.div>
           </div>
@@ -690,10 +690,10 @@ const Home = () => {
       <section className="py-24 md:py-32 relative overflow-hidden bg-[#FAF8F5] dark:bg-slate-950">
         {/* Real Grassroots Education Training Photographic Backdrop */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
-          <img 
-            src={examPrepPhoto} 
-            alt="Lumina Trust Training Session" 
-            className="w-full h-full object-cover opacity-20 filter blur-[1px] brightness-105 scale-105" 
+          <img
+            src={examPrepPhoto}
+            alt="Lumina Trust Training Session"
+            className="w-full h-full object-cover opacity-20 filter blur-[1px] brightness-105 scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#FAF8F5]/95 via-[#FFFFFF]/85 to-[#FAF8F5]/95 dark:from-slate-950/95 dark:via-slate-900/85 dark:to-slate-950/95" />
           <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-amber-400/10 rounded-full blur-[140px]" />
@@ -880,10 +880,10 @@ const Home = () => {
       <section className="py-24 md:py-32 bg-[#06120D] text-white relative overflow-hidden">
         {/* Full-Bleed Tree Plantation Grassroots Photographic Backdrop */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
-          <img 
-            src={treePlantationImg} 
-            alt="Lumina Trust Tree Plantation Drive" 
-            className="w-full h-full object-cover opacity-35 filter brightness-50 contrast-125 scale-105" 
+          <img
+            src={treePlantationImg}
+            alt="Lumina Trust Tree Plantation Drive"
+            className="w-full h-full object-cover opacity-35 filter brightness-50 contrast-125 scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#06120D]/95 via-[#0A1813]/80 to-[#06120D]/95" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#06120D] via-transparent to-[#06120D]" />

@@ -1,22 +1,22 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { 
-  Users, 
-  Target, 
-  Shield, 
-  Sparkles, 
-  Eye, 
-  Compass, 
-  BookOpen, 
-  Trees, 
-  HeartPulse, 
-  TrendingUp, 
-  CheckCircle2, 
-  ArrowRight, 
-  ChevronRight, 
-  Award, 
-  Globe, 
+import {
+  Users,
+  Target,
+  Shield,
+  Sparkles,
+  Eye,
+  Compass,
+  BookOpen,
+  Trees,
+  HeartPulse,
+  TrendingUp,
+  CheckCircle2,
+  ArrowRight,
+  ChevronRight,
+  Award,
+  Globe,
   HandHeart,
   Lightbulb,
   GraduationCap
@@ -61,7 +61,7 @@ const About = () => {
   });
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/about")
+    fetch("https://luminatrust.org/api/about")
       .then((res) => res.json())
       .then((data) => {
         if (data) {
@@ -137,13 +137,13 @@ const About = () => {
       <section className="relative bg-slate-950 py-24 md:py-32 lg:py-36 min-h-[75vh] flex items-center">
         {/* Visual Background Collage with Overlaid Dark Backdrop */}
         <HeroBackground />
-        
+
         {/* Main Content Grid */}
         <div className="w-full px-6 md:px-10 max-w-7xl mx-auto relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-14 items-center">
-            
+
             {/* Left Column: Breadcrumb, Badge, Heading, Description, CTA */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
@@ -181,15 +181,15 @@ const About = () => {
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-                <Link 
-                  to={aboutData.hero_button_link || "/projects"} 
+                <Link
+                  to={aboutData.hero_button_link || "/projects"}
                   className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-amber-400 hover:bg-amber-500 text-slate-950 font-bold text-sm transition-colors shadow-sm"
                 >
                   <span>{aboutData.hero_button_text || "Our Initiatives"}</span>
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link 
-                  to={aboutData.secondary_button_link || "/volunteer"} 
+                <Link
+                  to={aboutData.secondary_button_link || "/volunteer"}
                   className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full border border-white/20 hover:border-white/40 text-white font-semibold text-sm transition-colors"
                 >
                   <span>{aboutData.secondary_button_text || "Volunteer with Us"}</span>
@@ -198,20 +198,20 @@ const About = () => {
             </motion.div>
 
             {/* Right Column: Integrated Image Visual */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
               className="md:col-span-5 lg:col-span-5"
             >
               <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-slate-900">
-                <img 
-                  src={aboutData.main_image_url || heroBg} 
-                  alt={aboutData.title} 
+                <img
+                  src={aboutData.main_image_url || heroBg}
+                  alt={aboutData.title}
                   className="w-full h-[320px] sm:h-[380px] md:h-[400px] lg:h-[440px] object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
-                
+
                 {/* Clean Image Caption Strip */}
                 <div className="absolute bottom-0 left-0 right-0 p-5 bg-slate-950/90 border-t border-white/10 flex items-center justify-between">
                   <div>
@@ -247,7 +247,7 @@ const About = () => {
               transition={{ duration: 0.7 }}
             >
               <SectionHeading subtitle="Who We Are" title={aboutData.who_we_are_title || "Uplifting Underserved Communities with Dignity"} align="left" />
-              
+
               <p className="text-muted-foreground leading-relaxed text-lg mb-6 whitespace-pre-line">
                 {aboutData.who_we_are_description || "Lumina Trust is a purpose-driven organization dedicated to uplifting underserved populations through sustainable and inclusive development initiatives. We work directly at the grassroots level to create meaningful change by enabling individuals and communities to achieve dignity, independence, and long-term growth."}
               </p>
@@ -257,11 +257,11 @@ const About = () => {
                 {(Array.isArray(aboutData.core_values) && aboutData.core_values.length > 0
                   ? aboutData.core_values.map((v) => typeof v === 'string' ? { label: v, desc: "Grassroots community initiative." } : { label: v.title || v.label, desc: v.description || v.desc })
                   : [
-                      { label: "Integrity & Accountability", desc: "Honest, transparent operations." },
-                      { label: "Inclusive Growth", desc: "Equal opportunities for all." },
-                      { label: "Compassionate Action", desc: "Serving with empathy & care." },
-                      { label: "Sustainable Impact", desc: "Long-term self-reliance." },
-                    ]
+                    { label: "Integrity & Accountability", desc: "Honest, transparent operations." },
+                    { label: "Inclusive Growth", desc: "Equal opportunities for all." },
+                    { label: "Compassionate Action", desc: "Serving with empathy & care." },
+                    { label: "Sustainable Impact", desc: "Long-term self-reliance." },
+                  ]
                 ).map((item, index) => (
                   <div key={index} className="flex items-start gap-3">
                     <div className="w-6 h-6 rounded-full bg-amber-400/20 text-amber-500 flex items-center justify-center shrink-0 mt-0.5">
@@ -285,11 +285,11 @@ const About = () => {
               className="relative"
             >
               <div className="absolute -inset-6 bg-gradient-to-br from-amber-400/15 via-teal-400/10 to-cyan-400/15 rounded-3xl blur-2xl pointer-events-none" />
-              
+
               <div className="relative rounded-3xl overflow-hidden shadow-ngo border border-border/50">
-                <img 
-                  src={aboutData.who_we_are_image_url || bookDistributionImg} 
-                  alt="Lumina Trust Community Work" 
+                <img
+                  src={aboutData.who_we_are_image_url || bookDistributionImg}
+                  alt="Lumina Trust Community Work"
                   className="w-full h-[460px] object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
@@ -319,10 +319,10 @@ const About = () => {
       {/* ── 3. MISSION & VISION (DISTINCT CARDS) ── */}
       <section className="py-24 bg-gradient-to-b from-slate-50 via-warm to-background dark:from-slate-950 dark:via-background dark:to-slate-950">
         <div className="w-full px-6 md:px-10 max-w-6xl mx-auto">
-          <SectionHeading 
-            subtitle="Our Purpose" 
-            title="Mission & Vision" 
-            description="Clear direction and core conviction driving every initiative at Lumina Trust." 
+          <SectionHeading
+            subtitle="Our Purpose"
+            title="Mission & Vision"
+            description="Clear direction and core conviction driving every initiative at Lumina Trust."
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
@@ -336,7 +336,7 @@ const About = () => {
               <GlowCard>
                 <div className="bg-card rounded-3xl p-8 md:p-10 shadow-ngo border-t-4 border-amber-400 h-full flex flex-col justify-between relative overflow-hidden group hover:shadow-card-hover transition-shadow duration-500">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-amber-400/10 rounded-full blur-2xl pointer-events-none" />
-                  
+
                   <div>
                     <div className="w-14 h-14 rounded-2xl bg-amber-400/15 flex items-center justify-center mb-6 text-amber-500 shadow-sm group-hover:scale-110 transition-transform">
                       <Eye className="h-7 w-7" />
@@ -381,7 +381,7 @@ const About = () => {
               <GlowCard>
                 <div className="bg-card rounded-3xl p-8 md:p-10 shadow-ngo border-t-4 border-teal-400 h-full flex flex-col justify-between relative overflow-hidden group hover:shadow-card-hover transition-shadow duration-500">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-teal-400/10 rounded-full blur-2xl pointer-events-none" />
-                  
+
                   <div>
                     <div className="w-14 h-14 rounded-2xl bg-teal-400/15 flex items-center justify-center mb-6 text-teal-500 shadow-sm group-hover:scale-110 transition-transform">
                       <Target className="h-7 w-7" />
@@ -422,27 +422,27 @@ const About = () => {
       {/* ── 4. OUR FOCUS / AREAS OF IMPACT ── */}
       <section className="py-28">
         <div className="w-full px-6 md:px-10 max-w-7xl mx-auto">
-          <SectionHeading 
-            subtitle={aboutData.impact_subtitle || "Areas of Impact"} 
-            title={aboutData.impact_title || "Where We Make a Difference"} 
+          <SectionHeading
+            subtitle={aboutData.impact_subtitle || "Areas of Impact"}
+            title={aboutData.impact_title || "Where We Make a Difference"}
             description={aboutData.impact_description || "Our integrated programs address key pillars of community welfare for holistic social improvement."}
           />
 
-          <motion.div 
-            variants={staggerContainer} 
-            initial="hidden" 
-            whileInView="show" 
-            viewport={{ once: true }} 
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12"
           >
             {(Array.isArray(aboutData.impact_items) && aboutData.impact_items.length > 0
               ? aboutData.impact_items
               : [
-                  { title: "Education & Literacy", description: "Distributing free books, notebooks, competitive exam kits, and conducting academic training for government school students." },
-                  { title: "Health & Healthcare", description: "Organizing free medical camps, wellness awareness sessions, and honoring healthcare professionals for dedicated service." },
-                  { title: "Environment & Ecology", description: "Leading plastic-free drives, beach cleanups, sparrow box distribution, and massive tree plantation initiatives." },
-                  { title: "Skills & Livelihood", description: "Career guidance, youth skill training, and empowering women to achieve economic independence and dignity." }
-                ]
+                { title: "Education & Literacy", description: "Distributing free books, notebooks, competitive exam kits, and conducting academic training for government school students." },
+                { title: "Health & Healthcare", description: "Organizing free medical camps, wellness awareness sessions, and honoring healthcare professionals for dedicated service." },
+                { title: "Environment & Ecology", description: "Leading plastic-free drives, beach cleanups, sparrow box distribution, and massive tree plantation initiatives." },
+                { title: "Skills & Livelihood", description: "Career guidance, youth skill training, and empowering women to achieve economic independence and dignity." }
+              ]
             ).map((item, i) => {
               const icons = [
                 <GraduationCap className="h-7 w-7 text-amber-500" />,
@@ -488,11 +488,11 @@ const About = () => {
       <section className="py-28 bg-slate-900 text-white relative overflow-hidden">
         <FloatingParticles />
         <div className="absolute inset-0 bg-dot-grid opacity-20" />
-        
+
         <div className="w-full px-6 md:px-10 max-w-6xl mx-auto relative z-10">
-          <SectionHeading 
-            subtitle={aboutData.process_subtitle || "Our Process"} 
-            title={aboutData.process_title || "How We Work"} 
+          <SectionHeading
+            subtitle={aboutData.process_subtitle || "Our Process"}
+            title={aboutData.process_title || "How We Work"}
             description={aboutData.process_description || "Our systematic approach ensures every initiative reaches the right beneficiaries with maximum accountability."}
             light
           />
@@ -501,11 +501,11 @@ const About = () => {
             {(Array.isArray(aboutData.process_steps) && aboutData.process_steps.length > 0
               ? aboutData.process_steps
               : [
-                  { step: "01", title: "Needs Assessment", description: "We conduct grassroots surveys and interact directly with rural & urban communities to understand real gaps." },
-                  { step: "02", title: "Program Planning", description: "We design tailored educational kits, healthcare camps, and skill workshops with actionable milestones." },
-                  { step: "03", title: "Field Execution", description: "Our dedicated team and volunteers collaborate with schools, doctors, and local bodies to execute efficiently." },
-                  { step: "04", title: "Impact & Growth", description: "We continuously monitor outcomes, gather beneficiary feedback, and ensure long-term community self-reliance." }
-                ]
+                { step: "01", title: "Needs Assessment", description: "We conduct grassroots surveys and interact directly with rural & urban communities to understand real gaps." },
+                { step: "02", title: "Program Planning", description: "We design tailored educational kits, healthcare camps, and skill workshops with actionable milestones." },
+                { step: "03", title: "Field Execution", description: "Our dedicated team and volunteers collaborate with schools, doctors, and local bodies to execute efficiently." },
+                { step: "04", title: "Impact & Growth", description: "We continuously monitor outcomes, gather beneficiary feedback, and ensure long-term community self-reliance." }
+              ]
             ).map((item, index) => {
               const icons = [
                 <Lightbulb className="h-6 w-6 text-amber-400" />,
@@ -541,11 +541,11 @@ const About = () => {
           </div>
 
           {/* Core Quote Box */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }} 
-            whileInView={{ opacity: 1, scale: 1 }} 
-            viewport={{ once: true }} 
-            transition={{ duration: 0.6 }} 
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
             className="mt-16 max-w-4xl mx-auto"
           >
             <div className="bg-gradient-to-r from-teal-500/10 via-amber-500/10 to-cyan-500/10 rounded-3xl p-8 md:p-10 border border-white/15 text-center backdrop-blur-md">
@@ -575,17 +575,17 @@ const About = () => {
       {/* ── 7. LEADERSHIP TEAM ── */}
       <section className="py-28 bg-warm">
         <div className="w-full px-6 md:px-10 max-w-6xl mx-auto">
-          <SectionHeading 
-            subtitle={aboutData.team_subtitle || "Leadership"} 
-            title={aboutData.team_title || "Meet Our Team"} 
-            description={aboutData.team_description || "Dedicated professionals driving positive grassroots change every day."} 
+          <SectionHeading
+            subtitle={aboutData.team_subtitle || "Leadership"}
+            title={aboutData.team_title || "Meet Our Team"}
+            description={aboutData.team_description || "Dedicated professionals driving positive grassroots change every day."}
           />
-          
-          <motion.div 
-            variants={staggerContainer} 
-            initial="hidden" 
-            whileInView="show" 
-            viewport={{ once: true }} 
+
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
           >
             {(Array.isArray(aboutData.team_members) && aboutData.team_members.length > 0 ? aboutData.team_members : team).map((m, i) => {
@@ -601,9 +601,9 @@ const About = () => {
 
               return (
                 <motion.div key={i} variants={staggerItem}>
-                  <motion.div 
-                    whileHover={{ y: -8 }} 
-                    transition={{ type: "spring", stiffness: 300 }} 
+                  <motion.div
+                    whileHover={{ y: -8 }}
+                    transition={{ type: "spring", stiffness: 300 }}
                     className="bg-card rounded-2xl p-7 shadow-ngo text-center group hover:shadow-card-hover transition-shadow duration-500 h-full flex flex-col justify-between border border-border/40"
                   >
                     <div>
@@ -637,15 +637,15 @@ const About = () => {
               light
             />
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               className="flex flex-wrap justify-center gap-4 mt-8"
             >
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link 
-                  to="/donate" 
+                <Link
+                  to="/donate"
                   className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-400 to-amber-500 text-amber-950 px-9 py-4 rounded-full font-bold text-sm tracking-wide shadow-gold hover:shadow-lg transition-all"
                 >
                   Donate Today <ArrowRight className="h-4 w-4" />
@@ -653,8 +653,8 @@ const About = () => {
               </motion.div>
 
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link 
-                  to="/volunteer" 
+                <Link
+                  to="/volunteer"
                   className="inline-flex items-center gap-2 border-2 border-white/30 text-white px-9 py-4 rounded-full font-bold text-sm tracking-wide hover:bg-white/10 transition-all backdrop-blur-sm"
                 >
                   Volunteer with Us

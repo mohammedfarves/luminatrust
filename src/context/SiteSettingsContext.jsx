@@ -26,7 +26,7 @@ export const SiteSettingsProvider = ({ children }) => {
   const [settings, setSettings] = useState(defaultSettings);
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/settings")
+    fetch("https://luminatrust.org/api/settings")
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch settings");
         return res.json();

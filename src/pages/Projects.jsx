@@ -39,7 +39,7 @@ const Projects = () => {
   const [activeTab, setActiveTab] = useState("All");
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/activities")
+    fetch("https://luminatrust.org/api/activities")
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data) && data.length > 0) {
@@ -62,11 +62,11 @@ const Projects = () => {
   const filtered = activeTab === "All"
     ? projectsList
     : projectsList.filter((p) => {
-        if (activeTab === "Upcoming" || activeTab === "Completed") {
-          return p.status === activeTab.toLowerCase() || p.category === activeTab;
-        }
-        return p.category === activeTab;
-      });
+      if (activeTab === "Upcoming" || activeTab === "Completed") {
+        return p.status === activeTab.toLowerCase() || p.category === activeTab;
+      }
+      return p.category === activeTab;
+    });
 
   return (
     <div className="overflow-hidden">
@@ -100,11 +100,10 @@ const Projects = () => {
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
-                  activeTab === tab
+                className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${activeTab === tab
                     ? "bg-[#064e3b] text-white shadow-md border border-[#064e3b]"
                     : "bg-card border border-border text-foreground/80 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 hover:border-emerald-200"
-                }`}
+                  }`}
               >
                 {tab}
               </button>

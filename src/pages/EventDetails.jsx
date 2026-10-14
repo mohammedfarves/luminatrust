@@ -44,7 +44,7 @@ const EventDetails = () => {
     if (match) {
       setEvent(match);
     }
-    fetch(`http://localhost:8000/api/activities/${id}`)
+    fetch(`https://luminatrust.org/api/activities/${id}`)
       .then((res) => res.json())
       .then((data) => {
         if (data && data.title) {
@@ -123,10 +123,10 @@ const EventDetails = () => {
       {/* ── MAIN CONTENT GRID ── */}
       <section className="py-16 md:py-24">
         <div className="w-full px-6 md:px-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
-          
+
           {/* LEFT COLUMN: Main Details */}
           <div className="lg:col-span-8 space-y-12">
-            
+
             {/* About the Event */}
             <div className="space-y-4">
               <h2 className="font-heading text-2xl md:text-3xl font-extrabold text-foreground flex items-center gap-2.5">
@@ -238,7 +238,7 @@ const EventDetails = () => {
 
           {/* RIGHT COLUMN: Sidebar Cards */}
           <div className="lg:col-span-4 space-y-6">
-            
+
             {/* Event Details Sidebar Card */}
             <div className="bg-emerald-50/80 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 p-6 rounded-2xl space-y-5 shadow-xs">
               <h3 className="font-heading text-xl font-bold text-foreground flex items-center gap-2">
