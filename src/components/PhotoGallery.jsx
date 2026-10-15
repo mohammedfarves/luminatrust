@@ -137,7 +137,7 @@ const PhotoGallery = () => {
   const bottomItems = allItems.filter((i) => i.pos.startsWith("bottom"));
 
   return (
-    <section className="py-24 bg-background relative overflow-hidden">
+    <section className="py-14 sm:py-20 md:py-24 bg-background relative overflow-hidden">
       {/* Decorative leaf branch vectors */}
       <div className="absolute top-10 left-4 md:left-12 pointer-events-none z-0">
         <LeafBranchLeft />
@@ -146,18 +146,18 @@ const PhotoGallery = () => {
         <LeafBranchRight />
       </div>
 
-      <div className="w-full px-4 md:px-10 max-w-7xl mx-auto relative z-10">
+      <div className="site-container relative z-10">
         {/* Section Heading */}
-        <div className="text-center max-w-3xl mx-auto mb-10">
+        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
           <span className="text-emerald-700 dark:text-emerald-400 font-bold text-xs uppercase tracking-[0.25em] block mb-2">
             OUR IMPACT
           </span>
-          <h2 className="font-heading text-3xl md:text-5xl font-extrabold text-foreground tracking-tight">
+          <h2 className="font-heading text-2xl sm:text-3xl md:text-5xl font-extrabold text-foreground tracking-tight">
             Moments That Made a Difference
           </h2>
 
           {/* Leaf Divider */}
-          <div className="flex items-center justify-center gap-3 my-4">
+          <div className="flex items-center justify-center gap-3 my-3 sm:my-4">
             <div className="h-[2px] w-12 bg-amber-400/80 rounded-full" />
             <div className="w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-950 flex items-center justify-center text-emerald-600 dark:text-emerald-400 shadow-sm">
               <Leaf className="w-4 h-4 fill-emerald-600 dark:fill-emerald-400" />
@@ -165,20 +165,20 @@ const PhotoGallery = () => {
             <div className="h-[2px] w-12 bg-amber-400/80 rounded-full" />
           </div>
 
-          <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
+          <p className="text-muted-foreground text-xs sm:text-sm md:text-base leading-relaxed">
             Explore the activities, events and smiles that reflect our journey of creating a better and brighter future for our community.
           </p>
         </div>
 
         {/* Filter Category Tabs */}
-        <div className="flex flex-wrap justify-center gap-2.5 md:gap-3 mb-12">
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-2.5 md:gap-3 mb-8 sm:mb-12">
           {categories.map((cat) => {
             const isActive = activeTab === cat;
             return (
               <button
                 key={cat}
                 onClick={() => setActiveTab(cat)}
-                className={`px-5 py-2 rounded-full text-xs md:text-sm font-semibold transition-all duration-300 ${
+                className={`px-4 sm:px-5 py-1.5 sm:py-2 rounded-full text-xs md:text-sm font-semibold transition-all duration-300 ${
                   isActive
                     ? "bg-[#064e3b] text-white shadow-md border border-[#064e3b]"
                     : "bg-card border border-border text-foreground/80 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 hover:border-emerald-200"
@@ -193,23 +193,23 @@ const PhotoGallery = () => {
         {/* Gallery Content */}
         {activeTab === "All" ? (
           /* Bento Grid matching mockup */
-          <div className="space-y-5">
+          <div className="space-y-4 sm:space-y-5">
             {/* Top Row: 3 main columns */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5">
               {/* Top Left: Environment / Tree Plantation */}
               <motion.div
                 whileHover={{ scale: 1.01 }}
                 transition={{ duration: 0.3 }}
                 onClick={() => setSelected(filteredItems.findIndex((i) => i.id === topLeftItem.id))}
-                className="lg:col-span-4 h-[320px] md:h-[380px] rounded-2xl overflow-hidden cursor-pointer relative group shadow-sm border border-border/50"
+                className="lg:col-span-4 h-[240px] sm:h-[320px] md:h-[380px] rounded-2xl overflow-hidden cursor-pointer relative group shadow-sm border border-border/50"
               >
                 <img
                   src={topLeftItem.src}
                   alt={topLeftItem.alt}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
-                  <span className="text-white font-semibold text-sm">{topLeftItem.title}</span>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4 sm:p-5">
+                  <span className="text-white font-semibold text-xs sm:text-sm">{topLeftItem.title}</span>
                 </div>
               </motion.div>
 
@@ -218,35 +218,35 @@ const PhotoGallery = () => {
                 whileHover={{ scale: 1.01 }}
                 transition={{ duration: 0.3 }}
                 onClick={() => setSelected(filteredItems.findIndex((i) => i.id === featuredItem.id))}
-                className="lg:col-span-4 h-[320px] md:h-[380px] rounded-2xl overflow-hidden cursor-pointer relative group shadow-sm border border-border/50"
+                className="lg:col-span-4 h-[240px] sm:h-[320px] md:h-[380px] rounded-2xl overflow-hidden cursor-pointer relative group shadow-sm border border-border/50"
               >
                 <img
                   src={featuredItem.src}
                   alt={featuredItem.alt}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
-                  <span className="text-white font-semibold text-sm">{featuredItem.title}</span>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4 sm:p-5">
+                  <span className="text-white font-semibold text-xs sm:text-sm">{featuredItem.title}</span>
                 </div>
               </motion.div>
 
               {/* Top Right: 2x2 Sub-grid */}
-              <div className="lg:col-span-4 grid grid-cols-2 gap-3.5 h-[320px] md:h-[380px]">
+              <div className="lg:col-span-4 grid grid-cols-2 gap-3 sm:gap-3.5 h-[240px] sm:h-[320px] md:h-[380px]">
                 {subGridItems.map((item) => (
                   <motion.div
                     key={item.id}
                     whileHover={{ scale: 1.02 }}
                     transition={{ duration: 0.3 }}
                     onClick={() => setSelected(filteredItems.findIndex((i) => i.id === item.id))}
-                    className="rounded-2xl overflow-hidden cursor-pointer relative group border border-border/50 shadow-sm"
+                    className="rounded-xl sm:rounded-2xl overflow-hidden cursor-pointer relative group border border-border/50 shadow-sm"
                   >
                     <img
                       src={item.src}
                       alt={item.alt}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
-                      <span className="text-white font-medium text-xs truncate">{item.title}</span>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-2.5 sm:p-3">
+                      <span className="text-white font-medium text-[10px] sm:text-xs truncate">{item.title}</span>
                     </div>
                   </motion.div>
                 ))}
@@ -254,22 +254,22 @@ const PhotoGallery = () => {
             </div>
 
             {/* Bottom Row: 3 Equal Columns */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
               {bottomItems.map((item) => (
                 <motion.div
                   key={item.id}
                   whileHover={{ scale: 1.01 }}
                   transition={{ duration: 0.3 }}
                   onClick={() => setSelected(filteredItems.findIndex((i) => i.id === item.id))}
-                  className="h-[220px] md:h-[260px] rounded-2xl overflow-hidden cursor-pointer relative group border border-border/50 shadow-sm"
+                  className="h-[180px] sm:h-[220px] md:h-[260px] rounded-2xl overflow-hidden cursor-pointer relative group border border-border/50 shadow-sm"
                 >
                   <img
                     src={item.src}
                     alt={item.alt}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                    <span className="text-white font-medium text-sm">{item.title}</span>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3.5 sm:p-4">
+                    <span className="text-white font-medium text-xs sm:text-sm">{item.title}</span>
                   </div>
                 </motion.div>
               ))}

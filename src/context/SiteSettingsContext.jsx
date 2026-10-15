@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
+import { API_ENDPOINTS } from "@/config/api";
 
 export const defaultSettings = {
   email: "support@luminatrust.org",
@@ -18,6 +19,20 @@ export const defaultSettings = {
   registration_number: "Trust Reg. No: 123/2018",
   tax_exemption_info: "Donations are 100% tax exempt under Section 80G of IT Act",
   footer_about: "Empowering communities for a brighter tomorrow through education, healthcare, and sustainable grassroots initiatives.",
+  
+  // Payment Details Defaults
+  upi_id: "luminatrust@boi",
+  upi_name: "LUMINA TRUST",
+  upi_qr_code: null,
+  upi_qr_code_url: null,
+  enable_upi: true,
+  bank_account_holder: "LUMINA TRUST",
+  bank_account_number: "813210210000050",
+  bank_ifsc: "BKID0008132",
+  bank_name: "BANK OF INDIA",
+  bank_branch: "NAGAPATTINAM",
+  bank_account_type: "CURRENT ACCOUNT",
+  enable_bank_transfer: true,
 };
 
 const SiteSettingsContext = createContext(defaultSettings);
@@ -26,7 +41,7 @@ export const SiteSettingsProvider = ({ children }) => {
   const [settings, setSettings] = useState(defaultSettings);
 
   useEffect(() => {
-    fetch("https://luminatrust.org/api/settings")
+    fetch(API_ENDPOINTS.SETTINGS)
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch settings");
         return res.json();

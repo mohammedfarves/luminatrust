@@ -32,11 +32,11 @@ const AnimatedCounter = ({ end, suffix = "", label, icon, light = false }) => {
       transition={{ duration: 0.5 }}
       className="text-center"
     >
-      <div className="mb-4 flex justify-center">{icon}</div>
-      <div className={`font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold ${light ? "text-slate-900 dark:text-white" : "text-amber-400 drop-shadow-sm"}`}>
+      <div className="mb-2 sm:mb-4 flex justify-center">{icon}</div>
+      <div className={`font-heading text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight ${light ? "text-slate-900 dark:text-white" : "text-amber-400 drop-shadow-sm"}`}>
         {count.toLocaleString()}{suffix}
       </div>
-      <p className={`mt-3 text-xs sm:text-sm font-bold uppercase tracking-wider ${light ? "text-slate-600 dark:text-slate-300" : "text-white/85"}`}>
+      <p className={`mt-2 sm:mt-3 text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-wider ${light ? "text-slate-600 dark:text-slate-300" : "text-white/85"}`}>
         {label}
       </p>
     </motion.div>

@@ -3,8 +3,38 @@ export default {
   content: ["./pages/**/*.{js,jsx}", "./components/**/*.{js,jsx}", "./app/**/*.{js,jsx}", "./src/**/*.{js,jsx}"],
   prefix: "",
   theme: {
-    container: { center: true, padding: "2rem", screens: { "2xl": "1400px" } },
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: "1rem",
+        sm: "1.5rem",
+        md: "2rem",
+        lg: "2.5rem",
+        xl: "3rem",
+        "2xl": "3.5rem",
+        "3xl": "4rem",
+      },
+      screens: {
+        sm: "640px",
+        md: "768px",
+        lg: "1024px",
+        xl: "1280px",
+        "2xl": "1536px",
+        "3xl": "1800px",
+        "4xl": "2200px",
+      },
+    },
     extend: {
+      screens: {
+        "2xl": "1536px",
+        "3xl": "1800px",
+        "4xl": "2200px",
+      },
+      maxWidth: {
+        "8xl": "90rem",   // 1440px
+        "9xl": "100rem",  // 1600px
+        "10xl": "115rem", // 1840px
+      },
       fontFamily: { heading: ['DM Serif Display', 'serif'], body: ['Inter', 'sans-serif'] },
       colors: {
         border: "hsl(var(--border))", input: "hsl(var(--input))", ring: "hsl(var(--ring))",

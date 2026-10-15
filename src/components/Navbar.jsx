@@ -50,7 +50,7 @@ const Navbar = () => {
             : "bg-slate-950/70 backdrop-blur-md border-white/10 text-white/90 py-2"
         }`}
       >
-        <div className="w-full px-4 sm:px-6 md:px-10 flex items-center justify-between text-xs">
+        <div className="site-container flex items-center justify-between text-xs">
           {/* Left Side: Phone Number, Mail ID, and Social Media Icons */}
           <div className="flex flex-wrap items-center gap-3 sm:gap-5 md:gap-6">
             {/* Phone Number */}
@@ -137,7 +137,7 @@ const Navbar = () => {
       </div>
 
       {/* Main navigation row */}
-      <div className="w-full px-6 md:px-10 flex items-center justify-between h-16 md:h-20">
+      <div className="site-container flex items-center justify-between h-16 md:h-20">
         <Link to="/" className="flex items-center gap-2">
           <motion.img
             src={luminaLogo}
@@ -248,32 +248,46 @@ const Navbar = () => {
               {/* Mobile Contact & Social Media Strip */}
               <div className="mt-4 pt-4 border-t border-border/50 space-y-2.5 px-1">
                 <p className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground">Contact & Social</p>
-                <a href="tel:+919894777349" className="flex items-center gap-2 text-xs text-foreground hover:text-amber-500 font-medium">
-                  <Phone className="h-3.5 w-3.5 text-amber-500" />
-                  <span>+91 98947 77349</span>
-                </a>
-                <a href="mailto:support@luminatrust.org" className="flex items-center gap-2 text-xs text-foreground hover:text-amber-500 font-medium">
-                  <Mail className="h-3.5 w-3.5 text-amber-500" />
-                  <span>support@luminatrust.org</span>
-                </a>
-                <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                  <MapPin className="h-3.5 w-3.5 text-amber-500 shrink-0" />
-                  <span>Lumina Trust, Nagapattinam</span>
-                </div>
+                {settings.phone && (
+                  <a href={`tel:${settings.phone}`} className="flex items-center gap-2 text-xs text-foreground hover:text-amber-500 font-medium">
+                    <Phone className="h-3.5 w-3.5 text-amber-500 shrink-0" />
+                    <span>{settings.phone}</span>
+                  </a>
+                )}
+                {settings.email && (
+                  <a href={`mailto:${settings.email}`} className="flex items-center gap-2 text-xs text-foreground hover:text-amber-500 font-medium truncate">
+                    <Mail className="h-3.5 w-3.5 text-amber-500 shrink-0" />
+                    <span className="truncate">{settings.email}</span>
+                  </a>
+                )}
+                {settings.address && (
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                    <MapPin className="h-3.5 w-3.5 text-amber-500 shrink-0" />
+                    <span className="truncate">{settings.address}</span>
+                  </div>
+                )}
 
                 <div className="flex items-center gap-3 pt-2">
-                  <a href="https://facebook.com" target="_blank" rel="noreferrer" className="w-7 h-7 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-amber-500 hover:border-amber-400 transition-colors" aria-label="Facebook">
-                    <Facebook className="h-3.5 w-3.5" />
-                  </a>
-                  <a href="https://twitter.com" target="_blank" rel="noreferrer" className="w-7 h-7 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-amber-500 hover:border-amber-400 transition-colors" aria-label="Twitter">
-                    <Twitter className="h-3.5 w-3.5" />
-                  </a>
-                  <a href="https://instagram.com" target="_blank" rel="noreferrer" className="w-7 h-7 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-amber-500 hover:border-amber-400 transition-colors" aria-label="Instagram">
-                    <Instagram className="h-3.5 w-3.5" />
-                  </a>
-                  <a href="https://youtube.com" target="_blank" rel="noreferrer" className="w-7 h-7 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-amber-500 hover:border-amber-400 transition-colors" aria-label="YouTube">
-                    <Youtube className="h-3.5 w-3.5" />
-                  </a>
+                  {settings.facebook_url && (
+                    <a href={settings.facebook_url} target="_blank" rel="noreferrer" className="w-8 h-8 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-amber-500 hover:border-amber-400 transition-colors" aria-label="Facebook">
+                      <Facebook className="h-3.5 w-3.5" />
+                    </a>
+                  )}
+                  {settings.twitter_url && (
+                    <a href={settings.twitter_url} target="_blank" rel="noreferrer" className="w-8 h-8 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-amber-500 hover:border-amber-400 transition-colors" aria-label="Twitter">
+                      <Twitter className="h-3.5 w-3.5" />
+                    </a>
+                  )}
+                  {settings.instagram_url && (
+                    <a href={settings.instagram_url} target="_blank" rel="noreferrer" className="w-8 h-8 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-amber-500 hover:border-amber-400 transition-colors" aria-label="Instagram">
+                      <Instagram className="h-3.5 w-3.5" />
+                    </a>
+                  )}
+                  {settings.youtube_url && (
+                    <a href={settings.youtube_url} target="_blank" rel="noreferrer" className="w-8 h-8 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-amber-500 hover:border-amber-400 transition-colors" aria-label="YouTube">
+                      <Youtube className="h-3.5 w-3.5" />
+                    </a>
+                  )}
                 </div>
               </div>
             </div>

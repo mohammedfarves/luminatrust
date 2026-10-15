@@ -98,7 +98,7 @@ const Testimonial = (props) => {
         <div className="absolute top-1/2 left-0 w-96 h-96 bg-amber-400/15 rounded-full blur-[140px]" />
       </div>
 
-      <div className="w-full px-6 md:px-10 max-w-7xl mx-auto relative z-10">
+      <div className="site-container relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 mb-3">
             <span className="w-6 h-0.5 bg-amber-400 rounded-full" />

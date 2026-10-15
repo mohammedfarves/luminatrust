@@ -42,7 +42,7 @@ const ProjectCard = ({
     >
       <Link to={targetLink} className="flex flex-1 flex-col h-full focus:outline-none">
         {/* Image Container with Consistent Aspect Ratio */}
-        <div className="relative h-56 md:h-64 w-full overflow-hidden bg-muted">
+        <div className="relative h-48 sm:h-56 md:h-64 w-full overflow-hidden bg-muted">
           <img
             src={image}
             alt={title}
@@ -52,14 +52,14 @@ const ProjectCard = ({
 
           {/* Category Badge */}
           {category && (
-            <span className="absolute left-4 top-4 z-10 inline-flex items-center rounded-full bg-white/90 dark:bg-slate-900/90 px-3.5 py-1 text-[11px] font-extrabold uppercase tracking-widest text-[#1f3d30] dark:text-emerald-300 shadow-xs backdrop-blur-sm">
+            <span className="absolute left-3 sm:left-4 top-3 sm:top-4 z-10 inline-flex items-center rounded-full bg-white/90 dark:bg-slate-900/90 px-3 sm:px-3.5 py-1 text-[10px] sm:text-[11px] font-extrabold uppercase tracking-widest text-[#1f3d30] dark:text-emerald-300 shadow-xs backdrop-blur-sm">
               {category}
             </span>
           )}
 
           {/* Subtle Dark Gradient Overlay with View Project Action on Hover */}
-          <div className="absolute inset-0 z-10 bg-gradient-to-t from-slate-950/80 via-slate-950/25 to-transparent opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100 flex items-end justify-start p-5 motion-reduce:opacity-0">
-            <span className="inline-flex items-center gap-2 rounded-full bg-white/95 dark:bg-slate-900/95 px-4 py-1.5 text-xs font-bold text-[#1f3d30] dark:text-emerald-300 shadow-lg backdrop-blur-md transform translate-y-2 opacity-0 transition-all duration-300 ease-out group-hover:translate-y-0 group-hover:opacity-100">
+          <div className="absolute inset-0 z-10 bg-gradient-to-t from-slate-950/80 via-slate-950/25 to-transparent opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100 flex items-end justify-start p-4 sm:p-5 motion-reduce:opacity-0">
+            <span className="inline-flex items-center gap-2 rounded-full bg-white/95 dark:bg-slate-900/95 px-3.5 sm:px-4 py-1.5 text-xs font-bold text-[#1f3d30] dark:text-emerald-300 shadow-lg backdrop-blur-md transform translate-y-2 opacity-0 transition-all duration-300 ease-out group-hover:translate-y-0 group-hover:opacity-100">
               <span>View Project</span>
               <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 ease-out group-hover:translate-x-1" />
             </span>
@@ -67,12 +67,12 @@ const ProjectCard = ({
         </div>
 
         {/* Content */}
-        <div className="flex flex-1 flex-col p-6">
-          <h3 className="mb-3 font-heading text-2xl font-extrabold leading-snug text-[#1f3d30] dark:text-foreground transition-colors duration-300 group-hover:text-[#0f5132] dark:group-hover:text-emerald-400 md:text-[1.75rem]">
+        <div className="flex flex-1 flex-col p-4 sm:p-6">
+          <h3 className="mb-2 sm:mb-3 font-heading text-lg sm:text-2xl font-extrabold leading-snug text-[#1f3d30] dark:text-foreground transition-colors duration-300 group-hover:text-[#0f5132] dark:group-hover:text-emerald-400 md:text-[1.75rem]">
             {title}
           </h3>
 
-          <p className="mb-6 text-sm md:text-[0.95rem] leading-relaxed text-slate-600/90 dark:text-muted-foreground line-clamp-3">
+          <p className="mb-4 sm:mb-6 text-xs sm:text-sm md:text-[0.95rem] leading-relaxed text-slate-600/90 dark:text-muted-foreground line-clamp-3">
             {description}
           </p>
 
