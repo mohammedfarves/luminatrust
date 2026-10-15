@@ -20,7 +20,7 @@ const Footer = () => {
     {/* CTA Band */}
     <div className="relative bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-400 py-10 sm:py-14 px-4 sm:px-6 overflow-hidden">
       <div className="absolute inset-0 bg-dot-grid opacity-20" />
-      <div className="relative max-w-4xl mx-auto text-center">
+      <div className="site-container-narrow text-center relative">
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -72,7 +72,7 @@ const Footer = () => {
 
     {/* Main footer */}
     <div className="bg-dot-grid relative">
-      <div className="w-full px-4 sm:px-6 md:px-10 py-12 sm:py-16 md:py-20 max-w-7xl mx-auto">
+      <div className="site-container py-12 sm:py-16 md:py-20">
         <motion.div
           variants={staggerContainer}
           initial="hidden"

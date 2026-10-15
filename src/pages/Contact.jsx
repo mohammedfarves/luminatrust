@@ -6,7 +6,7 @@ import MarqueeRibbon from "@/components/MarqueeRibbon";
 import { staggerContainer, staggerItem, GlowCard } from "@/components/AnimationEffects";
 import { useState } from "react";
 import { toast } from "sonner";
-
+import { API_ENDPOINTS } from "@/config/api";
 import { useSiteSettings } from "@/context/SiteSettingsContext";
 
 const inputCls = "w-full px-4 py-3.5 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-amber-400/50 focus:border-amber-400 transition-all";
@@ -20,24 +20,20 @@ const Contact = () => {
     e.preventDefault(); 
     setIsSubmitting(true);
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
+      const response = await fetch(API_ENDPOINTS.CONTACT, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          access_key: "50c9f574-f407-44d7-a510-ab85422ed81c",
-          subject: "New Contact Form Submission - Lumina Trust",
-          ...form
-        }),
+        body: JSON.stringify(form),
       });
       const result = await response.json();
-      if (result.success) {
-        toast.success("Message sent! We'll get back to you soon."); 
+      if (response.ok && (result.success || result.data)) {
+        toast.success(result.message || "Message sent! We'll get back to you soon."); 
         setForm({ name: "", email: "", subject: "", message: "" }); 
       } else {
         toast.error(result.message || "Failed to send message. Please try again.");
       }
     } catch (error) {
-      toast.error("Something went wrong. Please try again.");
+      toast.error("Failed to connect to server. Please try again later.");
     } finally {
       setIsSubmitting(false);
     }
@@ -56,7 +52,7 @@ const Contact = () => {
       {/* Hero */}
       <section className="relative pt-32 pb-16 sm:pt-40 sm:pb-24 md:py-48 overflow-hidden bg-slate-950">
         <HeroBackground />
-        <div className="w-full px-4 sm:px-6 md:px-10 text-center relative z-10">
+        <div className="site-container text-center relative z-10">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
             <span className="inline-flex items-center gap-2 glass rounded-full px-4 sm:px-5 py-1.5 sm:py-2 text-cyan-300 font-bold text-xs uppercase tracking-[0.2em] mb-4 sm:mb-6">Get in Touch</span>
             <h1 className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-white mt-2 sm:mt-4 leading-[1.1]">
@@ -73,7 +69,7 @@ const Contact = () => {
       <MarqueeRibbon />
 
       <section className="py-14 sm:py-20 md:py-28">
-        <div className="w-full px-4 sm:px-6 md:px-10 max-w-6xl mx-auto">
+        <div className="site-container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
             {/* Left: info cards */}
             <motion.div initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>

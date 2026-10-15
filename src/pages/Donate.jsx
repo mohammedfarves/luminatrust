@@ -31,7 +31,6 @@ import MarqueeRibbon from "@/components/MarqueeRibbon";
 import { GlowCard } from "@/components/AnimationEffects";
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
-import emailjs from '@emailjs/browser';
 import paymentQr from "@/assets/paymentqr/payment-qr.jpeg";
 import { API_BASE_URL, API_ENDPOINTS } from "@/config/api";
 
@@ -211,29 +210,36 @@ const Donate = () => {
     setIsSubmitting(true);
     
     try {
-      const base64 = await toBase64(screenshot);
-      const templateParams = {
-        ...form,
-        frequency: donationFrequency,
-        attachment: base64
-      };
-      
-      // EmailJS sending
-      await emailjs.send(
-        'service_id', // YOUR_SERVICE_ID
-        'template_id', // YOUR_TEMPLATE_ID
-        templateParams,
-        'public_key' // YOUR_PUBLIC_KEY
-      );
-      
-      toast.success("Thank you! Your donation details have been submitted. 💛");
-      setSubmittedData({ ...form, frequency: donationFrequency });
-      setForm({ name: "", email: "", phone: "", amount: "1000", payment_method: "UPI", transaction_id: "", message: "" }); 
-      setScreenshot(null);
-      setSelectedTier(null);
+      const formData = new FormData();
+      formData.append("name", form.name);
+      formData.append("email", form.email);
+      formData.append("phone", form.phone);
+      formData.append("amount", form.amount);
+      formData.append("payment_method", form.payment_method);
+      formData.append("transaction_id", form.transaction_id);
+      formData.append("message", form.message);
+      formData.append("frequency", donationFrequency);
+      formData.append("screenshot", screenshot);
+
+      const response = await fetch(API_ENDPOINTS.DONATIONS, {
+        method: "POST",
+        body: formData,
+      });
+
+      const result = await response.json();
+
+      if (response.ok && (result.success || result.donation)) {
+        toast.success(result.message || "Thank you! Your donation details have been submitted. 💛");
+        setSubmittedData({ ...form, frequency: donationFrequency });
+        setForm({ name: "", email: "", phone: "", amount: "1000", payment_method: "UPI", transaction_id: "", message: "" }); 
+        setScreenshot(null);
+        setSelectedTier(null);
+      } else {
+        toast.error(result.message || "Failed to submit donation. Please try again.");
+      }
     } catch (error) {
-      toast.error("Failed to send. Please check your EmailJS configuration.");
-      console.error("EmailJS Error:", error);
+      toast.error("Failed to connect to donation server. Please try again later.");
+      console.error("Donation Error:", error);
     } finally {
       setIsSubmitting(false);
     }
@@ -246,7 +252,7 @@ const Donate = () => {
       {/* ── 1. EXACT ORIGINAL HEADER / HERO (UNCHANGED) ── */}
       <section className="relative pt-32 pb-16 sm:pt-40 sm:pb-24 md:py-48 overflow-hidden bg-slate-950">
         <HeroBackground />
-        <div className="w-full px-4 sm:px-6 md:px-10 text-center relative z-10">
+        <div className="site-container text-center relative z-10">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
             <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.2, type: "spring" }} className="inline-flex items-center gap-2 glass rounded-full px-4 sm:px-5 py-1.5 sm:py-2 mb-4 sm:mb-6">
               <Sparkles className="h-3.5 w-3.5 text-amber-400" />
@@ -271,7 +277,7 @@ const Donate = () => {
 
       {/* ── 2. TRUST & ASSURANCE STRIP ── */}
       <section className="bg-slate-900 border-y border-white/10 py-8 relative">
-        <div className="w-full px-4 sm:px-6 md:px-10 max-w-7xl mx-auto">
+        <div className="site-container">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 md:gap-8">
             {trustBadges.map((badge, idx) => {
               const Icon = badge.icon;
@@ -300,7 +306,7 @@ const Donate = () => {
 
       {/* ── 3. INTERACTIVE IMPACT TIERS & FREQUENCY TOGGLE ── */}
       <section className="py-14 sm:py-20 md:py-28 bg-warm">
-        <div className="w-full px-4 sm:px-6 md:px-10 max-w-6xl mx-auto">
+        <div className="site-container">
           <SectionHeading 
             subtitle="Why Your Donation Matters" 
             title="Choose Your Giving Impact" 
@@ -426,7 +432,7 @@ const Donate = () => {
 
       {/* ── 4. ANIMATED DONATION FORM SECTION ── */}
       <section className="py-14 sm:py-20 md:py-28 relative">
-        <div className="w-full px-4 sm:px-6 md:px-10 max-w-4xl mx-auto">
+        <div className="site-container-narrow">
           <SectionHeading 
             subtitle="Complete Your Contribution" 
             title="Safe & Simple Donation Form" 
@@ -864,7 +870,7 @@ const Donate = () => {
 
       {/* ── 5. WHERE YOUR DONATION GOES (TRANSPARENCY BREAKDOWN) ── */}
       <section className="py-14 sm:py-20 md:py-24 bg-slate-900 text-white relative overflow-hidden">
-        <div className="w-full px-4 sm:px-6 md:px-10 max-w-5xl mx-auto relative z-10">
+        <div className="site-container relative z-10">
           <SectionHeading 
             subtitle="Transparency Promise" 
             title="Where Your Money Goes" 

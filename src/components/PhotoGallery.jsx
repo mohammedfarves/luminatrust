@@ -146,7 +146,7 @@ const PhotoGallery = () => {
         <LeafBranchRight />
       </div>
 
-      <div className="w-full px-4 md:px-10 max-w-7xl mx-auto relative z-10">
+      <div className="site-container relative z-10">
         {/* Section Heading */}
         <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
           <span className="text-emerald-700 dark:text-emerald-400 font-bold text-xs uppercase tracking-[0.25em] block mb-2">

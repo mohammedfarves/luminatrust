@@ -263,7 +263,7 @@ const Home = () => {
 
         <FloatingParticles />
 
-        <div className="w-full px-4 sm:px-6 md:px-12 max-w-7xl mx-auto relative z-10">
+        <div className="site-container relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
             
             {/* Left Hero Column */}
@@ -448,7 +448,7 @@ const Home = () => {
           <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-amber-400/10 rounded-full blur-[140px]" />
         </div>
 
-        <div className="w-full px-6 md:px-12 max-w-7xl mx-auto relative z-10">
+        <div className="site-container relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
 
             {/* Left Column: Heading & Text */}
@@ -589,7 +589,7 @@ const Home = () => {
 
         <FloatingParticles />
 
-        <div className="w-full px-6 md:px-10 max-w-6xl mx-auto relative z-10 text-center">
+        <div className="site-container relative z-10 text-center">
 
           {/* Subtitle Accent */}
           <div className="inline-flex items-center gap-2 mb-3">
@@ -607,7 +607,7 @@ const Home = () => {
           <div className="w-16 h-1 bg-amber-400 rounded-full mx-auto mt-4 shadow-[0_0_12px_rgba(245,158,11,0.8)]" />
 
           {/* Animated Counter Grid with Glowing Frosted Glass Cards */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-6 md:gap-8 mt-8 sm:mt-14 max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-6 md:gap-8 mt-8 sm:mt-14 w-full">
             <motion.div
               whileHover={{ y: -8, scale: 1.02 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
@@ -702,7 +702,7 @@ const Home = () => {
           <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-emerald-400/10 rounded-full blur-[140px]" />
         </div>
 
-        <div className="w-full px-6 md:px-10 max-w-7xl mx-auto relative z-10">
+        <div className="site-container relative z-10">
           <SectionHeading
             subtitle="What We Do"
             title="Our Activities & Initiatives"
@@ -840,7 +840,7 @@ const Home = () => {
 
       {/* ── 5.1 FEATURED PROJECTS / COMMUNITY DEVELOPMENT ── */}
       <section className="py-24 md:py-32 relative overflow-hidden bg-[#FAF8F5] dark:bg-slate-950 border-t border-slate-200/50 dark:border-slate-800/50">
-        <div className="w-full px-6 md:px-10 max-w-7xl mx-auto relative z-10">
+        <div className="site-container relative z-10">
           <SectionHeading
             subtitle="Our Causes"
             title="Community Development Projects"
@@ -892,7 +892,7 @@ const Home = () => {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[400px] bg-emerald-500/20 rounded-full blur-[140px]" />
         </div>
 
-        <div className="w-full px-6 md:px-10 max-w-4xl mx-auto text-center relative z-10">
+        <div className="site-container-narrow text-center relative z-10">
           <div className="bg-slate-900/85 backdrop-blur-2xl border border-white/20 rounded-[2.5rem] p-8 md:p-14 shadow-[0_25px_60px_rgba(0,0,0,0.6)] text-white relative overflow-hidden">
             {/* Soft decorative inner glow */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-amber-400/10 rounded-full blur-3xl pointer-events-none" />

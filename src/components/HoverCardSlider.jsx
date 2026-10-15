@@ -103,7 +103,7 @@ const HoverCardSlider = () => {
         <div className="absolute -bottom-24 right-1/4 w-96 h-96 bg-purple-600/15 rounded-full blur-3xl" />
       </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="site-container relative z-10">
         {/* Top Header Row */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-10 gap-4">
           <div className="flex items-center gap-3">

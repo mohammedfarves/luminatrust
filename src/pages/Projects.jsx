@@ -74,7 +74,7 @@ const Projects = () => {
       {/* ── HERO ── */}
       <section className="relative pt-32 pb-16 sm:pt-40 sm:pb-24 md:py-48 bg-slate-950 overflow-hidden">
         <HeroBackground />
-        <div className="w-full px-4 sm:px-6 md:px-10 text-center relative z-10">
+        <div className="site-container text-center relative z-10">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
             <span className="inline-flex items-center gap-2 glass rounded-full px-4 sm:px-5 py-1.5 sm:py-2 text-amber-400 font-bold text-xs uppercase tracking-[0.2em] mb-4 sm:mb-6">Our Work</span>
             <h1 className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-white mt-2 sm:mt-4 leading-[1.1]">
@@ -92,7 +92,7 @@ const Projects = () => {
 
       {/* ── PROJECTS GRID ── */}
       <section className="py-14 sm:py-20 md:py-28">
-        <div className="w-full px-4 sm:px-6 md:px-10 max-w-7xl mx-auto">
+        <div className="site-container">
           <SectionHeading subtitle="Active Causes" title="Projects & Initiatives" description="Support any of our ongoing projects with your generous contribution." />
 
           {/* Filter tabs */}

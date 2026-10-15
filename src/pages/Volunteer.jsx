@@ -270,7 +270,7 @@ const Volunteer = () => {
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-amber-500/15 rounded-full blur-[130px] pointer-events-none" />
         <div className="absolute bottom-10 right-10 w-[350px] h-[350px] bg-emerald-500/10 rounded-full blur-[100px] pointer-events-none" />
 
-        <div className="w-full px-4 sm:px-6 md:px-10 max-w-6xl mx-auto text-center relative z-10">
+        <div className="site-container text-center relative z-10">
           <motion.div 
             initial={{ opacity: 0, y: 30 }} 
             animate={{ opacity: 1, y: 0 }} 
@@ -328,7 +328,7 @@ const Volunteer = () => {
 
       {/* ── 3. WHY VOLUNTEER (6 INTERACTIVE BENEFIT CARDS) ── */}
       <section className="py-16 sm:py-24 md:py-32 bg-slate-50/50 dark:bg-slate-900/30 border-b border-border/40">
-        <div className="w-full px-4 sm:px-6 md:px-10 max-w-6xl mx-auto">
+        <div className="site-container">
           <SectionHeading 
             subtitle="Why Join Us" 
             title="Benefits of Volunteering with Lumina Trust" 
@@ -378,7 +378,7 @@ const Volunteer = () => {
 
       {/* ── 4. CHOOSE YOUR VOLUNTEER TRACK (5 INTERACTIVE ROLE CARDS) ── */}
       <section id="volunteer-tracks" className="py-16 sm:py-24 md:py-32">
-        <div className="w-full px-4 sm:px-6 md:px-10 max-w-6xl mx-auto">
+        <div className="site-container">
           <SectionHeading 
             subtitle="Volunteer Opportunities" 
             title="Choose Your Field of Impact" 
@@ -462,7 +462,7 @@ const Volunteer = () => {
       <section className="py-16 sm:py-24 md:py-32 bg-slate-900 text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(245,158,11,0.08),transparent_50%)]" />
 
-        <div className="w-full px-4 sm:px-6 md:px-10 max-w-6xl mx-auto relative z-10">
+        <div className="site-container relative z-10">
           <SectionHeading 
             subtitle="Simple Onboarding" 
             title="Your Journey as a Lumina Volunteer" 
@@ -503,7 +503,7 @@ const Volunteer = () => {
 
       {/* ── 6. VOLUNTEER STORIES / TESTIMONIALS ── */}
       <section className="py-16 sm:py-24 md:py-32 bg-slate-50/50 dark:bg-slate-900/30">
-        <div className="w-full px-4 sm:px-6 md:px-10 max-w-6xl mx-auto">
+        <div className="site-container">
           <SectionHeading 
             subtitle="Real Experiences" 
             title="Voices from the Grassroots" 
@@ -555,7 +555,7 @@ const Volunteer = () => {
 
       {/* ── 7. GET INVOLVED & DIRECT CONNECT SECTION (NO FORM) ── */}
       <section id="get-involved" className="py-16 sm:py-24 md:py-32 scroll-mt-24">
-        <div className="w-full px-4 sm:px-6 md:px-10 max-w-5xl mx-auto">
+        <div className="site-container-narrow">
           
           <div className="bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 text-white rounded-3xl border border-white/10 shadow-2xl p-8 sm:p-12 md:p-16 relative overflow-hidden text-center">
             {/* Ambient Accent Lights */}

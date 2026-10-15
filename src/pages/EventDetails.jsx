@@ -83,7 +83,7 @@ const EventDetails = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/40" />
         </div>
 
-        <div className="w-full px-4 sm:px-6 md:px-10 max-w-7xl mx-auto relative z-10">
+        <div className="site-container relative z-10">
           {/* Breadcrumb Trail */}
           <nav className="flex items-center gap-2 text-xs md:text-sm text-white/70 mb-4 sm:mb-6 font-medium">
             <Link to="/" className="hover:text-amber-400 transition-colors">Home</Link>
@@ -123,7 +123,7 @@ const EventDetails = () => {
 
       {/* ── MAIN CONTENT GRID ── */}
       <section className="py-10 sm:py-16 md:py-24">
-        <div className="w-full px-4 sm:px-6 md:px-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+        <div className="site-container grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
           
           {/* LEFT COLUMN: Main Details */}
           <div className="lg:col-span-8 space-y-12">

@@ -50,7 +50,7 @@ const Navbar = () => {
             : "bg-slate-950/70 backdrop-blur-md border-white/10 text-white/90 py-2"
         }`}
       >
-        <div className="w-full px-4 sm:px-6 md:px-10 flex items-center justify-between text-xs">
+        <div className="site-container flex items-center justify-between text-xs">
           {/* Left Side: Phone Number, Mail ID, and Social Media Icons */}
           <div className="flex flex-wrap items-center gap-3 sm:gap-5 md:gap-6">
             {/* Phone Number */}
@@ -137,7 +137,7 @@ const Navbar = () => {
       </div>
 
       {/* Main navigation row */}
-      <div className="w-full px-6 md:px-10 flex items-center justify-between h-16 md:h-20">
+      <div className="site-container flex items-center justify-between h-16 md:h-20">
         <Link to="/" className="flex items-center gap-2">
           <motion.img
             src={luminaLogo}

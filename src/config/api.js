@@ -9,6 +9,8 @@ export const API_ENDPOINTS = {
   ACTIVITY_DETAILS: (id) => `${API_BASE_URL}/api/activities/${id}`,
   DONATE: `${API_BASE_URL}/api/donate-page`,
   VOLUNTEERS: `${API_BASE_URL}/api/volunteers`,
+  CONTACT: `${API_BASE_URL}/api/contact`,
+  DONATIONS: `${API_BASE_URL}/api/donations`,
 };
 
 export default API_ENDPOINTS;

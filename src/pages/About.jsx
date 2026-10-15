@@ -140,7 +140,7 @@ const About = () => {
         <HeroBackground />
 
         {/* Main Content Grid */}
-        <div className="w-full px-4 sm:px-6 md:px-10 max-w-7xl mx-auto relative z-10">
+        <div className="site-container relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-14 items-center">
             
             {/* Left Column: Breadcrumb, Badge, Heading, Description, CTA */}
@@ -209,7 +209,7 @@ const About = () => {
                 <img 
                   src={aboutData.main_image_url || heroBg} 
                   alt={aboutData.title} 
-                  className="w-full h-[280px] sm:h-[380px] md:h-[400px] lg:h-[440px] object-cover"
+                  className="w-full h-[280px] sm:h-[380px] md:h-[400px] lg:h-[440px] 2xl:h-[500px] 3xl:h-[560px] object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
 
@@ -238,7 +238,7 @@ const About = () => {
         <div className="absolute top-0 right-0 w-96 h-96 bg-amber-400/5 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-teal-400/5 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="w-full px-4 sm:px-6 md:px-10 max-w-6xl mx-auto relative z-10">
+        <div className="site-container relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             {/* Left Content */}
             <motion.div
@@ -291,7 +291,7 @@ const About = () => {
                 <img 
                   src={aboutData.who_we_are_image_url || bookDistributionImg} 
                   alt="Lumina Trust Community Work" 
-                  className="w-full h-[300px] sm:h-[460px] object-cover"
+                  className="w-full h-[300px] sm:h-[460px] 2xl:h-[520px] object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
               </div>
@@ -319,7 +319,7 @@ const About = () => {
 
       {/* ── 3. MISSION & VISION (DISTINCT CARDS) ── */}
       <section className="py-14 sm:py-20 md:py-24 bg-gradient-to-b from-slate-50 via-warm to-background dark:from-slate-950 dark:via-background dark:to-slate-950">
-        <div className="w-full px-4 sm:px-6 md:px-10 max-w-6xl mx-auto">
+        <div className="site-container">
           <SectionHeading 
             subtitle="Our Purpose" 
             title="Mission & Vision" 
@@ -422,7 +422,7 @@ const About = () => {
 
       {/* ── 4. OUR FOCUS / AREAS OF IMPACT ── */}
       <section className="py-14 sm:py-20 md:py-28">
-        <div className="w-full px-4 sm:px-6 md:px-10 max-w-7xl mx-auto">
+        <div className="site-container">
           <SectionHeading 
             subtitle={aboutData.impact_subtitle || "Areas of Impact"} 
             title={aboutData.impact_title || "Where We Make a Difference"} 
@@ -490,7 +490,7 @@ const About = () => {
         <FloatingParticles />
         <div className="absolute inset-0 bg-dot-grid opacity-20" />
         
-        <div className="w-full px-4 sm:px-6 md:px-10 max-w-6xl mx-auto relative z-10">
+        <div className="site-container relative z-10">
           <SectionHeading 
             subtitle={aboutData.process_subtitle || "Our Process"} 
             title={aboutData.process_title || "How We Work"} 
@@ -562,7 +562,7 @@ const About = () => {
       <section className="py-14 sm:py-24 md:py-32 bg-gradient-dark relative overflow-hidden border-t border-b border-white/10">
         <FloatingParticles />
         <div className="absolute inset-0 bg-dot-grid opacity-30" />
-        <div className="w-full px-4 sm:px-6 md:px-10 max-w-6xl mx-auto relative z-10">
+        <div className="site-container relative z-10">
           <SectionHeading subtitle="Our Impact" title="Numbers That Reflect Our Commitment" light />
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8 md:gap-12 mt-8">
             <AnimatedCounter end={stat1.num} suffix={stat1.suffix} label="People Helped" icon={<Users className="h-7 w-7 sm:h-10 sm:w-10 text-amber-400" />} />
@@ -575,7 +575,7 @@ const About = () => {
 
       {/* ── 7. LEADERSHIP TEAM ── */}
       <section className="py-14 sm:py-20 md:py-28 bg-warm">
-        <div className="w-full px-4 sm:px-6 md:px-10 max-w-6xl mx-auto">
+        <div className="site-container">
           <SectionHeading 
             subtitle={aboutData.team_subtitle || "Leadership"} 
             title={aboutData.team_title || "Meet Our Team"} 
@@ -629,7 +629,7 @@ const About = () => {
         <div className="absolute inset-0 bg-dot-grid opacity-25" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="w-full px-4 sm:px-6 md:px-10 max-w-4xl mx-auto text-center relative z-10">
+        <div className="site-container-narrow text-center relative z-10">
           <div className="bg-slate-900/90 backdrop-blur-xl border border-white/10 rounded-3xl p-5 sm:p-8 md:p-14 shadow-2xl">
             <SectionHeading
               subtitle="Get Involved"
