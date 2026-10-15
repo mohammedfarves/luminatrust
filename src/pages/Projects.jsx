@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import { API_ENDPOINTS } from "@/config/api";
 import SectionHeading from "@/components/SectionHeading";
 import ProjectCard from "@/components/ProjectCard";
 import HeroBackground from "@/components/HeroBackground";
@@ -39,7 +40,7 @@ const Projects = () => {
   const [activeTab, setActiveTab] = useState("All");
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/activities")
+    fetch(API_ENDPOINTS.ACTIVITIES)
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data) && data.length > 0) {
@@ -71,15 +72,15 @@ const Projects = () => {
   return (
     <div className="overflow-hidden">
       {/* ── HERO ── */}
-      <section className="relative py-44 md:py-52 bg-slate-950 overflow-hidden">
+      <section className="relative pt-32 pb-16 sm:pt-40 sm:pb-24 md:py-48 bg-slate-950 overflow-hidden">
         <HeroBackground />
-        <div className="w-full px-6 md:px-10 text-center relative z-10">
+        <div className="w-full px-4 sm:px-6 md:px-10 text-center relative z-10">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-            <span className="inline-flex items-center gap-2 glass rounded-full px-5 py-2 text-amber-400 font-bold text-xs uppercase tracking-[0.2em] mb-6">Our Work</span>
-            <h1 className="font-heading text-4xl md:text-6xl lg:text-7xl text-white mt-4 leading-[1.1]">
+            <span className="inline-flex items-center gap-2 glass rounded-full px-4 sm:px-5 py-1.5 sm:py-2 text-amber-400 font-bold text-xs uppercase tracking-[0.2em] mb-4 sm:mb-6">Our Work</span>
+            <h1 className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-white mt-2 sm:mt-4 leading-[1.1]">
               Our <span className="text-amber-400">Projects</span>
             </h1>
-            <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} className="text-white/60 mt-6 max-w-2xl mx-auto text-lg">
+            <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} className="text-white/60 mt-4 sm:mt-6 max-w-2xl mx-auto text-sm sm:text-lg">
               Explore our ongoing initiatives making a real difference across every corner of India.
             </motion.p>
           </motion.div>
@@ -90,17 +91,17 @@ const Projects = () => {
       <MarqueeRibbon />
 
       {/* ── PROJECTS GRID ── */}
-      <section className="py-28">
-        <div className="w-full px-6 md:px-10 max-w-7xl mx-auto">
+      <section className="py-14 sm:py-20 md:py-28">
+        <div className="w-full px-4 sm:px-6 md:px-10 max-w-7xl mx-auto">
           <SectionHeading subtitle="Active Causes" title="Projects & Initiatives" description="Support any of our ongoing projects with your generous contribution." />
 
           {/* Filter tabs */}
-          <div className="flex flex-wrap justify-center gap-3 mb-12">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-12">
             {tabs.map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
+                className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 ${
                   activeTab === tab
                     ? "bg-[#064e3b] text-white shadow-md border border-[#064e3b]"
                     : "bg-card border border-border text-foreground/80 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 hover:border-emerald-200"
@@ -116,7 +117,7 @@ const Projects = () => {
             variants={staggerContainer}
             initial="hidden"
             animate="show"
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
           >
             {filtered.map((p, i) => (
               <motion.div key={`${p.id || i}`} variants={staggerItem}>

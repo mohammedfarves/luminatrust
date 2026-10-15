@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
+import { API_ENDPOINTS } from "@/config/api";
 import {
   Calendar,
   Clock,
@@ -44,7 +45,7 @@ const EventDetails = () => {
     if (match) {
       setEvent(match);
     }
-    fetch(`http://localhost:8000/api/activities/${id}`)
+    fetch(API_ENDPOINTS.ACTIVITY_DETAILS(id))
       .then((res) => res.json())
       .then((data) => {
         if (data && data.title) {
@@ -74,7 +75,7 @@ const EventDetails = () => {
   return (
     <div className="overflow-hidden bg-background">
       {/* ── BREADCRUMBS & HERO ── */}
-      <section className="relative py-28 md:py-36 bg-slate-950 overflow-hidden text-white">
+      <section className="relative pt-32 pb-16 sm:py-28 md:py-36 bg-slate-950 overflow-hidden text-white">
         <HeroBackground />
         {/* Background Image with Gradient Overlay */}
         <div className="absolute inset-0 z-0 opacity-40">
@@ -82,28 +83,28 @@ const EventDetails = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/40" />
         </div>
 
-        <div className="w-full px-6 md:px-10 max-w-7xl mx-auto relative z-10">
+        <div className="w-full px-4 sm:px-6 md:px-10 max-w-7xl mx-auto relative z-10">
           {/* Breadcrumb Trail */}
-          <nav className="flex items-center gap-2 text-xs md:text-sm text-white/70 mb-6 font-medium">
+          <nav className="flex items-center gap-2 text-xs md:text-sm text-white/70 mb-4 sm:mb-6 font-medium">
             <Link to="/" className="hover:text-amber-400 transition-colors">Home</Link>
             <span>›</span>
             <Link to="/projects" className="hover:text-amber-400 transition-colors">Activities</Link>
             <span>›</span>
-            <span className="text-amber-400 truncate max-w-[200px] md:max-w-none">{event.shortTitle || event.title}</span>
+            <span className="text-amber-400 truncate max-w-[160px] sm:max-w-none">{event.shortTitle || event.title}</span>
           </nav>
 
           {/* Category Badge */}
-          <span className={`inline-block text-[11px] font-extrabold uppercase tracking-widest px-3.5 py-1 rounded-full mb-4 shadow-sm ${badgeClass}`}>
+          <span className={`inline-block text-[11px] font-extrabold uppercase tracking-widest px-3.5 py-1 rounded-full mb-3 sm:mb-4 shadow-sm ${badgeClass}`}>
             {event.category}
           </span>
 
           {/* Main Title */}
-          <h1 className="font-heading font-extrabold text-3xl md:text-5xl lg:text-6xl text-white leading-tight mb-4 max-w-4xl">
+          <h1 className="font-heading font-extrabold text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-white leading-tight mb-3 sm:mb-4 max-w-4xl">
             {event.title}
           </h1>
 
           {/* Meta Info Row */}
-          <div className="flex flex-wrap items-center gap-6 text-sm text-white/80 font-medium mb-6">
+          <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-xs sm:text-sm text-white/80 font-medium mb-4 sm:mb-6">
             <div className="flex items-center gap-2">
               <MapPin className="w-4 h-4 text-emerald-400" />
               <span>{event.location}</span>
@@ -111,7 +112,7 @@ const EventDetails = () => {
           </div>
 
           {/* Short Excerpt */}
-          <p className="text-white/70 text-base md:text-lg max-w-3xl leading-relaxed">
+          <p className="text-white/70 text-sm sm:text-base md:text-lg max-w-3xl leading-relaxed">
             {event.shortDescription}
           </p>
         </div>
@@ -121,8 +122,8 @@ const EventDetails = () => {
       <MarqueeRibbon />
 
       {/* ── MAIN CONTENT GRID ── */}
-      <section className="py-16 md:py-24">
-        <div className="w-full px-6 md:px-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <section className="py-10 sm:py-16 md:py-24">
+        <div className="w-full px-4 sm:px-6 md:px-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
           
           {/* LEFT COLUMN: Main Details */}
           <div className="lg:col-span-8 space-y-12">
@@ -210,12 +211,12 @@ const EventDetails = () => {
               <h3 className="font-heading text-xl md:text-2xl font-bold text-foreground">
                 Event Gallery
               </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
                 {event.galleryImages.map((img, i) => (
                   <div
                     key={i}
                     onClick={() => setSelectedPhoto(i)}
-                    className="h-44 rounded-2xl overflow-hidden cursor-pointer relative group border border-border/50 shadow-xs"
+                    className="h-32 sm:h-44 rounded-xl sm:rounded-2xl overflow-hidden cursor-pointer relative group border border-border/50 shadow-xs"
                   >
                     <img src={img} alt="" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-semibold">
@@ -227,7 +228,7 @@ const EventDetails = () => {
               <div>
                 <Link
                   to="/projects"
-                  className="inline-flex items-center gap-2 border border-emerald-700/30 text-emerald-800 dark:text-emerald-300 hover:bg-emerald-700 hover:text-white px-6 py-2.5 rounded-full text-xs font-bold transition-all shadow-xs"
+                  className="inline-flex items-center gap-2 border border-emerald-700/30 text-emerald-800 dark:text-emerald-300 hover:bg-emerald-700 hover:text-white px-5 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs font-bold transition-all shadow-xs"
                 >
                   View More Photos <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
@@ -240,8 +241,8 @@ const EventDetails = () => {
           <div className="lg:col-span-4 space-y-6">
             
             {/* Event Details Sidebar Card */}
-            <div className="bg-emerald-50/80 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 p-6 rounded-2xl space-y-5 shadow-xs">
-              <h3 className="font-heading text-xl font-bold text-foreground flex items-center gap-2">
+            <div className="bg-emerald-50/80 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 p-5 sm:p-6 rounded-2xl space-y-5 shadow-xs">
+              <h3 className="font-heading text-lg sm:text-xl font-bold text-foreground flex items-center gap-2">
                 <Leaf className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                 Event Details
               </h3>
@@ -276,8 +277,8 @@ const EventDetails = () => {
             </div>
 
             {/* Support This Event Card */}
-            <div className="bg-card border border-border/80 p-6 rounded-2xl space-y-4 shadow-xs">
-              <h3 className="font-heading text-lg font-bold text-foreground">
+            <div className="bg-card border border-border/80 p-5 sm:p-6 rounded-2xl space-y-4 shadow-xs">
+              <h3 className="font-heading text-base sm:text-lg font-bold text-foreground">
                 Support This Event
               </h3>
               <p className="text-xs text-muted-foreground leading-relaxed">
@@ -320,7 +321,7 @@ const EventDetails = () => {
 
             {/* Quote Card */}
             {event.quote && (
-              <div className="bg-emerald-50/60 dark:bg-emerald-950/20 border border-emerald-100 dark:border-emerald-900/50 p-6 rounded-2xl text-center italic text-emerald-900 dark:text-emerald-300 font-heading text-sm md:text-base leading-relaxed">
+              <div className="bg-emerald-50/60 dark:bg-emerald-950/20 border border-emerald-100 dark:border-emerald-900/50 p-4 sm:p-6 rounded-2xl text-center italic text-emerald-900 dark:text-emerald-300 font-heading text-xs sm:text-base leading-relaxed">
                 "{event.quote}"
               </div>
             )}

@@ -38,6 +38,7 @@ import ProjectCard from "@/components/ProjectCard";
 import Testimonial from "@/components/Testimonial";
 import MarqueeRibbon from "@/components/MarqueeRibbon";
 import { FloatingParticles, staggerContainer, staggerItem, GlowCard } from "@/components/AnimationEffects";
+import { API_ENDPOINTS } from "@/config/api";
 
 const Home = () => {
   const [email, setEmail] = useState("");
@@ -129,7 +130,7 @@ const Home = () => {
   useEffect(() => {
     const fetchHomeData = async () => {
       try {
-        const res = await fetch("http://localhost:8000/api/home");
+        const res = await fetch(API_ENDPOINTS.HOME);
         if (res.ok) {
           const data = await res.json();
           setHomeData((prev) => ({ ...prev, ...data }));
@@ -141,7 +142,7 @@ const Home = () => {
 
     const fetchProjects = async () => {
       try {
-        const res = await fetch("http://localhost:8000/api/activities");
+        const res = await fetch(API_ENDPOINTS.ACTIVITIES);
         if (res.ok) {
           const data = await res.json();
           if (Array.isArray(data) && data.length > 0) {
@@ -207,7 +208,7 @@ const Home = () => {
     <div className="overflow-hidden bg-[#FBF9F5] dark:bg-slate-950 text-foreground transition-colors duration-500">
       
       {/* ── 1. NEXT-GEN ANIMATED KINETIC HERO SECTION ── */}
-      <section ref={heroRef} className="relative min-h-[92vh] flex items-center justify-center pt-32 pb-24 md:pt-40 md:pb-32 overflow-hidden bg-[#0A0E17]">
+      <section ref={heroRef} className="relative min-h-[85vh] sm:min-h-[92vh] flex items-center justify-center pt-28 pb-16 sm:pt-36 sm:pb-24 md:pt-40 md:pb-32 overflow-hidden bg-[#0A0E17]">
         
         {/* Dynamic Gapless Photo Collage Wall with Motion Animation & Soft Blur */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden select-none">
@@ -262,8 +263,8 @@ const Home = () => {
 
         <FloatingParticles />
 
-        <div className="w-full px-6 md:px-12 max-w-7xl mx-auto relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        <div className="w-full px-4 sm:px-6 md:px-12 max-w-7xl mx-auto relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
             
             {/* Left Hero Column */}
             <motion.div 
@@ -275,11 +276,11 @@ const Home = () => {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-amber-400/10 border border-amber-400/30 text-amber-300 text-xs font-extrabold tracking-widest uppercase mb-6 shadow-xl backdrop-blur-md"
+                className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-amber-400/10 border border-amber-400/30 text-amber-300 text-[11px] sm:text-xs font-extrabold tracking-widest uppercase mb-5 sm:mb-6 shadow-xl backdrop-blur-md"
               >
                 <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping" />
-                <Leaf className="h-3.5 w-3.5 text-amber-400" />
-                <span>{homeData.hero_badge_text}</span>
+                <Leaf className="h-3.5 w-3.5 text-amber-400 shrink-0" />
+                <span className="truncate max-w-[260px] sm:max-w-none">{homeData.hero_badge_text}</span>
               </motion.div>
 
               {/* High-Impact Headline */}
@@ -287,7 +288,7 @@ const Home = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.15 }}
-                className="font-heading text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-white leading-[1.1] tracking-tight font-extrabold drop-shadow-md"
+                className="font-heading text-3xl sm:text-5xl lg:text-6xl xl:text-7xl text-white leading-[1.15] tracking-tight font-extrabold drop-shadow-md"
               >
                 {homeData.hero_title_line1} <span className="bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 bg-clip-text text-transparent">{homeData.hero_title_line2}</span>
               </motion.h1>
@@ -297,7 +298,7 @@ const Home = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.3 }}
-                className="text-white/80 text-base sm:text-lg md:text-xl mt-6 max-w-2xl leading-relaxed font-normal"
+                className="text-white/80 text-sm sm:text-lg md:text-xl mt-4 sm:mt-6 max-w-2xl leading-relaxed font-normal"
               >
                 {homeData.hero_description}
               </motion.p>
@@ -307,12 +308,12 @@ const Home = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
-                className="flex flex-wrap items-center gap-4 mt-8"
+                className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mt-6 sm:mt-8 w-full sm:w-auto"
               >
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="w-full sm:w-auto">
                   <Link
                     to="/donate"
-                    className="inline-flex items-center gap-3 bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 text-amber-950 px-9 py-4 rounded-full font-extrabold text-sm shadow-[0_10px_35px_rgba(245,158,11,0.4)] hover:shadow-[0_15px_45px_rgba(245,158,11,0.7)] transition-all"
+                    className="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 text-amber-950 px-6 sm:px-9 py-3.5 sm:py-4 rounded-full font-extrabold text-sm shadow-[0_10px_35px_rgba(245,158,11,0.4)] hover:shadow-[0_15px_45px_rgba(245,158,11,0.7)] transition-all w-full sm:w-auto text-center"
                   >
                     <Heart className="h-4 w-4 fill-amber-950 text-amber-950 animate-pulse" />
                     <span>{homeData.hero_button_donate_text}</span>
@@ -320,10 +321,10 @@ const Home = () => {
                   </Link>
                 </motion.div>
 
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="w-full sm:w-auto">
                   <Link
                     to="/volunteer"
-                    className="inline-flex items-center gap-2.5 border-2 border-white/30 bg-white/10 text-white px-9 py-4 rounded-full font-extrabold text-sm hover:bg-white/20 transition-all backdrop-blur-md shadow-lg"
+                    className="inline-flex items-center justify-center gap-2.5 border-2 border-white/30 bg-white/10 text-white px-6 sm:px-9 py-3.5 sm:py-4 rounded-full font-extrabold text-sm hover:bg-white/20 transition-all backdrop-blur-md shadow-lg w-full sm:w-auto text-center"
                   >
                     <span>{homeData.hero_button_volunteer_text}</span>
                     <ArrowRight className="h-4 w-4" />
@@ -336,7 +337,7 @@ const Home = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.7 }}
-                className="flex items-center gap-6 mt-10 pt-6 border-t border-white/10 text-white/70 text-xs sm:text-sm font-semibold"
+                className="flex flex-wrap items-center gap-4 sm:gap-6 mt-8 sm:mt-10 pt-6 border-t border-white/10 text-white/70 text-xs sm:text-sm font-semibold"
               >
                 <div className="flex items-center gap-2">
                   <ShieldCheck className="h-4 w-4 text-emerald-400" />
@@ -354,30 +355,30 @@ const Home = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="lg:col-span-5 relative flex justify-center items-center"
+              className="lg:col-span-5 relative flex justify-center items-center w-full mt-4 lg:mt-0"
             >
-              <div className="relative w-full max-w-md lg:max-w-none">
+              <div className="relative w-full max-w-sm sm:max-w-md lg:max-w-none">
                 
                 {/* Glowing Backing Frame */}
                 <div className="absolute -inset-4 bg-gradient-to-tr from-amber-400/25 via-emerald-500/20 to-amber-600/30 rounded-[3rem] blur-2xl animate-pulse" />
 
                 {/* Hero Featured Photo Card */}
                 <motion.div
-                  whileHover={{ rotateY: -6, rotateX: 4, scale: 1.02 }}
+                  whileHover={{ rotateY: -4, rotateX: 2, scale: 1.01 }}
                   transition={{ type: "spring", stiffness: 200, damping: 20 }}
-                  className="relative rounded-[2.5rem] overflow-hidden border-4 border-white/20 shadow-2xl bg-slate-900 aspect-[4/3] group select-none"
+                  className="relative rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden border-2 sm:border-4 border-white/20 shadow-2xl bg-slate-900 aspect-[4/3] group select-none"
                 >
                   <img
                     src={heroBg}
                     alt="Lumina Trust Grassroots Work"
-                    className="w-full h-full object-cover transform group-hover:scale-108 transition-transform duration-700"
+                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent" />
                   
                   {/* Photo Strip Tag */}
-                  <div className="absolute bottom-5 left-5 right-5 p-4 rounded-2xl bg-slate-950/80 backdrop-blur-md border border-white/15 text-left">
-                    <p className="text-white text-sm font-bold">{homeData.hero_card_title}</p>
-                    <p className="text-amber-400 text-xs font-semibold mt-0.5">{homeData.hero_card_subtitle}</p>
+                  <div className="absolute bottom-3 left-3 right-3 sm:bottom-5 sm:left-5 sm:right-5 p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-950/85 backdrop-blur-md border border-white/15 text-left">
+                    <p className="text-white text-xs sm:text-sm font-bold truncate">{homeData.hero_card_title}</p>
+                    <p className="text-amber-400 text-[11px] sm:text-xs font-semibold mt-0.5 truncate">{homeData.hero_card_subtitle}</p>
                   </div>
                 </motion.div>
 
@@ -386,15 +387,15 @@ const Home = () => {
                   initial={{ opacity: 0, x: 20, rotate: 6 }}
                   animate={{ opacity: 1, x: 0, rotate: 6 }}
                   transition={{ duration: 0.6, delay: 0.7 }}
-                  className="absolute -top-6 -right-3 z-20 bg-gradient-to-r from-amber-400 to-amber-500 text-amber-950 rounded-2xl px-5 py-3 shadow-xl border-2 border-white flex flex-col items-center select-none"
+                  className="absolute -top-4 -right-2 sm:-top-6 sm:-right-3 z-20 bg-gradient-to-r from-amber-400 to-amber-500 text-amber-950 rounded-2xl px-3.5 sm:px-5 py-2 sm:py-3 shadow-xl border-2 border-white flex flex-col items-center select-none"
                 >
                   <div className="flex items-center gap-1">
-                    <span className="font-serif italic font-bold text-sm sm:text-base leading-tight">
+                    <span className="font-serif italic font-bold text-xs sm:text-base leading-tight">
                       Small Steps
                     </span>
-                    <Heart className="h-3.5 w-3.5 fill-amber-950 inline text-amber-950" />
+                    <Heart className="h-3 w-3 sm:h-3.5 sm:w-3.5 fill-amber-950 inline text-amber-950" />
                   </div>
-                  <span className="font-serif italic font-extrabold text-xs sm:text-sm leading-tight">
+                  <span className="font-serif italic font-extrabold text-[10px] sm:text-sm leading-tight">
                     Big Changes
                   </span>
                 </motion.div>
@@ -404,14 +405,14 @@ const Home = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.9 }}
-                  className="absolute -bottom-6 -left-3 z-20 bg-slate-900/90 backdrop-blur-xl rounded-2xl px-5 py-3.5 shadow-2xl border border-amber-400/30 flex items-center gap-3 text-left"
+                  className="absolute -bottom-4 -left-2 sm:-bottom-6 sm:-left-3 z-20 bg-slate-900/90 backdrop-blur-xl rounded-2xl px-3.5 sm:px-5 py-2.5 sm:py-3.5 shadow-2xl border border-amber-400/30 flex items-center gap-2.5 sm:gap-3 text-left max-w-[85%]"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-amber-400/20 flex items-center justify-center shrink-0">
-                    <TrendingUp className="h-5 w-5 text-amber-400" />
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-amber-400/20 flex items-center justify-center shrink-0">
+                    <TrendingUp className="h-4 w-4 sm:h-5 sm:w-5 text-amber-400" />
                   </div>
-                  <div>
-                    <p className="text-white text-sm font-bold leading-tight">{homeData.hero_stat_completed}</p>
-                    <p className="text-white/60 text-xs">Successfully Completed</p>
+                  <div className="min-w-0">
+                    <p className="text-white font-extrabold text-xs sm:text-sm truncate">{homeData.hero_stat_completed}</p>
+                    <p className="text-white/60 text-[10px] sm:text-xs truncate">Successfully Completed</p>
                   </div>
                 </motion.div>
 
@@ -420,6 +421,7 @@ const Home = () => {
 
           </div>
         </div>
+
 
         {/* Smooth Bottom Wave */}
         <div className="absolute bottom-0 left-0 right-0 overflow-hidden leading-none z-10 pointer-events-none">
@@ -605,11 +607,11 @@ const Home = () => {
           <div className="w-16 h-1 bg-amber-400 rounded-full mx-auto mt-4 shadow-[0_0_12px_rgba(245,158,11,0.8)]" />
 
           {/* Animated Counter Grid with Glowing Frosted Glass Cards */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mt-14 max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-6 md:gap-8 mt-8 sm:mt-14 max-w-6xl mx-auto">
             <motion.div
               whileHover={{ y: -8, scale: 1.02 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="bg-slate-900/85 backdrop-blur-xl p-6 sm:p-8 rounded-[1.75rem] border border-white/15 hover:border-amber-400/60 shadow-[0_15px_35px_rgba(0,0,0,0.5)] transition-all duration-300 relative group overflow-hidden"
+              className="bg-slate-900/85 backdrop-blur-xl p-3.5 sm:p-6 md:p-8 rounded-2xl sm:rounded-[1.75rem] border border-white/15 hover:border-amber-400/60 shadow-[0_15px_35px_rgba(0,0,0,0.5)] transition-all duration-300 relative group overflow-hidden"
             >
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-amber-400/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <AnimatedCounter 
@@ -618,8 +620,8 @@ const Home = () => {
                 label={homeData.counter_people_helped_label || "PEOPLE HELPED"} 
                 light={false} 
                 icon={
-                  <div className="w-14 h-14 rounded-2xl bg-amber-400/20 border border-amber-400/30 flex items-center justify-center text-amber-400 shadow-inner group-hover:scale-110 transition-transform">
-                    <Users className="h-7 w-7 stroke-[2]" />
+                  <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-amber-400/20 border border-amber-400/30 flex items-center justify-center text-amber-400 shadow-inner group-hover:scale-110 transition-transform">
+                    <Users className="h-5 w-5 sm:h-7 sm:w-7 stroke-[2]" />
                   </div>
                 } 
               />
@@ -628,7 +630,7 @@ const Home = () => {
             <motion.div
               whileHover={{ y: -8, scale: 1.02 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="bg-slate-900/85 backdrop-blur-xl p-6 sm:p-8 rounded-[1.75rem] border border-white/15 hover:border-amber-400/60 shadow-[0_15px_35px_rgba(0,0,0,0.5)] transition-all duration-300 relative group overflow-hidden"
+              className="bg-slate-900/85 backdrop-blur-xl p-3.5 sm:p-6 md:p-8 rounded-2xl sm:rounded-[1.75rem] border border-white/15 hover:border-amber-400/60 shadow-[0_15px_35px_rgba(0,0,0,0.5)] transition-all duration-300 relative group overflow-hidden"
             >
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-amber-400/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <AnimatedCounter 
@@ -637,8 +639,8 @@ const Home = () => {
                 label={homeData.counter_volunteers_label || "ACTIVE VOLUNTEERS"} 
                 light={false} 
                 icon={
-                  <div className="w-14 h-14 rounded-2xl bg-amber-400/20 border border-amber-400/30 flex items-center justify-center text-amber-400 shadow-inner group-hover:scale-110 transition-transform">
-                    <HandHeart className="h-7 w-7 stroke-[2]" />
+                  <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-amber-400/20 border border-amber-400/30 flex items-center justify-center text-amber-400 shadow-inner group-hover:scale-110 transition-transform">
+                    <HandHeart className="h-5 w-5 sm:h-7 sm:w-7 stroke-[2]" />
                   </div>
                 } 
               />
@@ -647,7 +649,7 @@ const Home = () => {
             <motion.div
               whileHover={{ y: -8, scale: 1.02 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="bg-slate-900/85 backdrop-blur-xl p-6 sm:p-8 rounded-[1.75rem] border border-white/15 hover:border-amber-400/60 shadow-[0_15px_35px_rgba(0,0,0,0.5)] transition-all duration-300 relative group overflow-hidden"
+              className="bg-slate-900/85 backdrop-blur-xl p-3.5 sm:p-6 md:p-8 rounded-2xl sm:rounded-[1.75rem] border border-white/15 hover:border-amber-400/60 shadow-[0_15px_35px_rgba(0,0,0,0.5)] transition-all duration-300 relative group overflow-hidden"
             >
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-amber-400/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <AnimatedCounter 
@@ -656,8 +658,8 @@ const Home = () => {
                 label={homeData.counter_projects_done_label || "PROJECTS DONE"} 
                 light={false} 
                 icon={
-                  <div className="w-14 h-14 rounded-2xl bg-amber-400/20 border border-amber-400/30 flex items-center justify-center text-amber-400 shadow-inner group-hover:scale-110 transition-transform">
-                    <Target className="h-7 w-7 stroke-[2]" />
+                  <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-amber-400/20 border border-amber-400/30 flex items-center justify-center text-amber-400 shadow-inner group-hover:scale-110 transition-transform">
+                    <Target className="h-5 w-5 sm:h-7 sm:w-7 stroke-[2]" />
                   </div>
                 } 
               />
@@ -666,7 +668,7 @@ const Home = () => {
             <motion.div
               whileHover={{ y: -8, scale: 1.02 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="bg-slate-900/85 backdrop-blur-xl p-6 sm:p-8 rounded-[1.75rem] border border-white/15 hover:border-amber-400/60 shadow-[0_15px_35px_rgba(0,0,0,0.5)] transition-all duration-300 relative group overflow-hidden"
+              className="bg-slate-900/85 backdrop-blur-xl p-3.5 sm:p-6 md:p-8 rounded-2xl sm:rounded-[1.75rem] border border-white/15 hover:border-amber-400/60 shadow-[0_15px_35px_rgba(0,0,0,0.5)] transition-all duration-300 relative group overflow-hidden"
             >
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-amber-400/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <AnimatedCounter 
@@ -675,8 +677,8 @@ const Home = () => {
                 label={homeData.counter_communities_label || "COMMUNITIES"} 
                 light={false} 
                 icon={
-                  <div className="w-14 h-14 rounded-2xl bg-amber-400/20 border border-amber-400/30 flex items-center justify-center text-amber-400 shadow-inner group-hover:scale-110 transition-transform">
-                    <Users className="h-7 w-7 stroke-[2]" />
+                  <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-amber-400/20 border border-amber-400/30 flex items-center justify-center text-amber-400 shadow-inner group-hover:scale-110 transition-transform">
+                    <Users className="h-5 w-5 sm:h-7 sm:w-7 stroke-[2]" />
                   </div>
                 } 
               />
