@@ -63,11 +63,11 @@ const Projects = () => {
   const filtered = activeTab === "All"
     ? projectsList
     : projectsList.filter((p) => {
-        if (activeTab === "Upcoming" || activeTab === "Completed") {
-          return p.status === activeTab.toLowerCase() || p.category === activeTab;
-        }
-        return p.category === activeTab;
-      });
+      if (activeTab === "Upcoming" || activeTab === "Completed") {
+        return p.status === activeTab.toLowerCase() || p.category === activeTab;
+      }
+      return p.category === activeTab;
+    });
 
   return (
     <div className="overflow-hidden">
@@ -105,7 +105,7 @@ const Projects = () => {
                   activeTab === tab
                     ? "bg-[#064e3b] text-white shadow-md border border-[#064e3b]"
                     : "bg-card border border-border text-foreground/80 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 hover:border-emerald-200"
-                }`}
+                  }`}
               >
                 {tab}
               </button>

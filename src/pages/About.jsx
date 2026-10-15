@@ -138,13 +138,13 @@ const About = () => {
       <section className="relative bg-slate-950 pt-32 pb-16 sm:py-32 lg:py-36 min-h-[60vh] sm:min-h-[75vh] flex items-center">
         {/* Visual Background Collage with Overlaid Dark Backdrop */}
         <HeroBackground />
-        
+
         {/* Main Content Grid */}
         <div className="w-full px-4 sm:px-6 md:px-10 max-w-7xl mx-auto relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-14 items-center">
             
             {/* Left Column: Breadcrumb, Badge, Heading, Description, CTA */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
@@ -199,7 +199,7 @@ const About = () => {
             </motion.div>
 
             {/* Right Column: Integrated Image Visual */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
@@ -212,7 +212,7 @@ const About = () => {
                   className="w-full h-[280px] sm:h-[380px] md:h-[400px] lg:h-[440px] object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
-                
+
                 {/* Clean Image Caption Strip */}
                 <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5 bg-slate-950/90 border-t border-white/10 flex items-center justify-between">
                   <div>
@@ -258,11 +258,11 @@ const About = () => {
                 {(Array.isArray(aboutData.core_values) && aboutData.core_values.length > 0
                   ? aboutData.core_values.map((v) => typeof v === 'string' ? { label: v, desc: "Grassroots community initiative." } : { label: v.title || v.label, desc: v.description || v.desc })
                   : [
-                      { label: "Integrity & Accountability", desc: "Honest, transparent operations." },
-                      { label: "Inclusive Growth", desc: "Equal opportunities for all." },
-                      { label: "Compassionate Action", desc: "Serving with empathy & care." },
-                      { label: "Sustainable Impact", desc: "Long-term self-reliance." },
-                    ]
+                    { label: "Integrity & Accountability", desc: "Honest, transparent operations." },
+                    { label: "Inclusive Growth", desc: "Equal opportunities for all." },
+                    { label: "Compassionate Action", desc: "Serving with empathy & care." },
+                    { label: "Sustainable Impact", desc: "Long-term self-reliance." },
+                  ]
                 ).map((item, index) => (
                   <div key={index} className="flex items-start gap-3">
                     <div className="w-6 h-6 rounded-full bg-amber-400/20 text-amber-500 flex items-center justify-center shrink-0 mt-0.5">
@@ -337,7 +337,7 @@ const About = () => {
               <GlowCard>
                 <div className="bg-card rounded-3xl p-5 sm:p-8 md:p-10 shadow-ngo border-t-4 border-amber-400 h-full flex flex-col justify-between relative overflow-hidden group hover:shadow-card-hover transition-shadow duration-500">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-amber-400/10 rounded-full blur-2xl pointer-events-none" />
-                  
+
                   <div>
                     <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-amber-400/15 flex items-center justify-center mb-5 sm:mb-6 text-amber-500 shadow-sm group-hover:scale-110 transition-transform">
                       <Eye className="h-6 w-6 sm:h-7 sm:w-7" />
@@ -382,7 +382,7 @@ const About = () => {
               <GlowCard>
                 <div className="bg-card rounded-3xl p-5 sm:p-8 md:p-10 shadow-ngo border-t-4 border-teal-400 h-full flex flex-col justify-between relative overflow-hidden group hover:shadow-card-hover transition-shadow duration-500">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-teal-400/10 rounded-full blur-2xl pointer-events-none" />
-                  
+
                   <div>
                     <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-teal-400/15 flex items-center justify-center mb-5 sm:mb-6 text-teal-500 shadow-sm group-hover:scale-110 transition-transform">
                       <Target className="h-6 w-6 sm:h-7 sm:w-7" />
@@ -439,11 +439,11 @@ const About = () => {
             {(Array.isArray(aboutData.impact_items) && aboutData.impact_items.length > 0
               ? aboutData.impact_items
               : [
-                  { title: "Education & Literacy", description: "Distributing free books, notebooks, competitive exam kits, and conducting academic training for government school students." },
-                  { title: "Health & Healthcare", description: "Organizing free medical camps, wellness awareness sessions, and honoring healthcare professionals for dedicated service." },
-                  { title: "Environment & Ecology", description: "Leading plastic-free drives, beach cleanups, sparrow box distribution, and massive tree plantation initiatives." },
-                  { title: "Skills & Livelihood", description: "Career guidance, youth skill training, and empowering women to achieve economic independence and dignity." }
-                ]
+                { title: "Education & Literacy", description: "Distributing free books, notebooks, competitive exam kits, and conducting academic training for government school students." },
+                { title: "Health & Healthcare", description: "Organizing free medical camps, wellness awareness sessions, and honoring healthcare professionals for dedicated service." },
+                { title: "Environment & Ecology", description: "Leading plastic-free drives, beach cleanups, sparrow box distribution, and massive tree plantation initiatives." },
+                { title: "Skills & Livelihood", description: "Career guidance, youth skill training, and empowering women to achieve economic independence and dignity." }
+              ]
             ).map((item, i) => {
               const icons = [
                 <GraduationCap className="h-6 w-6 sm:h-7 sm:w-7 text-amber-500" />,
@@ -502,11 +502,11 @@ const About = () => {
             {(Array.isArray(aboutData.process_steps) && aboutData.process_steps.length > 0
               ? aboutData.process_steps
               : [
-                  { step: "01", title: "Needs Assessment", description: "We conduct grassroots surveys and interact directly with rural & urban communities to understand real gaps." },
-                  { step: "02", title: "Program Planning", description: "We design tailored educational kits, healthcare camps, and skill workshops with actionable milestones." },
-                  { step: "03", title: "Field Execution", description: "Our dedicated team and volunteers collaborate with schools, doctors, and local bodies to execute efficiently." },
-                  { step: "04", title: "Impact & Growth", description: "We continuously monitor outcomes, gather beneficiary feedback, and ensure long-term community self-reliance." }
-                ]
+                { step: "01", title: "Needs Assessment", description: "We conduct grassroots surveys and interact directly with rural & urban communities to understand real gaps." },
+                { step: "02", title: "Program Planning", description: "We design tailored educational kits, healthcare camps, and skill workshops with actionable milestones." },
+                { step: "03", title: "Field Execution", description: "Our dedicated team and volunteers collaborate with schools, doctors, and local bodies to execute efficiently." },
+                { step: "04", title: "Impact & Growth", description: "We continuously monitor outcomes, gather beneficiary feedback, and ensure long-term community self-reliance." }
+              ]
             ).map((item, index) => {
               const icons = [
                 <Lightbulb className="h-5 w-5 sm:h-6 sm:w-6 text-amber-400" />,
@@ -638,7 +638,7 @@ const About = () => {
               light
             />
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
