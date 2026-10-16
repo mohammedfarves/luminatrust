@@ -1,0 +1,53 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Disable directory listing
+    Options -Indexes
+
+    # Block access to hidden files and dotfiles (.env, .git, etc.)
+    <FilesMatch "^\.">
+        <IfModule mod_authz_core.c>
+            Require all denied
+        </IfModule>
+        <IfModule !mod_authz_core.c>
+            Order deny,allow
+            Deny from all
+        </IfModule>
+    </FilesMatch>
+
+    # Block access to sensitive project files
+    <FilesMatch "(^\.env|composer\.(json|lock)|package(-lock)?\.json|artisan|phpunit\.xml|\.(bak|config|dist|fla|inc|ini|log|psd|sh|sql|sw[op]|yaml|yml)|~)$">
+        <IfModule mod_authz_core.c>
+            Require all denied
+        </IfModule>
+        <IfModule !mod_authz_core.c>
+            Order deny,allow
+            Deny from all
+        </IfModule>
+    </FilesMatch>
+
+    # Block direct access to internal Laravel directories
+    RewriteRule ^lumina_admin/(app|bootstrap|config|database|resources|routes|storage/logs|tests|vendor)(/.*)?$ - [F,L,NC]
+
+    # Handle Authorization Header for Laravel API & Admin
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # 1. Route Laravel Storage files (uploaded images, receipts)
+    RewriteRule ^storage/(.*)$ lumina_admin/public/storage/$1 [L]
+
+    # 2. Route API requests to Laravel Backend
+    RewriteRule ^api(/.*)?$ lumina_admin/public/index.php [L]
+
+    # 3. Route Admin and Auth requests to Laravel Backend
+    RewriteRule ^(admin|login|logout)(/.*)?$ lumina_admin/public/index.php [L]
+
+    # 4. Serve existing static files and directories directly
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # 5. SPA fallback: Route all other frontend URLs to React index.html
+    RewriteRule ^ index.html [L]
+</IfModule>

@@ -605,12 +605,13 @@ const Donate = () => {
                     className="space-y-6 p-4 sm:p-6 bg-slate-50 dark:bg-slate-900/60 rounded-2xl border border-border"
                   >
                     <div className="flex flex-col sm:flex-row items-center gap-6">
-                      <div className="p-3 bg-white rounded-2xl shadow-xl border border-amber-200 shrink-0 relative group">
+                      <div className="p-3 bg-white rounded-2xl shadow-xl border border-amber-200 shrink-0 relative group flex items-center justify-center overflow-hidden" style={{ width: '192px', height: '192px', maxWidth: '100%' }}>
                         <img 
                           src={qrCodeImage} 
                           alt="UPI QR Code" 
                           onError={(e) => { e.currentTarget.src = paymentQr; }}
-                          className="w-40 h-40 sm:w-48 sm:h-48 object-contain" 
+                          className="w-40 h-40 sm:w-44 sm:h-44 object-contain" 
+                          style={{ width: '100%', height: '100%', maxWidth: '176px', maxHeight: '176px', objectFit: 'contain' }}
                         />
                         <span className="absolute bottom-1 left-1/2 -translate-x-1/2 bg-amber-400 text-amber-950 text-[9px] font-extrabold uppercase px-2 py-0.5 rounded-full whitespace-nowrap">
                           Verified Trust QR
