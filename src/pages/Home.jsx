@@ -205,10 +205,10 @@ const Home = () => {
   };
 
   return (
-    <div className="overflow-hidden bg-[#FBF9F5] dark:bg-slate-950 text-foreground transition-colors duration-500">
+    <div className="relative overflow-hidden bg-[#FBF9F5] dark:bg-slate-950 text-foreground transition-colors duration-500">
 
       {/* ── 1. NEXT-GEN ANIMATED KINETIC HERO SECTION ── */}
-      <section ref={heroRef} className="relative min-h-[85vh] sm:min-h-[92vh] flex items-center justify-center pt-28 pb-16 sm:pt-36 sm:pb-24 md:pt-40 md:pb-32 overflow-hidden bg-[#0A0E17]">
+      <section ref={heroRef} className="relative min-h-[85vh] sm:min-h-[92vh] flex items-center justify-center pt-36 pb-16 sm:pt-40 sm:pb-24 md:pt-44 md:pb-32 overflow-hidden bg-[#0A0E17]">
         
         {/* Dynamic Gapless Photo Collage Wall with Motion Animation & Soft Blur */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden select-none">
@@ -280,7 +280,7 @@ const Home = () => {
               >
                 <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping" />
                 <Leaf className="h-3.5 w-3.5 text-amber-400 shrink-0" />
-                <span className="truncate max-w-[260px] sm:max-w-none">{homeData.hero_badge_text}</span>
+                <span className="truncate max-w-[280px] xs:max-w-[340px] sm:max-w-none">{homeData.hero_badge_text}</span>
               </motion.div>
 
               {/* High-Impact Headline */}

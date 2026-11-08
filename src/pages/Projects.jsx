@@ -72,7 +72,7 @@ const Projects = () => {
   return (
     <div className="overflow-hidden">
       {/* ── HERO ── */}
-      <section className="relative pt-32 pb-16 sm:pt-40 sm:pb-24 md:py-48 bg-slate-950 overflow-hidden">
+      <section className="relative pt-36 pb-16 sm:pt-40 sm:pb-24 md:py-48 bg-slate-950 overflow-hidden">
         <HeroBackground />
         <div className="site-container text-center relative z-10">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>

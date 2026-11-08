@@ -263,7 +263,7 @@ const Volunteer = () => {
     <div className="overflow-hidden bg-background text-foreground transition-colors">
       
       {/* ── 1. HERO SECTION ── */}
-      <section className="relative pt-32 pb-20 sm:pt-40 sm:pb-28 md:py-48 overflow-hidden bg-slate-950 text-white">
+      <section className="relative pt-36 pb-20 sm:pt-40 sm:pb-28 md:py-48 overflow-hidden bg-slate-950 text-white">
         <HeroBackground />
         
         {/* Ambient Glows */}

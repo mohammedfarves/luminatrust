@@ -47,12 +47,12 @@ const Navbar = () => {
         className={`w-full transition-all duration-300 border-b ${
           scrolled
             ? "bg-slate-950/95 border-white/10 text-white/85 py-1.5"
-            : "bg-slate-950/70 backdrop-blur-md border-white/10 text-white/90 py-2"
+            : "bg-slate-950/70 backdrop-blur-md border-white/10 text-white/90 py-1.5 sm:py-2"
         }`}
       >
         <div className="site-container flex items-center justify-between text-xs">
           {/* Left Side: Phone Number, Mail ID, and Social Media Icons */}
-          <div className="flex flex-wrap items-center gap-3 sm:gap-5 md:gap-6">
+          <div className="flex items-center gap-2.5 sm:gap-5 md:gap-6 min-w-0">
             {/* Phone Number */}
             <a
               href={`tel:${settings.phone}`}
@@ -63,7 +63,7 @@ const Navbar = () => {
               <span>{settings.phone}</span>
             </a>
 
-            <span className="hidden sm:inline text-white/20 select-none">•</span>
+            <span className="text-white/20 select-none shrink-0">•</span>
 
             {/* Email ID */}
             <a
@@ -72,13 +72,13 @@ const Navbar = () => {
               title="Email Lumina Trust"
             >
               <Mail className="h-3.5 w-3.5 text-amber-400 group-hover:scale-110 transition-transform shrink-0" />
-              <span>{settings.email}</span>
+              <span className="truncate max-w-[150px] xs:max-w-[200px] sm:max-w-none">{settings.email}</span>
             </a>
 
             <span className="hidden md:inline text-white/20 select-none">•</span>
 
             {/* Social Media Icons */}
-            <div className="flex items-center gap-2">
+            <div className="hidden sm:flex items-center gap-2 shrink-0">
               {settings.facebook_url && (
                 <a
                   href={settings.facebook_url}

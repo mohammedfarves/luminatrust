@@ -59,7 +59,7 @@ const App = () => {
         <TooltipProvider>
           <Sonner />
           {loading && <Preloader onComplete={handleComplete} />}
-          <BrowserRouter>
+          <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
             <ScrollToTop />
             <ScrollProgress />
             <Navbar />

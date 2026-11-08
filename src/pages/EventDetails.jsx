@@ -75,7 +75,7 @@ const EventDetails = () => {
   return (
     <div className="overflow-hidden bg-background">
       {/* ── BREADCRUMBS & HERO ── */}
-      <section className="relative pt-32 pb-16 sm:py-28 md:py-36 bg-slate-950 overflow-hidden text-white">
+      <section className="relative pt-36 pb-16 sm:py-28 md:py-36 bg-slate-950 overflow-hidden text-white">
         <HeroBackground />
         {/* Background Image with Gradient Overlay */}
         <div className="absolute inset-0 z-0 opacity-40">

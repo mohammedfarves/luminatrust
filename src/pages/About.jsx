@@ -135,7 +135,7 @@ const About = () => {
   return (
     <div className="overflow-hidden">
       {/* ── 1. HERO SECTION ── */}
-      <section className="relative bg-slate-950 pt-32 pb-16 sm:py-32 lg:py-36 min-h-[60vh] sm:min-h-[75vh] flex items-center">
+      <section className="relative bg-slate-950 pt-36 pb-16 sm:py-32 lg:py-36 min-h-[60vh] sm:min-h-[75vh] flex items-center">
         {/* Visual Background Collage with Overlaid Dark Backdrop */}
         <HeroBackground />
 

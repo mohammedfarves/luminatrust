@@ -50,7 +50,7 @@ const Contact = () => {
   return (
     <div className="overflow-hidden">
       {/* Hero */}
-      <section className="relative pt-32 pb-16 sm:pt-40 sm:pb-24 md:py-48 overflow-hidden bg-slate-950">
+      <section className="relative pt-36 pb-16 sm:pt-40 sm:pb-24 md:py-48 overflow-hidden bg-slate-950">
         <HeroBackground />
         <div className="site-container text-center relative z-10">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
